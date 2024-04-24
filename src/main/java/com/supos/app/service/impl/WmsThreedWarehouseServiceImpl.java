@@ -26,6 +26,8 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.io.ByteArrayOutputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
 * @author Wenhao
@@ -152,10 +154,12 @@ public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehous
 
                     Gson gson = new Gson();
                     String content = gson.toJson(listOfMaps);
+                    int qos = 2;
+                    sendMqttToUnityByZip(content, qos);
                     // Publish the response to the response topic
-                    MqttMessage responseMessage = new MqttMessage(content.getBytes());
-                    responseMessage.setQos(2); // Matching QoS for example
-                    mqttClient.publish(mqttTopicFullResponse, responseMessage);
+                    //MqttMessage responseMessage = new MqttMessage(content.getBytes());
+                    //responseMessage.setQos(2); // Matching QoS for example
+                    //mqttClient.publish(mqttTopicFullResponse, responseMessage);
 
                     System.out.println("Response published to topic: " + mqttTopicFullResponse);
                     if (content.length() > 30) {
@@ -206,6 +210,27 @@ public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehous
             System.out.println("cause " + me.getCause());
             System.out.println("excep " + me);
             me.printStackTrace();
+        }
+    }
+
+    public void sendMqttToUnityByZip(String content, int qos) {
+        try {
+            // Compress the message content using GZIP
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(byteArrayOutputStream)) {
+                gzipOutputStream.write(content.getBytes());
+            }
+            byte[] compressedContent = byteArrayOutputStream.toByteArray();
+
+            System.out.println("Publishing compressed message");
+            log.info("Publishing compressed message");
+            MqttMessage message = new MqttMessage(compressedContent);
+            message.setQos(qos);
+            mqttClient.publish(mqttTopicIncrement, message);
+            System.out.println("Compressed message published");
+        } catch (Exception e) {
+            System.out.println("Compression and publishing failed: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

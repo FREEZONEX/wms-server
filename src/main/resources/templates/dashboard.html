@@ -1,0 +1,740 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+        Asset Management
+    </title>
+<!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+    <link href="apps/wenhao-javaw/output.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+<div class="flex">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white shadow-md">
+        <div class="p-6">
+            <div class="flex items-center space-x-2 font-semibold text-green-600">
+                <div class="text-2xl">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <span>Asset Management</span>
+            </div>
+            <nav class="mt-8">
+                <div class="mt-2 bg-green-200">
+                    <a href="#" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-200">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="mt-2">
+                    <a href="/apps/wenhao-javaw/inventory" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-200">
+                        <i class="fas fa-boxes"></i>
+                        <span>Inventory</span>
+                    </a>
+                </div>
+                <div class="mt-2">
+                    <a href="#" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-200">
+                        <i class="fas fa-laptop"></i>
+                        <span>Assets</span>
+                    </a>
+                </div>
+                <div class="mt-2">
+                    <a href="#" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-200">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Plan</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="flex-1 p-8">
+        <!-- Details Section -->
+        <div class="grid grid-cols-5 gap-6 mb-6">
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    Operating days
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">
+                    1234
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    Current temperature (°C)
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">
+                    23
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    Location
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">
+                    Warehouse1
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    Operator
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">
+                    John Mike 9661234567
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    Status
+                </div>
+                <div class="text-3xl font-bold text-green-500 mt-2">
+                    Normal
+                </div>
+            </div>
+        </div>
+        <!-- Maintenance Section -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    Next maintenance
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">
+                    2024/2/12
+                </div>
+                <a class="text-indigo-600 hover:text-indigo-900 text-sm font-medium mt-4" href="#">
+                    See all
+                </a>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="text-sm font-medium text-gray-500">
+                    To be disposed
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">
+                    2024/2/12
+                </div>
+            </div>
+        </div>
+        <!-- Events Section -->
+        <div class="flex flex-col mt-4 mb-6 ">
+            <div class="overflow-x-auto">
+                <div class="flex">
+                <div class="align-middle inline-block min-w-3/5">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inv. ID</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asset</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Owner</th>-->
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">3D Model</th>-->
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>-->
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
+                            <!-- Repeat for each row -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ad123</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Cutting machine</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Warehouse 1</td>
+<!--                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Unknown</td>-->
+<!--                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-->
+<!--                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>-->
+<!--                                </td>-->
+<!--                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">-->
+<!--                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Details</a>-->
+<!--                                    <a href="#" class="text-red-600 hover:text-red-900 ml-4">Delete</a>-->
+<!--                                </td>-->
+                            </tr>
+                            <!-- Repeat for each row -->
+                            <!-- ... other rows ... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                    <div class="flex-grow flex items-center justify-center"> <!-- Use flex-grow to occupy the remaining space -->
+                        <!-- Image Section -->
+                    <div class="ml-4 flex items-center justify-center">
+                        <div class="w-48 h-48 rounded-full" id="loop-a"></div>
+                        <!-- Replace the above line with your image code -->
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Trends Section -->
+        <div class="grid grid-cols-3 gap-6">
+            <div class="bg-white shadow rounded-lg p-6" style="height: 450px;">
+                <div class="text-lg font-semibold text-gray-900">
+                    Vibration trend
+                </div>
+                <div id="ppo" class="bg-white shadow rounded-lg p-6 w-full h-4/5"></div>
+                <div class="text-3xl font-bold text-blue-500 mt-4" id="randomNumberDisplay">
+                    1200
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6" style="height: 450px;">
+                <div class="text-lg font-semibold text-gray-900">
+                    Temperature trend
+                </div>
+                <div id="overlap-wrapper" class="bg-white shadow rounded-lg p-6 w-full h-4/5"></div>
+                <div class="text-3xl font-bold text-blue-500 mt-4" id="randomNumberDisplay1">
+                    1200
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6" style="height: 450px;">
+                <div class="text-lg font-semibold text-gray-900">
+                    Energy consumption trend
+                </div>
+                <div id="loop-b" class="bg-white shadow rounded-lg p-6 w-full h-4/5"></div>
+                <div class="text-3xl font-bold text-blue-500 mt-4" id="randomNumberDisplay2">
+                    1200
+                </div>
+            </div>
+        </div>
+<!--        &lt;!&ndash; Fault Analysis Section &ndash;&gt;-->
+<!--        <div class="bg-white shadow rounded-lg p-6 mt-6">-->
+<!--            <div class="text-lg font-semibold text-gray-900">-->
+<!--                Fault analysis-->
+<!--            </div>-->
+<!--            <img alt="Placeholder image for fault analysis pie chart" class="mt-4" height="300" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-rEiyTYq8Mv8plYLFSJy5qIKL/user-Yc1mWgVexpGywTcUXKsrlRu2/img-WcSOy3H3aOd0d94gKymFGIVk.png?st=2024-01-23T01%3A49%3A05Z&amp;se=2024-01-23T03%3A49%3A05Z&amp;sp=r&amp;sv=2021-08-06&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-01-22T21%3A52%3A08Z&amp;ske=2024-01-23T21%3A52%3A08Z&amp;sks=b&amp;skv=2021-08-06&amp;sig=SXN3dr8EfQgD%2BxxfX5Cxea1c5k11%2Bbg03fPhxSCdBIE%3D" width="300"/>-->
+<!--        </div>-->
+    </div>
+</div>
+</body>
+
+<script>
+
+    // JavaScript
+    function updateRandomNumber() {
+        // Get the element by its ID
+        const randomNumberDisplay = document.getElementById('randomNumberDisplay');
+
+        // Generate a random number (replace this logic with your desired way of generating random numbers)
+        const randomValue = Math.floor(Math.random() * 1000); // Example: Generates a random number between 0 and 1000
+
+        // Update the content of the element with the new random number
+        randomNumberDisplay.textContent = randomValue;
+
+        // Get the element by its ID
+        const randomNumberDisplay1 = document.getElementById('randomNumberDisplay1');
+
+        // Generate a random number (replace this logic with your desired way of generating random numbers)
+        const randomValue1 = Math.floor(Math.random() * 1000); // Example: Generates a random number between 0 and 1000
+
+        // Update the content of the element with the new random number
+        randomNumberDisplay1.textContent = randomValue1;
+        // Get the element by its ID
+        const randomNumberDisplay2 = document.getElementById('randomNumberDisplay2');
+
+        // Generate a random number (replace this logic with your desired way of generating random numbers)
+        const randomValue2 = Math.floor(Math.random() * 1000); // Example: Generates a random number between 0 and 1000
+
+        // Update the content of the element with the new random number
+        randomNumberDisplay2.textContent = randomValue2;
+    }
+
+    // Call the function initially
+    updateRandomNumber();
+
+    // Update the random number every second
+    setInterval(updateRandomNumber, 5000);
+
+    function fetchDataAndDisplay() {
+        // 使用 Fetch API 获取数据
+        fetch('/apps/wenhao-javaw/package/history')
+            .then(response => response.json())
+            .then(data => {
+                // 获取表格主体元素
+                const tableBody = document.getElementById('tableBody');
+
+                // 清空表格主体
+                tableBody.innerHTML = '';
+                // 随机选择4条数据
+                const selectedData = getRandomElements(data, 4);
+
+                // 遍历 API 返回的数据
+                selectedData.forEach(item => {
+                    // 创建表格行
+                    const row = document.createElement('tr');
+
+                    // 遍历每个属性，并创建相应的单元格
+                    Object.values(item).slice(0, 4).forEach(value => {
+                        const cell = document.createElement('td')
+                        // cell.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-500';
+                        cell.className = 'px-6 py-4 text-sm text-gray-500';
+
+                        cell.textContent = value;
+                        row.appendChild(cell);
+                    });
+
+                    // 在每行的末尾添加 "Details" 和 "Delete" 列
+                    const actionCell1 = document.createElement('td');
+                    actionCell1.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-500';
+                    const viewLink = document.createElement('a');
+                    viewLink.href = '#';
+                    viewLink.className = 'text-indigo-600 hover:text-indigo-900';
+                    viewLink.textContent = 'View';
+                    actionCell1.appendChild(viewLink);
+
+                    // 在每行的末尾添加 "Details" 和 "Delete" 列
+                    const actionCell = document.createElement('td');
+                    actionCell.className = 'px-6 py-4 whitespace-nowrap text-right text-sm font-medium';
+
+                    const detailsLink = document.createElement('a');
+                    detailsLink.href = '#';
+                    detailsLink.className = 'text-indigo-600 hover:text-indigo-900';
+                    detailsLink.textContent = 'Details';
+
+                    const deleteLink = document.createElement('a');
+                    deleteLink.href = '#';
+                    deleteLink.className = 'text-red-600 hover:text-red-900 ml-4';
+                    deleteLink.textContent = 'Delete';
+
+                    actionCell.appendChild(detailsLink);
+                    actionCell.appendChild(deleteLink);
+
+
+                    // row.appendChild(actionCell1);
+
+                    // 将 "Details" 和 "Delete" 列添加到行
+                    // row.appendChild(actionCell);
+
+                    // 将行添加到表格主体
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // 随机选择指定数量的元素
+    function getRandomElements(array, numElements) {
+        const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+        return shuffledArray.slice(0, numElements);
+    }
+
+    // 每秒钟执行一次
+    setInterval(fetchDataAndDisplay, 5000);
+
+    var chartDom1 = document.getElementById('overlap-wrapper');
+    chartDom1.style.width = 'w-full'; // Set your preferred width
+    chartDom1.style.height = 'w-full'; // Set your preferred height
+    var myChart1 = echarts.init(chartDom1);
+    var option1;
+
+    function run1 (response) {
+        option1 = {
+            title: {
+                show: false // Set show property to false to hide the legend
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                show: false, // Set show property to false to hide the legend
+                left: 'center',
+                top: 'bottom',
+                data: response.dataList
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            series: [
+                {
+                    name: 'Radius Mode',
+                    type: 'pie',
+                    radius: [20, 140],
+                    center: ['50%', '50%'],
+                    roseType: 'radius',
+                    itemStyle: {
+                        borderRadius: 5
+                    },
+                    label: {
+                        show: false
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    data: response.data
+                }
+            ]
+        };
+        option1 && myChart1.setOption(option1);
+    }
+
+    var chartDom = document.getElementById('ppo');
+    chartDom.style.width = 'w-full'; // Set your preferred width
+    chartDom.style.height = 'h-full'; // Set your preferred height
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    function run(_rawData) {
+        // var countries = ['Australia', 'Canada', 'China', 'Cuba', 'Finland', 'France', 'Germany', 'Iceland', 'India', 'Japan', 'North Korea', 'South Korea', 'New Zealand', 'Norway', 'Poland', 'Russia', 'Turkey', 'United Kingdom', 'United States'];
+        const isMobile = window.innerWidth <= 600; // 假设屏幕宽度小于或等于 600px 为手机屏幕
+        const titlePosition = isMobile ? '25%' : 'center'; // 如果是手机屏幕，标题向左移动 40%，否则居中
+
+        const countries = [
+            'increase',
+            'total'
+        ];
+        const datasetWithFilters = [];
+        const seriesList = [];
+        echarts.util.each(countries, function (pack) {
+            var datasetId = 'dataset_' + pack;
+            datasetWithFilters.push({
+                id: datasetId,
+                fromDatasetId: 'dataset_raw',
+                transform: {
+                    type: 'filter',
+                    config: {
+                        and: [
+                            { dimension: 'month', gte: 1 },
+                            { dimension: 'pack', '=': pack }
+                        ]
+                    }
+                }
+            });
+            seriesList.push({
+                type: 'line',
+                datasetId: datasetId,
+                showSymbol: false,
+                name: pack,
+                endLabel: {
+                    show: true,
+                    formatter: function (params) {
+                        // return params.seriesName + ': ' + params.value[1];
+                        return params.value[1];
+                    }
+                },
+                labelLayout: {
+                    moveOverlap: 'shiftY'
+                },
+                emphasis: {
+                    focus: 'series'
+                },
+                encode: {
+                    x: 'month',
+                    y: 'no',
+                    label: ['pack', 'no'],
+                    itemName: 'month',
+                    tooltip: ['no']
+                }
+            });
+        });
+        option = {
+            animationDuration: 10000,
+            dataset: [
+                {
+                    id: 'dataset_raw',
+                    source: _rawData
+                },
+                ...datasetWithFilters
+            ],
+            title: {
+                show: false // Set show property to false to hide the legend
+            },
+            tooltip: {
+                order: 'valueDesc',
+                trigger: 'axis'
+            },
+            xAxis: {
+                type: 'category',
+                nameLocation: 'middle'
+            },
+            yAxis: {
+                name: 'no'
+                // ,
+                // min: 36000,  // Set the minimum value of y-axis to 30000
+                // max: 40000   // Set the maximum value of y-axis to 50000
+            },
+            grid: {
+                right: 0
+            },
+            series: seriesList
+        };
+        myChart.setOption(option);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('/apps/wenhao-javaw/package/chart', {
+            method: "GET",
+        }) .then(response => response.text())
+            .then(responseBodyText => {
+                const jsonData = JSON.parse(responseBodyText);
+                run(jsonData);
+            })
+        fetch('/apps/wenhao-javaw/package/pieChart', {
+            method: "GET",
+        }) .then(response => response.text())
+            .then(responseBodyText => {
+                const jsonData = JSON.parse(responseBodyText);
+                run1(jsonData);
+            })
+    });
+
+    var chartDom = document.getElementById('loop-b');
+    chartDom.style.width = 'w-full'; // Set your preferred width
+    chartDom.style.height = 'h-full'; // Set your preferred height
+    var myChart6 = echarts.init(chartDom);
+    var option6;
+
+    option6 = {
+        series: [
+            {
+                type: 'gauge',
+                center: ['50%', '60%'],
+                startAngle: 200,
+                endAngle: -20,
+                min: 0,
+                max: 60,
+                splitNumber: 12,
+                itemStyle: {
+                    color: '#FFAB91'
+                },
+                progress: {
+                    show: true,
+                    width: 10
+                },
+                pointer: {
+                    show: false
+                },
+                axisLine: {
+                    show: false // 隐藏分割线
+                },
+                axisTick: {
+                    show: false // 隐藏分割线
+                },
+                splitLine: {
+                    show: false // 隐藏分割线
+                },
+                axisLabel: {
+                    show: false // 隐藏分割线
+                },
+                anchor: {
+                    show: false
+                },
+                title: {
+                    show: false
+                },
+                detail: {
+                    valueAnimation: true,
+                    width: '60%',
+                    lineHeight: 40,
+                    borderRadius: 8,
+                    offsetCenter: [0, '-15%'],
+                    fontSize: 20,
+                    fontWeight: 'bolder',
+                    formatter: '{value}',
+                    color: 'inherit'
+                },
+                data: [
+                    {
+                        value: 20
+                    }
+                ]
+            },
+            {
+                type: 'gauge',
+                center: ['50%', '60%'],
+                startAngle: 200,
+                endAngle: -20,
+                min: 0,
+                max: 60,
+                itemStyle: {
+                    color: '#FD7347'
+                },
+                progress: {
+                    show: true,
+                    width: 8
+                },
+                pointer: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                detail: {
+                    show: false
+                },
+                data: [
+                    {
+                        value: 20
+                    }
+                ]
+            }
+        ]
+    };
+    setInterval(function () {
+        const random = +(Math.random() * 60).toFixed(2);
+        myChart6.setOption({
+            series: [
+                {
+                    data: [
+                        {
+                            value: random
+                        }
+                    ]
+                },
+                {
+                    data: [
+                        {
+                            value: random
+                        }
+                    ]
+                }
+            ]
+        });
+    }, 2000);
+
+    var chartDom = document.getElementById('loop-a');
+    var myChart5 = echarts.init(chartDom);
+    var option5;
+
+    const gaugeData = [
+        {
+            value: 20,
+            title: {
+                offsetCenter: ['-40%', '80%']
+            },
+            detail: {
+                offsetCenter: ['-40%', '95%']
+            }
+        },
+        {
+            value: 40,
+            title: {
+                offsetCenter: ['0%', '80%']
+            },
+            detail: {
+                offsetCenter: ['0%', '95%']
+            }
+        },
+        {
+            value: 60,
+            title: {
+                offsetCenter: ['40%', '80%']
+            },
+            detail: {
+                offsetCenter: ['40%', '95%']
+            }
+        }
+    ];
+    option5 = {
+        series: [
+            {
+                type: 'gauge',
+                anchor: {
+                    show: true,
+                    showAbove: true,
+                    size: 18,
+                    itemStyle: {
+                        color: '#FAC858'
+                    }
+                },
+                axisLabel: {
+                    show: false // 隐藏分割线
+                },
+                axisTick: {
+                    show: false // 隐藏分割线
+                },
+                splitLine: {
+                    show: false // 隐藏分割线
+                },
+                pointer: {
+                    icon: 'path://M2.9,0.7L2.9,0.7c1.4,0,2.6,1.2,2.6,2.6v115c0,1.4-1.2,2.6-2.6,2.6l0,0c-1.4,0-2.6-1.2-2.6-2.6V3.3C0.3,1.9,1.4,0.7,2.9,0.7z',
+                    width: 8,
+                    length: '80%',
+                    offsetCenter: [0, '8%']
+                },
+                progress: {
+                    show: true,
+                    overlap: true,
+                    roundCap: true
+                },
+                axisLine: {
+                    roundCap: true
+                },
+                data: gaugeData,
+                title: {
+                    fontSize: 14
+                },
+                detail: {
+                    width: 40,
+                    height: 14,
+                    fontSize: 14,
+                    color: '#fff',
+                    backgroundColor: 'inherit',
+                    borderRadius: 3,
+                    formatter: '{value}%'
+                }
+            }
+        ]
+    };
+    setInterval(function () {
+        gaugeData[0].value = +(Math.random() * 100).toFixed(2);
+        gaugeData[1].value = +(Math.random() * 100).toFixed(2);
+        gaugeData[2].value = +(Math.random() * 100).toFixed(2);
+        myChart5.setOption({
+            series: [
+                {
+                    data: gaugeData
+                }
+            ]
+        });
+    }, 3000);
+
+    option5 && myChart5.setOption(option5);
+
+    option6 && myChart6.setOption(option6);
+
+    window.addEventListener('load', function () {
+        fetchDataAndDisplay()
+        // 改变图表尺寸，在容器大小发生改变时需要手动调用
+        myChart1.resize();
+        myChart5.resize();
+        myChart6.resize();
+        myChart.resize();
+
+    });
+    window.addEventListener('resize', function () {
+        // 改变图表尺寸，在容器大小发生改变时需要手动调用
+        myChart1.resize();
+        myChart5.resize();
+        myChart6.resize();
+        myChart.resize();
+
+    });
+
+
+</script>
+</html>

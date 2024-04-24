@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Openiot Configuration Board</title>
+    <link href="apps/wenhao-javaw/output.css" rel="stylesheet">
+    <!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col h-screen">
+
+<nav class="flex items-center justify-between px-4 py-2 bg-gray-50 text-gray-700 border-b border-gray-200">
+    <div class="flex items-center">
+        <a href="#" class="flex items-center">
+            <img alt="Your Logo" src="http://office.unibutton.com:59000/wenhao/2024-02/22/1ac8effc-c054-434a-9167-e00f4cdc3725.png" class="logo mr-2 h-12 w-12"/>
+            <span class="text-xl font-semibold">Vegetable</span>
+        </a>
+        <a href="#" class="ml-6 text-sm font-medium text-gray-700 hover:text-gray-900">Home</a>
+        <a href="#" class="ml-6 text-sm font-medium text-gray-700 hover:text-gray-900">Products</a>
+        <a href="#" class="ml-6 text-sm font-medium text-gray-700 hover:text-gray-900">Services</a>
+        <a href="#" class="ml-6 text-sm font-medium text-gray-700 hover:text-gray-900">About Us</a>
+    </div>
+    <div class="relative">
+        <input class="bg-gray-100 text-sm text-gray-700 rounded-md pl-10 py-1 focus:outline-none focus:ring-2 focus:ring-gray-200 w-96" placeholder="Search" type="text"/>
+        <span class="absolute left-2 top-0 mt-1 ml-2 text-gray-400">
+            <i class="fas fa-search"></i>
+        </span>
+    </div>
+    <div class="flex items-center">
+        <button class="text-gray-400 text-sm mx-2"><i class="fas fa-bell"></i></button>
+        <button class="text-gray-400 text-sm mx-2"><i class="fas fa-clipboard-list"></i></button>
+        <button class="text-gray-400 text-sm mx-2"><i class="fas fa-comment-alt"></i></button>
+        <button class="text-gray-400 text-sm mx-2"><i class="fas fa-cog"></i></button>
+        <div class="mx-2 text-gray-700 text-sm">
+            N. Virginia
+        </div>
+        <button class="mx-2 text-sm text-gray-700 bg-gray-100 py-1 px-4 rounded-md hover:bg-gray-200">Wenhao</button>
+    </div>
+</nav>
+
+
+<div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar -->
+    <div id="sidebar" class="w-64 bg-gray-50 shadow-md relative transition-width duration-300 ease-in-out">
+        <div class="p-6">
+            <h1 id="sidebarTitle" class="text-2xl font-semibold transition-opacity duration-300 ease-in-out opacity-100">Configuration Board</h1>
+        </div>
+        <nav id="sidebarNav" class="text-sm transition-opacity duration-300 ease-in-out opacity-100">
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200" onclick="toggleSubMenu(event)">
+                <i class="fas fa-users mr-3 w-[1rem]"></i>
+                User Management
+                <i class="fas fa-chevron-down ml-auto"></i>
+            </a>
+            <!-- 子菜单项 -->
+            <ul id="userSubMenu" class="pl-9">
+                <li>
+                    <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                        <i class="fas fa-user mr-3 w-[1rem]"></i>
+                        Manage Users
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                        <i class="fas fa-user-plus mr-3 w-[1rem]"></i>
+                        Add User
+                    </a>
+                </li>
+            </ul>
+            <a href="/apps/wenhao-javaw/lottomanagement" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                <i class="fas fa-network-wired mr-3 w-[1rem]"></i>
+                Lotto Management
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                <i class="fas fa-microchip mr-3 w-[1rem]"></i>
+                Core Management
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                <i class="fas fa-th-large mr-3 w-[1rem]"></i>
+                App Management
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                <i class="fas fa-random mr-3 w-[1rem]"></i>
+                Flow Management
+            </a>
+            <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200">
+                <i class="fas fa-sign-out-alt mr-3 w-[1rem]"></i>
+                Logout
+            </a>
+        </nav>
+        <!-- 图标触发器 -->
+        <button id="sidebarToggle" class="absolute top-1/2 -translate-y-1/2 right-0 transform mr-2 focus:outline-none" style="right: -1rem;">
+            <i class="fas fa-arrow-left text-gray-600 hover:text-gray-900"></i>
+        </button>
+        <div id="tooltip" class="hidden absolute z-10 p-2 bg-gray-800 text-white text-xs rounded-lg shadow-md">
+            <!-- 工具提示文本将通过 JavaScript 动态设置 -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold">Flows</h2>
+            <div class="flex items-center">
+                <input type="search" placeholder="Search" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none">
+                <button class="create-flow-btn ml-4 text-sm bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg">
+                    <i class="fas fa-plus mr-2"></i> Create Flow
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <table class="w-full table-auto">
+                <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Name
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Description
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Type
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        No. of Edges
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        No. of Cores
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        No. of Apps
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Update time
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Create time
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider actions-column" id="actions-column">
+                        Actions
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="bg-white">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Create Flow Modal -->
+<div id="createFlowModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+    <div class="relative top mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Create New Flow</h3>
+            <div class="mt-2 px-7 py-3">
+                <input type="text" placeholder="Flow Name" class="mt-2 px-3 py-2 border rounded-md w-full" />
+                <textarea placeholder="Description" class="mt-2 px-3 py-2 border rounded-md w-full"></textarea>
+                <select class="mt-2 px-3 py-2 border rounded-md w-full">
+                    <option>Type 1</option>
+                    <option>Type 2</option>
+                </select>
+                <input type="number" placeholder="No. of Edges" class="mt-2 px-3 py-2 border rounded-md w-full" />
+                <input type="number" placeholder="No. of Cores" class="mt-2 px-3 py-2 border rounded-md w-full" />
+                <input type="number" placeholder="No. of Apps" class="mt-2 px-3 py-2 border rounded-md w-full" />
+            </div>
+            <div class="items-center px-4 py-3">
+                <button id="cancelBtn" class="px-4 py-2 bg-gray-200 text-black rounded-md mr-2">Cancel</button>
+                <button id="createBtn" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Logo Click Modal -->
+<div id="logoModal"
+     class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+    <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white">
+        <!-- 放大的 Logo 图片 -->
+        <img id="enlargedLogo"
+             src="http://office.unibutton.com:59000/wenhao/2024-02/22/1ac8effc-c054-434a-9167-e00f4cdc3725.png"
+             alt="Enlarged Logo" class="rounded-lg"/>
+    </div>
+</div>
+
+<!-- Edit Flow Modal -->
+<div id="editFlowModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+    <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="text-center">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Flow</h3>
+            <div class="mt-2 px-7 py-3">
+                <!-- Pre-fill values using JS -->
+                <input type="text" value="Current Flow Name" class="mt-2 px-3 py-2 border rounded-md w-full" />
+                <textarea class="mt-2 px-3 py-2 border rounded-md w-full">Current Description</textarea>
+                <select class="mt-2 px-3 py-2 border rounded-md w-full">
+                    <option selected>Current Type</option>
+                    <option>Type 1</option>
+                    <option>Type 2</option>
+                </select>
+                <input type="number" value="Current No. of Edges" class="mt-2 px-3 py-2 border rounded-md w-full" />
+                <input type="number" value="Current No. of Cores" class="mt-2 px-3 py-2 border rounded-md w-full" />
+                <input type="number" value="Current No. of Apps" class="mt-2 px-3 py-2 border rounded-md w-full" />
+            </div>
+            <div class="flex justify-around p-3">
+                <button id="cancelEditBtn" class="px-4 py-2 bg-gray-200 text-black rounded-md mr-2">Cancel</button>
+                <button id="saveEditBtn" class="px-4 py-2 bg-blue-500 text-white rounded-md">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 使用JavaScript添加鼠标悬停提示
+    document.getElementById('actions-column').addEventListener('mouseover', function() {
+        this.title = "请点击该列页面跳转"; // 设置title属性作为提示
+        this.classList.add('bg-blue-100'); // 鼠标悬停时添加背景色改变，增加提示效果
+    });
+    document.getElementById('actions-column').addEventListener('mouseout', function() {
+        this.classList.remove('bg-blue-100'); // 鼠标移出时移除背景色改变
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const actionsColumn = document.querySelector('.actions-column');
+        actionsColumn.classList.add('animate-pulse', 'text-red-500', 'font-bold');
+        setTimeout(() => {
+            actionsColumn.classList.remove('animate-pulse', 'text-red-500', 'font-bold');
+        }, 5000); // 持续时间为5000毫秒（5秒），之后动画停止
+
+        const sidebar = document.getElementById('sidebar');
+        const sidebarTitle = document.getElementById('sidebarTitle');
+        const sidebarNav = document.getElementById('sidebarNav');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const tooltip = document.getElementById('tooltip'); // 获取工具提示元素
+
+        // 显示工具提示
+        function showTooltip(text) {
+            tooltip.textContent = text; // 设置工具提示文本
+            const toggleRect = sidebarToggle.getBoundingClientRect(); // 获取切换按钮的位置和尺寸
+            tooltip.style.left = `${toggleRect.left - tooltip.offsetWidth + 40}px`; // 左移动，考虑工具提示自身宽度和额外的间距
+            tooltip.style.top = `${toggleRect.top + window.scrollY - tooltip.offsetHeight / 2 -40}px`; // 上移动，考虑滚动偏移
+            tooltip.classList.remove('hidden'); // 显示工具提示
+        }
+
+        // 隐藏工具提示
+        function hideTooltip() {
+            tooltip.classList.add('hidden');
+        }
+
+        sidebarToggle.addEventListener('mouseenter', (event) => {
+            const tooltipText = sidebar.classList.contains('w-0') ? 'Open' : 'Close';
+            showTooltip(tooltipText, event); // 显示工具提示
+        });
+
+        sidebarToggle.addEventListener('mouseleave', hideTooltip); // 鼠标离开时隐藏工具提示
+
+        sidebarToggle.addEventListener('click', () => {
+            const isOpening = sidebar.classList.contains('w-0');
+            sidebar.classList.toggle('w-0');
+            sidebar.classList.toggle('w-64');
+
+            // 根据侧边栏是正在打开还是关闭来添加/移除透明度类
+            if (isOpening) {
+                // 正在打开侧边栏，添加 opacity-100 类，并移除 opacity-0
+                setTimeout(() => {
+                    sidebarTitle.classList.replace('opacity-0', 'opacity-100');
+                    sidebarNav.classList.replace('opacity-0', 'opacity-100');
+                }, 100); // 给宽度变化留出时间
+            } else {
+                // 正在关闭侧边栏，添加 opacity-0 类，并移除 opacity-100
+                sidebarTitle.classList.replace('opacity-100', 'opacity-0');
+                sidebarNav.classList.replace('opacity-100', 'opacity-0');
+            }
+
+            // 切换箭头方向
+            sidebarToggle.querySelector('i').classList.toggle('fa-arrow-left');
+            sidebarToggle.querySelector('i').classList.toggle('fa-arrow-right');
+
+            // 更新工具提示文本
+            const tooltipText = isOpening ? 'Close' : 'Open';
+            tooltip.textContent = tooltipText;
+
+            // 移动sidebarToggle
+            if (sidebar.classList.contains('w-0')) {
+                sidebarToggle.style.left = '0';
+                // sidebarToggle.setAttribute('title', 'Open');
+            } else {
+                sidebarToggle.style.left = 'calc(97%)'; // 侧边栏打开时，调整位置
+                // sidebarToggle.setAttribute('title', 'Close');
+            }
+        });
+
+        const createFlowBtn = document.querySelector('.create-flow-btn'); // 确保你的创建按钮有这个类
+        const modal = document.getElementById('createFlowModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const createBtn = document.getElementById('createBtn');
+
+        createFlowBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        createBtn.addEventListener('click', () => {
+            alert('发送成功');
+            // 在这里实现创建流程的逻辑
+            modal.classList.add('hidden');
+        });
+
+        const logo = document.querySelector('.logo'); // Logo 的选择器，确保它唯一对应你的 Logo
+        const logoModal = document.getElementById('logoModal');
+
+        logo.addEventListener('click', (e) => {
+            e.preventDefault(); // 防止链接的默认行为
+            logoModal.classList.remove('hidden'); // 显示模态窗口
+        });
+
+        // 点击模态窗口背景也能关闭模态窗口
+        logoModal.addEventListener('click', (e) => {
+            if (e.target === logoModal) {
+                logoModal.classList.add('hidden');
+            }
+        });
+
+        const tableData = [
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/minio' target='_blank'>minIO</a>",
+                "description": "minIO分布式对象存储",
+                "type": "基础应用",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/minio' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/llm' target='_blank'>llama2</a>",
+                "description": "llm大语言模型",
+                "type": "基础应用",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/llm' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/llm2' target='_blank'>langchain</a>",
+                "description": "langchain大语言",
+                "type": "基础应用",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/llm2' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='https://demo.unibutton.com:8443/grafana' target='_blank'>grafana</a>",
+                "description": "监控",
+                "type": "基础应用",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='https://demo.unibutton.com:8443/grafana' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/multipleWindow3dScene' target='_blank'>3dScene</a>",
+                "description": "多窗口同步",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/multipleWindow3dScene' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/frontend' target='_blank'>frontend</a>",
+                "description": "测试",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/frontend' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/fun' target='_blank'>fun</a>",
+                "description": "简历",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/fun' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/spacex' target='_blank'>spacex</a>",
+                "description": "火箭仪表盘",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/spacex' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/wms' target='_blank'>wms</a>",
+                "description": "仓储管理页面",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/wms' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/survey' target='_blank'>survey</a>",
+                "description": " 意见收集",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/survey' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/redoc' target='_blank'>redoc</a>",
+                "description": " swagger生成接口文档",
+                "type": "静态页面展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/redoc' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/warehouse' target='_blank'>carbonWms</a>",
+                "description": "carbonWms",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/warehouse' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/swagger-ui.html' target='_blank'>swagger</a>",
+                "description": " swagger调试工具",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/swagger-ui.html' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/lottomanagement' target='_blank'>Lotto</a>",
+                "description": "大乐透管理",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/lottomanagement' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/suposapi' target='_blank'>suposai</a>",
+                "description": "openAPI在线调用",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/suposapi' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/dashboard' target='_blank'>asset Management</a>",
+                "description": "资产管理(仪表盘)",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/dashboard' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/inventory' target='_blank'>asset Management</a>",
+                "description": "资产管理（库存）",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/inventory' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/qrform' target='_blank'>qrform</a>",
+                "description": "创建名片",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/qrform' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/package' target='_blank'>package</a>",
+                "description": "快递记录",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/package' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/#/vuedashboard' target='_blank'>vue集成用例</a>",
+                "description": "vue集成用例",
+                "type": "综合系统展示",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/#/vuedashboard' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/2048' target='_blank'>2048</a>",
+                "description": "小游戏",
+                "type": "游戏",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/2048' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/minesweeper' target='_blank'>minesweeper</a>",
+                "description": "扫雷",
+                "type": "游戏",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/minesweeper' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/ppocr' target='_blank'>ocr</a>",
+                "description": "文字识别",
+                "type": "深度学习（静态）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/ppocr' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/pproadsign' target='_blank'>roadSign</a>",
+                "description": "路标识别",
+                "type": "深度学习（静态）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/pproadsign' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/pphelmet' target='_blank'>helmet</a>",
+                "description": "头盔识别",
+                "type": "深度学习（静态）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/pphelmet' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/ppgeneralobjectdetection' target='_blank'>general</a>",
+                "description": "通用识别",
+                "type": "深度学习（静态）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/ppgeneralobjectdetection' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/videoppocr' target='_blank'>ocr</a>",
+                "description": "文字识别",
+                "type": "深度学习（视频流）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='https://demo.unibutton.com:8443/apps/wenhao-javaw/videoppocr' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/ppvideohelmet' target='_blank'>helmet</a>",
+                "description": "头盔识别",
+                "type": "深度学习（视频流）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='https://demo.unibutton.com:8443/apps/wenhao-javaw/ppvideohelmet' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            },
+            {
+                "name": "<a href='http://47.236.10.165:8080/apps/wenhao-javaw/ppvideogeneralobjectdetection' target='_blank'>general</a>",
+                "description": "通用识别",
+                "type": "深度学习（视频流）",
+                "edges": 1,
+                "cores": 2,
+                "apps": 1,
+                "updateTime": "25/01/2024",
+                "createTime": "25/01/2024",
+                "actions": "<a href='#' class='edit-btn text-indigo-600 hover:text-indigo-900'>Edit</a> <span style='margin-left: 8px;'>" +
+                    "<a href='https://demo.unibutton.com:8443/apps/wenhao-javaw/ppvideogeneralobjectdetection' target='_blank' class='open-btn text-gray-600 hover:text-gray-900'><i class='fas fa-external-link-alt'></i></a></span>"
+            }
+        ];
+
+        const tableBody = document.querySelector('.table-auto tbody');
+
+        tableData.forEach((row, index) => {
+            const tr = document.createElement('tr');
+            tr.className = index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+
+            Object.keys(row).forEach(key => {
+                const td = document.createElement('td');
+                td.className = 'px-6 py-4 whitespace-nowrap text-sm text-gray-500';
+                if (key !== 'actions') { // 对于非actions列
+                    if (key === 'name') { // 特别处理name字段，使其内容为可点击的链接
+                        td.innerHTML = row[key]; // 使用innerHTML插入链接
+                    } else {
+                        td.textContent = row[key]; // 其他字段正常显示文本
+                    }
+                } else {
+                    td.className = 'px-6 py-4 whitespace-nowrap text-sm font-medium';
+                    td.innerHTML = row[key]; // 对于actions列，使用innerHTML插入链接
+                }
+                tr.appendChild(td);
+            });
+
+            tableBody.appendChild(tr);
+        });
+
+        const dataTable = document.querySelector('.table-auto');
+
+        // 在表格上添加点击事件监听器
+        dataTable.addEventListener('click', function(event) {
+            // 检查点击的元素是否是我们关注的 'edit-btn'
+            if (event.target && event.target.matches('.edit-btn')) {
+                const flowId = event.target.getAttribute('data-flow-id'); // 获取数据流ID
+                // 这里实现获取数据流详情并填充到编辑模态框的逻辑
+                document.getElementById('editFlowModal').classList.remove('hidden'); // 显示编辑模态框
+                event.preventDefault(); // 阻止链接默认行为
+            }
+        });
+
+    });
+
+    function toggleSubMenu(event) {
+        // 阻止默认链接行为
+        event.preventDefault();
+        // 切换子菜单的显示状态
+        const subMenu = document.getElementById('userSubMenu');
+        subMenu.classList.toggle('hidden');
+
+        // 切换子菜单图标方向
+        const icon = event.currentTarget.querySelector('.fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    }
+
+    document.getElementById('saveEditBtn').addEventListener('click', function() {
+        // Logic to save changes
+        // Hide the modal
+        alert('Edit成功');
+        document.getElementById('editFlowModal').classList.add('hidden');
+    });
+
+    document.getElementById('cancelEditBtn').addEventListener('click', function() {
+        document.getElementById('editFlowModal').classList.add('hidden');
+    });
+
+</script>
+</body>
+</html>

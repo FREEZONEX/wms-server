@@ -34,3 +34,6 @@ build/
 
 # Project exclude paths
 /out/
+
+# mac file
+.DS_Store

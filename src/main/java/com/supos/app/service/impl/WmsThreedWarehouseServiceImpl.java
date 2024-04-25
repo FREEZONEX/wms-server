@@ -9,15 +9,10 @@ import com.supos.app.mapper.WmsWarehouseMapper;
 import com.supos.app.service.WmsThreedWarehouseService;
 import com.supos.app.mapper.WmsThreedWarehouseMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import javax.annotation.PostConstruct;
 import com.google.gson.Gson;
@@ -37,7 +32,7 @@ import java.util.zip.GZIPOutputStream;
 @Slf4j
 @Service
 public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehouseMapper, WmsThreedWarehouse>
-    implements WmsThreedWarehouseService{
+    implements WmsThreedWarehouseService, MqttCallbackExtended {
 
     @Value("${mqtt.broker}")
     private String mqttBroker;
@@ -78,118 +73,96 @@ public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehous
         jsonData.put("location", locationName);
         // Wrap your map inside a list to form a single-element array
         String content = gson.toJson(Collections.singletonList(jsonData));
-        int qos = 2;
-        sendMqttToUnity(content, qos);
+        sendMqttToUnity(content, 2, false);
         return wmsThreedWarehouseMapper.updateSelectiveByLocationId(wmsThreedWarehouse);
     }
 
-    private void scheduleReconnect() {
-        scheduler.schedule(() -> {
-            if (!mqttClient.isConnected()) {
-                try {
-                    log.info("Attempting to reconnect to the MQTT broker...");
-                    mqttClient.connect(new MqttConnectOptions());
-                    log.info("Reconnected to the MQTT broker.");
-                    // Resubscribe to necessary topics after reconnection
-                    mqttClient.subscribe(mqttTopicFullRequest, 2);
-                    log.info("Resubscribed to topic: {}", mqttTopicFullRequest);
-                } catch (MqttException me) {
-                    log.error("Reconnection attempt failed", me);
-                    // Schedule another reconnect if the first reconnect fails
-                    scheduleReconnect();
-                }
-            }
-        }, 5, TimeUnit.SECONDS);
-    }
-
     @PostConstruct
-    public void initSubscribeMqtt() {
-
+    public void init() {
         try {
             mqttClient = new MqttClient(mqttBroker, mqttClientId);
             MqttConnectOptions connOpts = new MqttConnectOptions();
-            connOpts.setCleanSession(true);
+            connOpts.setAutomaticReconnect(true);
+            connOpts.setKeepAliveInterval(30);
+            connOpts.setCleanSession(false);
+            mqttClient.setCallback(this);
             mqttClient.connect(connOpts);
-
-            System.out.println("Connected to broker: " + mqttBroker);
-            log.info("Connected to broker: {}", mqttBroker);
-
-            // Subscribe to the request topic
-            mqttClient.subscribe(mqttTopicFullRequest, 2); // Using QoS 2 for example
-
-            // Set callback to handle messages
-            mqttClient.setCallback(new MqttCallback() {
-                @Override
-                public void connectionLost(Throwable cause) {
-                    // Handle connection lost
-                    log.error("Connected lost: {}", mqttBroker);
-                    // Schedule a reconnection attempt
-                    scheduleReconnect();
-                }
-
-                /* MQTT json string to Unity
-                    [{"material": "SR20VET", "location": "A-01-A2"}, {"material": "VQ35DE", "location": "A-01-A3"}]
-                */
-                @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    // This method is called when a message arrives from the server.
-                    System.out.println("Received request: " + new String(message.getPayload()));
-                    log.info("Received request from topic: {}, content: {}", topic, new String(message.getPayload()));
-
-                    // Return all material name and storage location name mapping list as response
-                    List<WmsThreedWarehouse> listAll = wmsThreedWarehouseMapper.selectAllStocked();
-                    List<Map<String, Object>> listOfMaps = new ArrayList<>();
-
-                    //int count = 0; // Counter to track the number of added elements
-                    for (WmsThreedWarehouse wmsThreedWarehouse : listAll) {
-                        //if (count >= 2) break; // Stop after adding two elements
-
-                        Map<String, Object> jsonData = new HashMap<>();
-                        jsonData.put("material", wmsThreedWarehouse.getMaterial_name());
-                        jsonData.put("location", wmsThreedWarehouse.getLocation_name());
-                        listOfMaps.add(jsonData);
-
-                        //count++; // Increment the counter
-                    }
-
-                    Gson gson = new Gson();
-                    String content = gson.toJson(listOfMaps);
-                    int qos = 2;
-                    sendMqttToUnityByZip(content, qos);
-                    // Publish the response to the response topic
-                    //MqttMessage responseMessage = new MqttMessage(content.getBytes());
-                    //responseMessage.setQos(2); // Matching QoS for example
-                    //mqttClient.publish(mqttTopicFullResponse, responseMessage);
-
-                    System.out.println("Response published to topic: " + mqttTopicFullResponse);
-                    if (content.length() > 30) {
-                        System.out.println("Publishing message of length: " + content.length() + " characters");
-                        log.info("Response published to topic: {}, content json array size: {}", mqttTopicFullResponse, listOfMaps.size());
-                    } else {
-                        log.info("Response published to topic: {}, content: {}", mqttTopicFullResponse, content);
-                    }
-                }
-
-                @Override
-                public void deliveryComplete(IMqttDeliveryToken token) {
-                    // Not needed for subscribers
-                }
-            });
-
-            // Keep the application running to listen for requests
-            System.out.println("Subscribe to topic: " + mqttTopicFullRequest);
-            log.info("Subscribe to topic: {}", mqttTopicFullRequest);
-            //Thread.sleep(0); // 这个影响开发时候启动，所以我先改成0后续有需求的话再改
-
-        //} catch(MqttException | InterruptedException me) {
-        } catch(MqttException me) {
-            System.err.println("Error: " + me.getMessage());
-            me.printStackTrace();
-            log.error("Error: " + me.getMessage());
+        } catch (MqttException me) {
+            log.error("Initialization Error: ", me);
         }
     }
 
-    public void sendMqttToUnity(String content, int qos) {
+    @Override
+    public void connectComplete(boolean reconnect, String serverURI) {
+        if (reconnect) {
+            log.info("Reconnected to : {}, Resubscribing to topics...", serverURI);
+        } else {
+            log.info("Connected to : {}", serverURI);
+        }
+        try {
+            mqttClient.subscribe(mqttTopicFullRequest, 2);
+            log.info("Subscribed to: {}", mqttTopicFullRequest);
+        } catch (MqttException me) {
+            log.error("Subscription Error: ", me);
+        }
+    }
+
+    @Override
+    public void connectionLost(Throwable cause) {
+        // Handle connection lost
+        log.error("Connected lost: {}", mqttBroker);
+        // Schedule a reconnection attempt
+        //scheduleReconnect();
+    }
+
+    /* MQTT json string to Unity
+        [{"material": "SR20VET", "location": "A-01-A2"}, {"material": "VQ35DE", "location": "A-01-A3"}]
+    */
+    @Override
+    public void messageArrived(String topic, MqttMessage message) throws Exception {
+        // This method is called when a message arrives from the server.
+        System.out.println("Received request: " + new String(message.getPayload()));
+        log.info("Received request from topic: {}, content: {}", topic, new String(message.getPayload()));
+
+        // Return all material name and storage location name mapping list as response
+        List<WmsThreedWarehouse> listAll = wmsThreedWarehouseMapper.selectAllStocked();
+        List<Map<String, Object>> listOfMaps = new ArrayList<>();
+
+        //int count = 0; // Counter to track the number of added elements
+        for (WmsThreedWarehouse wmsThreedWarehouse : listAll) {
+            //if (count >= 2) break; // Stop after adding two elements
+
+            Map<String, Object> jsonData = new HashMap<>();
+            jsonData.put("material", wmsThreedWarehouse.getMaterial_name());
+            jsonData.put("location", wmsThreedWarehouse.getLocation_name());
+            listOfMaps.add(jsonData);
+
+            //count++; // Increment the counter
+        }
+
+        Gson gson = new Gson();
+        String content = gson.toJson(listOfMaps);
+        sendMqttToUnityByZip(content, 2, false);
+        // Publish the response to the response topic
+        //MqttMessage responseMessage = new MqttMessage(content.getBytes());
+        //responseMessage.setQos(2); // Matching QoS for example
+        //mqttClient.publish(mqttTopicFullResponse, responseMessage);
+
+        System.out.println("Response published to topic: " + mqttTopicFullResponse);
+        if (content.length() > 30) {
+            System.out.println("Publishing message of length: " + content.length() + " characters");
+            log.info("Response published to topic: {}, content json array size: {}", mqttTopicFullResponse, listOfMaps.size());
+        } else {
+            log.info("Response published to topic: {}, content: {}", mqttTopicFullResponse, content);
+        }
+    }
+
+    @Override
+    public void deliveryComplete(IMqttDeliveryToken token) {
+        log.info("Delivery Complete for token: {}", token.isComplete());
+    }
+
+    public void sendMqttToUnity(String content, int qos, boolean retained) {
         try {
             if (content.length() > 30) {
                 System.out.println("Publishing message of length: " + content.length() + " characters");
@@ -201,6 +174,7 @@ public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehous
 
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
+            message.setRetained(retained);
             mqttClient.publish(mqttTopicIncrement, message);
             System.out.println("Message published");
         } catch(MqttException me) {
@@ -213,7 +187,7 @@ public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehous
         }
     }
 
-    public void sendMqttToUnityByZip(String content, int qos) {
+    public void sendMqttToUnityByZip(String content, int qos, boolean retained) {
         try {
             // Compress the message content using GZIP
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -226,6 +200,7 @@ public class WmsThreedWarehouseServiceImpl extends ServiceImpl<WmsThreedWarehous
             log.info("Publishing compressed message");
             MqttMessage message = new MqttMessage(compressedContent);
             message.setQos(qos);
+            message.setRetained(retained);
             mqttClient.publish(mqttTopicIncrement, message);
             System.out.println("Compressed message published");
         } catch (Exception e) {

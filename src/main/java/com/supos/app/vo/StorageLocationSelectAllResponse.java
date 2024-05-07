@@ -10,7 +10,7 @@ public class StorageLocationSelectAllResponse {
         this.id = wmsStorageLocation.getId();
         this.warehouse_id = wmsStorageLocation.getWarehouse_id();
         this.name = wmsStorageLocation.getName();
-        this.occupied = wmsStorageLocation.getOccupied();
+        this.material_name = wmsStorageLocation.getMaterial_name();
         this.del_flag = wmsStorageLocation.getDel_flag();
         this.update_time = wmsStorageLocation.getUpdate_time();
         this.create_time = wmsStorageLocation.getCreate_time();
@@ -31,7 +31,7 @@ public class StorageLocationSelectAllResponse {
     /**
      *
      */
-    private Boolean occupied;
+    private String material_name;;
 
     /**
      *
@@ -76,12 +76,12 @@ public class StorageLocationSelectAllResponse {
         this.name = name;
     }
 
-    public Boolean getOccupied() {
-        return occupied;
+    public String getMaterial_name() {
+        return material_name;
     }
 
-    public void setOccupied(Boolean occupied) {
-        this.occupied = occupied;
+    public void setMaterial_name(String material_name) {
+        this.material_name = material_name;
     }
 
     public Integer getDel_flag() {

@@ -2,43 +2,18 @@ package com.supos.app.vo;
 
 
 import java.util.List;
+import java.util.Map;
 
 public class ShelfModel{
-    private int sn;
-    private int shelfId;
-    private String shelfName;
-    private List<ShelfColModel> shelfCols;
 
-    public int getSn() {
-        return sn;
+    private Map<String, List<String>> planeNames;      //{{A-01, A-02, A-03, A-04, A-05}, {B-01, B-02, B-03, B-04, B-05}}
+
+    public Map<String, List<String>> getPlaneNames() {
+        return planeNames;
     }
 
-    public void setSn(int sn) {
-        this.sn = sn;
-    }
-
-    public int getShelfId() {
-        return shelfId;
-    }
-
-    public void setShelfId(int shelfId) {
-        this.shelfId = shelfId;
-    }
-
-    public String getShelfName() {
-        return shelfName;
-    }
-
-    public void setShelfName(String shelfName) {
-        this.shelfName = shelfName;
-    }
-
-    public List<ShelfColModel> getShelfCols() {
-        return shelfCols;
-    }
-
-    public void setShelfCols(List<ShelfColModel> shelfCols) {
-        this.shelfCols = shelfCols;
+    public void setPlaneNames(Map<String, List<String>> planeNames) {
+        this.planeNames = planeNames;
     }
 
 

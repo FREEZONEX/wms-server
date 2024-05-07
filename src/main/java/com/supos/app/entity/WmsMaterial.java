@@ -2,6 +2,8 @@ package com.supos.app.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
+
 import lombok.Data;
 
 /**
@@ -10,85 +12,27 @@ import lombok.Data;
  */
 @Data
 public class WmsMaterial implements Serializable {
-    /**
-     * 
-     */
+
     private Long id;
-
-    /**
-     * 
-     */
     private String product_code;
-
-    /**
-     * 
-     */
     private String name;
-
-    /**
-     * 
-     */
     private String product_type;
-
-    /**
-     * 
-     */
     private String unit;
-
-    /**
-     * 
-     */
     private String note;
-
-    /**
-     * 
-     */
     private String specification;
-
-    /**
-     * 
-     */
     private Long max;
-
-    /**
-     * 
-     */
     private Long min;
-
-    /**
-     * 
-     */
     private String status;
-
-    /**
-     * 
-     */
     private Long expect_wh_id;
-
-    /**
-     * 
-     */
-    private Long expact_stock_location_id;
-
-    /**
-     * 
-     */
+    private String expect_storage_locations;
     private Boolean del_flag;
-
-    /**
-     * 
-     */
     private Date create_time;
-
-    /**
-     * 
-     */
     private Date update_time;
 
     private static final long serialVersionUID = 1L;
 
-    private Long[] locations;
-
+    private Long suggested_storage_location_id;
+    private String suggested_storage_location_name;
 
     @Override
     public boolean equals(Object that) {
@@ -113,7 +57,7 @@ public class WmsMaterial implements Serializable {
             && (this.getMin() == null ? other.getMin() == null : this.getMin().equals(other.getMin()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getExpect_wh_id() == null ? other.getExpect_wh_id() == null : this.getExpect_wh_id().equals(other.getExpect_wh_id()))
-            && (this.getExpact_stock_location_id() == null ? other.getExpact_stock_location_id() == null : this.getExpact_stock_location_id().equals(other.getExpact_stock_location_id()))
+            && (this.getExpect_storage_locations() == null ? other.getExpect_storage_locations() == null : this.getExpect_storage_locations().equals(other.getExpect_storage_locations()))
             && (this.getDel_flag() == null ? other.getDel_flag() == null : this.getDel_flag().equals(other.getDel_flag()))
             && (this.getCreate_time() == null ? other.getCreate_time() == null : this.getCreate_time().equals(other.getCreate_time()))
             && (this.getUpdate_time() == null ? other.getUpdate_time() == null : this.getUpdate_time().equals(other.getUpdate_time()));
@@ -134,7 +78,7 @@ public class WmsMaterial implements Serializable {
         result = prime * result + ((getMin() == null) ? 0 : getMin().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getExpect_wh_id() == null) ? 0 : getExpect_wh_id().hashCode());
-        result = prime * result + ((getExpact_stock_location_id() == null) ? 0 : getExpact_stock_location_id().hashCode());
+        result = prime * result + ((getExpect_storage_locations() == null) ? 0 : getExpect_storage_locations().hashCode());
         result = prime * result + ((getDel_flag() == null) ? 0 : getDel_flag().hashCode());
         result = prime * result + ((getCreate_time() == null) ? 0 : getCreate_time().hashCode());
         result = prime * result + ((getUpdate_time() == null) ? 0 : getUpdate_time().hashCode());
@@ -158,7 +102,7 @@ public class WmsMaterial implements Serializable {
         sb.append(", min=").append(min);
         sb.append(", status=").append(status);
         sb.append(", expect_wh_id=").append(expect_wh_id);
-        sb.append(", expact_stock_location_id=").append(expact_stock_location_id);
+        sb.append(", expect_storage_locations=").append(expect_storage_locations);
         sb.append(", del_flag=").append(del_flag);
         sb.append(", create_time=").append(create_time);
         sb.append(", update_time=").append(update_time);
@@ -255,44 +199,33 @@ public class WmsMaterial implements Serializable {
         this.expect_wh_id = expect_wh_id;
     }
 
-    public Long getExpact_stock_location_id() {
-        return expact_stock_location_id;
+    public String getExpect_storage_locations() {
+        return expect_storage_locations;
     }
 
-    public void setExpact_stock_location_id(Long expact_stock_location_id) {
-        this.expact_stock_location_id = expact_stock_location_id;
+    public void setExpect_storage_locations(String expect_storage_locations) { this.expect_storage_locations = expect_storage_locations; }
+
+    public Boolean getDel_flag() { return del_flag; }
+
+    public void setDel_flag(Boolean del_flag) { this.del_flag = del_flag; }
+
+    public Date getCreate_time() { return create_time; }
+
+    public void setCreate_time(Date create_time) { this.create_time = create_time; }
+
+    public Date getUpdate_time() { return update_time; }
+
+    public void setUpdate_time(Date update_time) { this.update_time = update_time; }
+
+    public Long getSuggested_storage_location_id() {
+        return suggested_storage_location_id;
     }
 
-    public Long[] getLocations() {
-        return locations;
+    public void setSuggested_storage_location_id(Long suggested_storage_location_id) { this.suggested_storage_location_id = suggested_storage_location_id; }
+
+    public String getSuggested_storage_location_name() {
+        return suggested_storage_location_name;
     }
 
-    public void setLocations(Long[] locations) {
-        this.locations = locations;
-    }
-
-    public Boolean getDel_flag() {
-        return del_flag;
-    }
-
-    public void setDel_flag(Boolean del_flag) {
-        this.del_flag = del_flag;
-    }
-
-    public Date getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
-    }
-
-    public Date getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
-    }
-
+    public void setSuggested_storage_location_name(String suggested_storage_location_name) { this.suggested_storage_location_name = suggested_storage_location_name; }
 }

@@ -7,54 +7,18 @@ import java.util.Date;
 import java.util.List;
 
 public class MaterialSelectAllResponse {
-    /**
-     *
-     */
+
     private Long id;
-
-    /**
-     *
-     */
     private String product_code;
-
-    /**
-     *
-     */
     private String name;
-
-    /**
-     *
-     */
     private String product_type;
-
-    /**
-     *
-     */
     private String unit;
-
-    /**
-     *
-     */
     private String note;
-
-    /**
-     *
-     */
     private Boolean del_flag;
-
-    /**
-     *
-     */
     private Date create_time;
-
-    /**
-     *
-     */
     private Date update_time;
-
     List<String> storage_location_id;
     List<String> storage_location;
-
     private static final long serialVersionUID = 1L;
 
     public MaterialSelectAllResponse(WmsMaterial material) {

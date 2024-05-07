@@ -24,7 +24,7 @@ public class WarehouseSelectAllLocations {
     /**
      *
      */
-    private Boolean occupied;
+    private String material_name;
 
     /**
      *
@@ -48,7 +48,7 @@ public class WarehouseSelectAllLocations {
         this.id = storageLocation.getId();
         this.warehouse_id = storageLocation.getWarehouse_id();
         this.name = storageLocation.getName();
-        this.occupied = storageLocation.getOccupied();
+        this.material_name = storageLocation.getMaterial_name();
         this.del_flag = storageLocation.getDel_flag();
         this.update_time = storageLocation.getUpdate_time();
         this.create_time = storageLocation.getCreate_time();
@@ -78,12 +78,12 @@ public class WarehouseSelectAllLocations {
         this.name = name;
     }
 
-    public Boolean getOccupied() {
-        return occupied;
+    public String getMaterial_name() {
+        return material_name;
     }
 
-    public void setOccupied(Boolean occupied) {
-        this.occupied = occupied;
+    public void setMaterial_name(String material_name) {
+        this.material_name = material_name;
     }
 
     public Integer getDel_flag() {

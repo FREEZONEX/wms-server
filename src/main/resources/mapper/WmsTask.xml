@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supos.app.mapper.WmsTaskMapper">
+
+    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsTask">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <id property="operation_id" column="operation_id" jdbcType="BIGINT"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="note" column="note" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="people_name" column="people_name" jdbcType="VARCHAR"/>
+            <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,type,note,del_flag,create_time,update_time
+    </sql>
+    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsTask" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wms_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="operation_id != null">operation_id,</if>
+            <if test="type != null">type,</if>
+            <if test="note != null">note,</if>
+            <if test="status != null">status,</if>
+            <if test="people_name != null">people_name,</if>
+            <if test="del_flag != null">del_flag,</if>
+            <if test="create_time != null">create_time,</if>
+            <if test="update_time != null">update_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="operation_id != null">#{operation_id},</if>
+            <if test="type != null">#{type},</if>
+            <if test="note != null">#{note},</if>
+            <if test="status != null">#{status},</if>
+            <if test="people_name != null">#{people_name},</if>
+            <if test="del_flag != null">#{del_flag},</if>
+            <if test="create_time != null">#{create_time},</if>
+            <if test="update_time != null">#{update_time},</if>
+        </trim>
+    </insert>
+    <!-- Update WmsTask by ID -->
+    <update id="updateTaskById" parameterType="com.supos.app.entity.WmsTask">
+        UPDATE wms_task
+        <set>
+            <if test="operation_id != null">operation_id = #{operation_id},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="people_name != null">people_name = #{people_name},</if>
+            <if test="del_flag != null">del_flag = #{del_flag},</if>
+            <if test="create_time != null">create_time = #{create_time},</if>
+            <if test="update_time != null">update_time = #{update_time}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <update id="deleteTaskById" parameterType="com.supos.app.entity.WmsTask">
+        UPDATE wms_task
+        set del_flag= true
+        WHERE id = #{id}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM wms_task
+        <where>
+            del_flag IS NULL
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <if test="operation_id != null and operation_id != ''">
+                AND operation_id = #{operation_id}
+            </if>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="note != null and note != ''">
+                AND note = #{note}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="people_name != null and people_name != ''">
+                AND people_name = #{people_name}
+            </if>
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
+        </where>
+    </select>
+
+</mapper>

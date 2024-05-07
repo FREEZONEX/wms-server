@@ -75,6 +75,9 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/, file:/root/
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 mybatis-plus:
   #mapper-locations: classpath*:mapping/*Mapper.xml
   mapper-locations: classpath*:/mapper/**/*.xml
@@ -124,3 +127,5 @@ mqtt:
   topic_increment: ${MQTT_TOPIC_INCREMENT:wms/threedmodel/increment}
   topic_full_request: ${MQTT_TOPIC_FULL_REQUEST:wms/threedmodel/full/request}
   topic_full_response: ${MQTT_TOPIC_FULL_RESPONSE:wms/threedmodel/full/response}
+  enable: ${MQTT_ENABLE:true}
+

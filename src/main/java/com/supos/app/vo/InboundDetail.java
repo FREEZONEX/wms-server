@@ -27,7 +27,7 @@ public class InboundDetail implements Serializable {
         this.min = material.getMin();
         this.status = material.getStatus();
         this.expect_wh_id = material.getExpect_wh_id();
-        this.expact_stock_location_id = material.getExpact_stock_location_id();
+        this.expect_storage_locations = material.getExpect_storage_locations();
         this.quantity = transaction.getQuantity();
         this.id = transaction.getId();
         this.material_code = transaction.getMaterial_code();
@@ -105,7 +105,7 @@ public class InboundDetail implements Serializable {
     /**
      *
      */
-    private Long expact_stock_location_id;
+    private String expect_storage_locations;
 
     private int quantity;
 
@@ -516,11 +516,11 @@ public class InboundDetail implements Serializable {
         this.expect_wh_id = expect_wh_id;
     }
 
-    public Long getExpact_stock_location_id() {
-        return expact_stock_location_id;
+    public String getExpect_storage_locations() {
+        return expect_storage_locations;
     }
 
-    public void setExpact_stock_location_id(Long expact_stock_location_id) {
-        this.expact_stock_location_id = expact_stock_location_id;
+    public void setExpect_storage_locations(String expect_storage_locations) {
+        this.expect_storage_locations = expect_storage_locations;
     }
 }

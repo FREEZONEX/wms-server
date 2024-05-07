@@ -8,7 +8,7 @@
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="warehouse_id" column="warehouse_id" jdbcType="BIGINT"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="occupied" column="occupied" jdbcType="TINYINT"/>
+            <result property="material_name" column="material_name" jdbcType="VARCHAR"/>
             <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
             <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
@@ -16,7 +16,7 @@
 
     <sql id="Base_Column_List">
         id,warehouse_id,name,
-        occupied,
+        material_name,
         del_flag,update_time,create_time
     </sql>
     <insert id="insertSelective" parameterType="com.supos.app.entity.WmsStorageLocation" useGeneratedKeys="true" keyProperty="id">
@@ -24,7 +24,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="warehouse_id != null">warehouse_id,</if>
             <if test="name != null">name,</if>
-            <if test="occupied != null">occupied,</if>
+            <if test="material_name != null">material_name,</if>
             <if test="del_flag != null">del_flag,</if>
             <if test="update_time != null">update_time,</if>
             <if test="create_time != null">create_time,</if>
@@ -32,7 +32,7 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="warehouse_id != null">#{warehouse_id},</if>
             <if test="name != null">#{name},</if>
-            <if test="occupied != null">#{occupied},</if>
+            <if test="material_name != null">#{material_name},</if>
             <if test="del_flag != null">#{del_flag},</if>
             <if test="update_time != null">#{update_time},</if>
             <if test="create_time != null">#{create_time},</if>
@@ -43,7 +43,7 @@
         <set>
             <if test="warehouse_id != null">warehouse_id = #{warehouse_id},</if>
             <if test="name != null">name = #{name},</if>
-            <if test="occupied != null">occupied = #{occupied},</if>
+            <if test="material_name != null">material_name = #{material_name},</if>
             <if test="del_flag != null">del_flag = #{del_flag},</if>
             <if test="update_time != null">update_time = #{update_time},</if>
             <if test="create_time != null">create_time = #{create_time}</if>
@@ -72,8 +72,8 @@
                 AND name = #{name}
             </if>
             <!-- Occupied condition -->
-            <if test="occupied != null">
-                AND occupied = #{occupied}
+            <if test="material_name != null">
+                AND material_name = #{material_name}
             </if>
             <!-- Update Time condition -->
             <if test="update_time != null">
@@ -85,5 +85,10 @@
             </if>
         </where>
         ORDER BY name ASC
+    </select>
+
+    <!-- For 3D Model -->
+    <select id="selectAllStocked" resultMap="BaseResultMap">
+        SELECT * FROM wms_storage_location where del_flag IS NULL and material_name IS NOT NULL and material_name &lt;&gt; ''
     </select>
 </mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supos.app.mapper.WmsResourceMapper">
+
+    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsResource">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="note" column="note" jdbcType="VARCHAR"/>
+            <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,type,note,del_flag,create_time,update_time
+    </sql>
+    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsResource" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wms_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="type != null">type,</if>
+            <if test="note != null">note,</if>
+            <if test="del_flag != null">del_flag,</if>
+            <if test="create_time != null">create_time,</if>
+            <if test="update_time != null">update_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="type != null">#{type},</if>
+            <if test="note != null">#{note},</if>
+            <if test="del_flag != null">#{del_flag},</if>
+            <if test="create_time != null">#{create_time},</if>
+            <if test="update_time != null">#{update_time},</if>
+        </trim>
+    </insert>
+    <!-- Update WmsResource by ID -->
+    <update id="updateResourceById" parameterType="com.supos.app.entity.WmsResource">
+        UPDATE wms_resource
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="del_flag != null">del_flag = #{del_flag},</if>
+            <if test="create_time != null">create_time = #{create_time},</if>
+            <if test="update_time != null">update_time = #{update_time}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <update id="deleteResourceById" parameterType="com.supos.app.entity.WmsResource">
+        UPDATE wms_resource
+        set del_flag= true
+        WHERE id = #{id}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT *
+        FROM wms_resource
+        <where>
+            del_flag IS NULL
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <!-- Name condition -->
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <!-- Type condition -->
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <!-- Note condition -->
+            <if test="note != null and note != ''">
+                AND note = #{note}
+            </if>
+            <!-- Create Time condition -->
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+            <!-- Update Time condition -->
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
+        </where>
+    </select>
+
+</mapper>

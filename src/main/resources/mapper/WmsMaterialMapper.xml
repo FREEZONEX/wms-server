@@ -16,7 +16,7 @@
             <result property="min" column="min" jdbcType="BIGINT"/>
             <result property="status" column="status" jdbcType="VARCHAR"/>
             <result property="expect_wh_id" column="expect_wh_id" jdbcType="BIGINT"/>
-            <result property="expact_stock_location_id" column="expact_stock_location_id" jdbcType="BIGINT"/>
+            <result property="expect_storage_locations" column="expect_storage_locations" jdbcType="VARCHAR"/>
             <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
             <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
@@ -26,7 +26,7 @@
         id,product_code,name,
         product_type,unit,note,
         specification,max,min,
-        status,expect_wh_id,expact_stock_location_id,
+        status,expect_wh_id,expect_storage_locations,
         del_flag,create_time,update_time
     </sql>
     <update id="deleteWmsMaterialById" parameterType="com.supos.app.entity.WmsMaterial">
@@ -34,7 +34,7 @@
         set del_flag= true
         WHERE id = #{id}
     </update>
-    <insert id="insertSelective">
+    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsMaterial">
         insert into wms_material
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
@@ -48,7 +48,7 @@
             <if test="min != null">min,</if>
             <if test="status != null">status,</if>
             <if test="expect_wh_id != null">expect_wh_id,</if>
-            <if test="expact_stock_location_id != null">expact_stock_location_id,</if>
+            <if test="expect_storage_locations != null">expect_storage_locations,</if>
             <if test="del_flag != null">del_flag,</if>
             <if test="create_time != null">create_time,</if>
             <if test="update_time != null">update_time,</if>
@@ -66,7 +66,7 @@
             <if test="min != null">#{min,jdbcType=BIGINT},</if>
             <if test="status != null">#{status,jdbcType=VARCHAR},</if>
             <if test="expect_wh_id != null">#{expect_wh_id,jdbcType=BIGINT},</if>
-            <if test="expact_stock_location_id != null">#{expact_stock_location_id,jdbcType=BIGINT},</if>
+            <if test="expect_storage_locations != null">#{expect_storage_locations,jdbcType=VARCHAR},</if>
             <if test="del_flag != null">#{del_flag,jdbcType=TINYINT},</if>
             <if test="create_time != null">#{create_time,jdbcType=TIMESTAMP},</if>
             <if test="update_time != null">#{update_time,jdbcType=TIMESTAMP},</if>
@@ -85,8 +85,8 @@
             <if test="min != null">min=#{min,jdbcType=NUMERIC},</if>
             <if test="status != null">status=#{status,jdbcType=VARCHAR},</if>
             <if test="expect_wh_id != null">expect_wh_id=#{expect_wh_id,jdbcType=NUMERIC},</if>
-            <if test="expact_stock_location_id != null">
-                expact_stock_location_id=#{expact_stock_location_id,jdbcType=NUMERIC},
+            <if test="expect_storage_locations != null">
+                expect_storage_locations=#{expect_storage_locations,jdbcType=VARCHAR},
             </if>
             <if test="del_flag != null">del_flag=#{del_flag,jdbcType=NUMERIC},</if>
             <if test="create_time != null">create_time=#{create_time,jdbcType=TIMESTAMP},</if>
@@ -133,8 +133,8 @@
             <if test="expect_wh_id != null">
                 AND expect_wh_id = #{expect_wh_id}
             </if>
-            <if test="expact_stock_location_id != null">
-                AND expact_stock_location_id = #{expact_stock_location_id}
+            <if test="expect_storage_locations != null">
+                AND expect_storage_locations = #{expect_storage_locations}
             </if>
             <if test="del_flag != null">
                 AND del_flag = #{del_flag}

@@ -2,6 +2,8 @@ package com.supos.app.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.supos.app.entity.WmsStorageLocation;
 import com.supos.app.entity.WmsThreedWarehouse;
 import com.supos.app.service.WmsStorageLocationService;
@@ -70,7 +72,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
         jsonData.put("location", locationName);
         // Wrap your map inside a list to form a single-element array
         String content = gson.toJson(Collections.singletonList(jsonData));
-        sendMqttToUnity(content, 2, false);
+        sendMqttToUnity(mqttTopicIncrement, content, 2, false);
         return wmsStorageLocationMapper.updateStorageLocationById(wmsStorageLocation);
     }
 
@@ -120,11 +122,18 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         // This method is called when a message arrives from the server.
-        System.out.println("Received request: " + new String(message.getPayload()));
-        log.info("Received request from topic: {}, content: {}", topic, new String(message.getPayload()));
+        String contentReceived = new String(message.getPayload());
+        System.out.println("Received request: " + contentReceived);
+        log.info("Received request from topic: {}, content: {}", topic, contentReceived);
+
+        // Parse the JSON string to a JsonObject
+        JsonObject jsonObject = JsonParser.parseString(contentReceived).getAsJsonObject();
+        int warehouseId = jsonObject.get("warehouse_id").getAsInt();
+        // Extracting the use_zip as a boolean
+        boolean useZip = jsonObject.get("use_zip").getAsBoolean();
 
         // Return all material name and storage location name mapping list as response
-        List<WmsStorageLocation> listAll = wmsStorageLocationMapper.selectAllStocked();
+        List<WmsStorageLocation> listAll = wmsStorageLocationMapper.selectAllStocked(warehouseId);
         List<Map<String, Object>> listOfMaps = new ArrayList<>();
 
         //int count = 0; // Counter to track the number of added elements
@@ -141,7 +150,10 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
 
         Gson gson = new Gson();
         String content = gson.toJson(listOfMaps);
-        sendMqttToUnityByZip(content, 2, false);
+        if (useZip)
+            sendMqttToUnityByZip(mqttTopicFullResponse, content, 2, false);
+        else
+            sendMqttToUnity(mqttTopicFullResponse, content, 2, false);
         // Publish the response to the response topic
         //MqttMessage responseMessage = new MqttMessage(content.getBytes());
         //responseMessage.setQos(2); // Matching QoS for example
@@ -161,7 +173,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
         log.info("Delivery Complete for token: {}", token.isComplete());
     }
 
-    public void sendMqttToUnity(String content, int qos, boolean retained) {
+    public void sendMqttToUnity(String topic, String content, int qos, boolean retained) {
         if (!mqttEnable)
             return;
         try {
@@ -176,7 +188,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
             message.setRetained(retained);
-            mqttClient.publish(mqttTopicIncrement, message);
+            mqttClient.publish(topic, message);
             System.out.println("Message published");
         } catch(MqttException me) {
             System.out.println("reason " + me.getReasonCode());
@@ -188,7 +200,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
         }
     }
 
-    public void sendMqttToUnityByZip(String content, int qos, boolean retained) {
+    public void sendMqttToUnityByZip(String topic, String content, int qos, boolean retained) {
         if (!mqttEnable)
             return;
         try {
@@ -204,7 +216,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
             MqttMessage message = new MqttMessage(compressedContent);
             message.setQos(qos);
             message.setRetained(retained);
-            mqttClient.publish(mqttTopicFullResponse, message);
+            mqttClient.publish(topic, message);
             System.out.println("Compressed message published");
         } catch (Exception e) {
             System.out.println("Compression and publishing failed: " + e.getMessage());

@@ -89,6 +89,6 @@
 
     <!-- For 3D Model -->
     <select id="selectAllStocked" resultMap="BaseResultMap">
-        SELECT * FROM wms_storage_location where warehouse_id=11 and del_flag IS NULL and material_name IS NOT NULL and material_name &lt;&gt; ''
+        SELECT * FROM wms_storage_location where warehouse_id = #{warehouse_id} and del_flag IS NULL and material_name IS NOT NULL and material_name &lt;&gt; ''
     </select>
 </mapper>

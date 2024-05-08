@@ -27,7 +27,7 @@ public interface WmsStorageLocationMapper extends BaseMapper<WmsStorageLocation>
 
     //int updateSelectiveByLocationId(WmsThreedWarehouse wmsThreedWarehouse);
 
-    List<WmsStorageLocation> selectAllStocked();
+    List<WmsStorageLocation> selectAllStocked(int warehouse_id);
 }
 
 

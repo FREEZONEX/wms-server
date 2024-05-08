@@ -204,7 +204,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
             MqttMessage message = new MqttMessage(compressedContent);
             message.setQos(qos);
             message.setRetained(retained);
-            mqttClient.publish(mqttTopicIncrement, message);
+            mqttClient.publish(mqttTopicFullResponse, message);
             System.out.println("Compressed message published");
         } catch (Exception e) {
             System.out.println("Compression and publishing failed: " + e.getMessage());

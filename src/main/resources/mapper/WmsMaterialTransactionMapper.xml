@@ -43,7 +43,7 @@
         <result column="min" property="min" jdbcType="BIGINT"/>
         <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="expect_wh_id" property="expect_wh_id" jdbcType="BIGINT"/>
-        <result column="expact_stock_location_id" property="expact_stock_location_id" jdbcType="BIGINT"/>
+        <result column="expect_storage_locations" property="expect_storage_locations" jdbcType="VARCHAR"/>
         <result column="quantity" property="quantity" jdbcType="INTEGER"/>
         <result column="material_code" property="material_code" jdbcType="VARCHAR"/>
         <result column="type" property="type" jdbcType="VARCHAR"/>
@@ -605,8 +605,8 @@
             <if test="expect_wh_id != null">
                 AND wm.expect_wh_id = #{expect_wh_id}
             </if>
-            <if test="expact_stock_location_id != null">
-                AND wm.expact_stock_location_id = #{expact_stock_location_id}
+            <if test="expect_storage_locations != null">
+                AND wm.expect_storage_locations = #{expect_storage_locations}
             </if>
             <if test="del_flag != null">
                 AND wm.del_flag = #{del_flag}
@@ -874,8 +874,8 @@
             <if test="expect_wh_id != null">
                 AND wm.expect_wh_id = #{expect_wh_id}
             </if>
-            <if test="expact_stock_location_id != null">
-                AND wm.expact_stock_location_id = #{expact_stock_location_id}
+            <if test="expect_storage_locations != null">
+                AND wm.expect_storage_locations = #{expect_storage_locations}
             </if>
             <if test="del_flag != null">
                 AND wm.del_flag = #{del_flag}

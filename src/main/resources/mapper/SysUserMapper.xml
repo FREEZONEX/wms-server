@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supos.app.mapper.SysUserMapper">
+
+    <resultMap type="com.supos.app.entity.SysUser" id="SysUserMap">
+        <result property="id" column="id" jdbcType="BIGINT"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="accounttype" column="accountType" jdbcType="INTEGER"/>
+        <result property="lockstatus" column="lockStatus" jdbcType="INTEGER"/>
+        <result property="valid" column="valid" jdbcType="INTEGER"/>
+        <result property="personcode" column="personCode" jdbcType="VARCHAR"/>
+        <result property="personname" column="personName" jdbcType="VARCHAR"/>
+        <result property="delflag" column="delFlag" jdbcType="INTEGER"/>
+        <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="modifytime" column="modifyTime" jdbcType="TIMESTAMP"/>
+        <result property="synctime" column="syncTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="queryById" resultMap="SysUserMap">
+        select id,
+               username,
+               accountType,
+               lockStatus,
+               valid,
+               personCode,
+               personName,
+               delFlag,
+               createTime,
+               modifyTime,
+               syncTime
+        from sys_user
+        where id = #{id}
+    </select>
+
+    <select id="queryAll" resultMap="SysUserMap">
+        select id,
+               username,
+               accountType,
+               lockStatus,
+               valid,
+               personCode,
+               personName,
+               delFlag,
+               createTime,
+               modifyTime,
+               syncTime
+        from sys_user
+    </select>
+
+    <select id="queryAllByLimit" resultMap="SysUserMap">
+        select
+        id, username, accountType, lockStatus, valid, personCode, personName, delFlag, createTime, modifyTime, syncTime
+        from sys_user
+        <where>
+            <if test="sysUser.id != null">
+                and id = #{sysUser.id}
+            </if>
+            <if test="sysUser.username != null and sysUser.username != ''">
+                and username = #{sysUser.username}
+            </if>
+            <if test="sysUser.accounttype != null">
+                and accountType = #{sysUser.accounttype}
+            </if>
+            <if test="sysUser.lockstatus != null">
+                and lockStatus = #{sysUser.lockstatus}
+            </if>
+            <if test="sysUser.valid != null">
+                and valid = #{sysUser.valid}
+            </if>
+            <if test="sysUser.personcode != null and sysUser.personcode != ''">
+                and personCode = #{sysUser.personcode}
+            </if>
+            <if test="sysUser.personname != null and sysUser.personname != ''">
+                and personName = #{sysUser.personname}
+            </if>
+            <if test="sysUser.delflag != null">
+                and delFlag = #{sysUser.delflag}
+            </if>
+            <if test="sysUser.createtime != null">
+                and createTime = #{sysUser.createtime}
+            </if>
+            <if test="sysUser.modifytime != null">
+                and modifyTime = #{sysUser.modifytime}
+            </if>
+            <if test="sysUser.synctime != null">
+                and syncTime = #{sysUser.synctime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from sys_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="accounttype != null">
+                and accountType = #{accounttype}
+            </if>
+            <if test="lockstatus != null">
+                and lockStatus = #{lockstatus}
+            </if>
+            <if test="valid != null">
+                and valid = #{valid}
+            </if>
+            <if test="personcode != null and personcode != ''">
+                and personCode = #{personcode}
+            </if>
+            <if test="personname != null and personname != ''">
+                and personName = #{personname}
+            </if>
+            <if test="delflag != null">
+                and delFlag = #{delflag}
+            </if>
+            <if test="createtime != null">
+                and createTime = #{createtime}
+            </if>
+            <if test="modifytime != null">
+                and modifyTime = #{modifytime}
+            </if>
+            <if test="synctime != null">
+                and syncTime = #{synctime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_user(username, accountType, lockStatus, valid, personCode, personName, delFlag, createTime,
+                             modifyTime, syncTime)
+        values (#{username}, #{accounttype}, #{lockstatus}, #{valid}, #{personcode}, #{personname}, #{delflag},
+                #{createtime}, #{modifytime}, #{synctime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_user(username, accountType, lockStatus, valid, personCode, personName, delFlag, createTime,
+        modifyTime, syncTime)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.accounttype}, #{entity.lockstatus}, #{entity.valid}, #{entity.personcode},
+            #{entity.personname}, #{entity.delflag}, #{entity.createtime}, #{entity.modifytime}, #{entity.synctime})
+        </foreach>
+    </insert>
+
+    <update id="update">
+        update sys_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="accounttype != null">
+                accountType = #{accounttype},
+            </if>
+            <if test="lockstatus != null">
+                lockStatus = #{lockstatus},
+            </if>
+            <if test="valid != null">
+                valid = #{valid},
+            </if>
+            <if test="personcode != null and personcode != ''">
+                personCode = #{personcode},
+            </if>
+            <if test="personname != null and personname != ''">
+                personName = #{personname},
+            </if>
+            <if test="delflag != null">
+                delFlag = #{delflag},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime},
+            </if>
+            <if test="modifytime != null">
+                modifyTime = #{modifytime},
+            </if>
+            <if test="synctime != null">
+                syncTime = #{synctime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete
+        from sys_user
+        where id = #{id}
+    </delete>
+
+</mapper>
+

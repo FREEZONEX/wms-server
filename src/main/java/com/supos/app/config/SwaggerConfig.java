@@ -40,7 +40,8 @@ public class SwaggerConfig {
             WmsTodayController.class,
             //WmsResourceController.class,
             WmsTaskController.class,
-            WmsRuleController.class
+            WmsRuleController.class,
+            WmsSupController.class
     ));
 
     List<ResponseMessage> globalResponses = new ArrayList<ResponseMessage>() {{

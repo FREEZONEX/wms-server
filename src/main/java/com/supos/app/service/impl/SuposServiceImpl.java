@@ -54,7 +54,7 @@ public class SuposServiceImpl implements SuposService {
         }
         JsonNode nodes = jsonNode.get("list");
         if (nodes != null && nodes.isArray()) {
-            SysUser user = null;
+            SysUser user;
 
             List<SysUser> userWmsList = sysUserService.queryAll();
 

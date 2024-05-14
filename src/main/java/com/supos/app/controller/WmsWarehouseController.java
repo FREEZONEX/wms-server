@@ -56,11 +56,9 @@ public class WmsWarehouseController {
 
     @ApiOperation(value = "warehouse/delete", notes = "warehouse/delete")
     @PostMapping("/wms/warehouse/delete")
-    public ApiResponse<Map<String, String>> warehouseDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> warehouseDelete(@RequestBody(required = false) WmsWarehouse wmsWarehouse) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsWarehouse wmsWarehouse = new WmsWarehouse();
-            wmsWarehouse.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsWarehouseServiceImpl.deleteWarehouseById(wmsWarehouse)));
         } catch (Exception e) {
             log.info(e.getMessage());

@@ -1,6 +1,7 @@
 package com.supos.app.controller;
 
 import com.supos.app.config.ApiResponse;
+import com.supos.app.entity.WmsInventoryOperation;
 import com.supos.app.service.impl.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +25,10 @@ import java.util.*;
 public class WmsTodayController {
 
     @Autowired
-    WmsMaterialTransactionServiceImpl wmsMaterialTransactionServiceImpl;
+    WmsInboundServiceImpl wmsInboundServiceImpl;
+
+    @Autowired
+    WmsOutboundServiceImpl wmsOutboundServiceImpl;
 
     @ApiOperation(value = "wmsllmask",notes = "wmsllmask")
     @PostMapping("wmsllmask")
@@ -49,7 +53,13 @@ public class WmsTodayController {
     public ApiResponse<Map<String, String>> todayOunboundDone() {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("count", String.valueOf(wmsMaterialTransactionServiceImpl.selectAllByCreateTimeGroupByOutboundId(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()),"done")));
+            WmsInventoryOperation wmsInventoryOperation = new WmsInventoryOperation();
+            wmsInventoryOperation.setStatus("done");
+            List<WmsInventoryOperation> wmsInventoryOperationList = wmsOutboundServiceImpl.selectAll(wmsInventoryOperation);
+            if (wmsInventoryOperationList.isEmpty())
+                responseData.put("count", "0");
+            else
+                responseData.put("count", String.valueOf(wmsInventoryOperationList.size()));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -62,7 +72,12 @@ public class WmsTodayController {
     public ApiResponse<Map<String, String>> todayOubound() {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("count", String.valueOf(wmsMaterialTransactionServiceImpl.selectAllByCreateTimeGroupByOutboundId(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()),null)));
+            WmsInventoryOperation wmsInventoryOperation = new WmsInventoryOperation();
+            List<WmsInventoryOperation> wmsInventoryOperationList = wmsOutboundServiceImpl.selectAll(wmsInventoryOperation);
+            if (wmsInventoryOperationList.isEmpty())
+                responseData.put("count", "0");
+            else
+                responseData.put("count", String.valueOf(wmsInventoryOperationList.size()));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -75,7 +90,13 @@ public class WmsTodayController {
     public ApiResponse<Map<String, String>> todayInboundDone() {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("count", String.valueOf(wmsMaterialTransactionServiceImpl.selectAllByCreateTimeGroupByInboundId(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()),"done")));
+            WmsInventoryOperation wmsInventoryOperation = new WmsInventoryOperation();
+            wmsInventoryOperation.setStatus("done");
+            List<WmsInventoryOperation> wmsInventoryOperationList = wmsInboundServiceImpl.selectAll(wmsInventoryOperation);
+            if (wmsInventoryOperationList.isEmpty())
+                responseData.put("count", "0");
+            else
+                responseData.put("count", String.valueOf(wmsInventoryOperationList.size()));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -88,7 +109,12 @@ public class WmsTodayController {
     public ApiResponse<Map<String, String>> todayInbound() {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("count", String.valueOf(wmsMaterialTransactionServiceImpl.selectAllByCreateTimeGroupByInboundId(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()),null)));
+            WmsInventoryOperation wmsInventoryOperation = new WmsInventoryOperation();
+            List<WmsInventoryOperation> wmsInventoryOperationList = wmsInboundServiceImpl.selectAll(wmsInventoryOperation);
+            if (wmsInventoryOperationList.isEmpty())
+                responseData.put("count", "0");
+            else
+                responseData.put("count", String.valueOf(wmsInventoryOperationList.size()));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());

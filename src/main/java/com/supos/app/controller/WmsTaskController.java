@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsTask;
 import com.supos.app.service.impl.WmsTaskServiceImpl;
-import com.supos.app.vo.ID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -55,11 +54,9 @@ public class WmsTaskController {
 
     @ApiOperation(value = "task/delete",notes = "task/delete")
     @PostMapping("/wms/task/delete")
-    public ApiResponse<Map<String, String>> taskDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> taskDelete(@RequestBody(required = false) WmsTask wmsTask) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsTask wmsTask = new WmsTask();
-            wmsTask.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsTaskServiceImpl.deleteTaskById(wmsTask)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){

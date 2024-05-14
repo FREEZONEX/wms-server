@@ -50,11 +50,9 @@ public class WmsRfidmaterialController {
 
     @ApiOperation(value = "rfidmaterial/delete",notes = "rfidmaterial/delete")
     @PostMapping("/wms/rfidmaterial/delete")
-    public ApiResponse<Map<String, String>> rfidmaterialDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> rfidmaterialDelete(@RequestBody(required = false) WmsRfidMaterial wmsRfidMaterial) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsRfidMaterial wmsRfidMaterial = new WmsRfidMaterial();
-            wmsRfidMaterial.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsRfidMaterialServiceImpl.deleteSelective(wmsRfidMaterial)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){

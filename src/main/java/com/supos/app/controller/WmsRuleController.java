@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsRule;
 import com.supos.app.service.impl.WmsRuleServiceImpl;
-import com.supos.app.vo.ID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -58,11 +57,9 @@ public class WmsRuleController {
 
     @ApiOperation(value = "rule/delete", notes = "rule/delete")
     @PostMapping("/wms/rule/delete")
-    public ApiResponse<Map<String, String>> ruleDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> ruleDelete(@RequestBody(required = false) WmsRule wmsRule) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsRule wmsRule = new WmsRule();
-            wmsRule.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsRuleServiceImpl.deleteRuleById(wmsRule)));
         } catch (Exception e) {
             log.info(e.getMessage());

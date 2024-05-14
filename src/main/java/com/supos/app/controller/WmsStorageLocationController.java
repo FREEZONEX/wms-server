@@ -28,9 +28,6 @@ public class WmsStorageLocationController {
     @Autowired
     WmsMaterialServiceImpl wmsMaterialServiceImpl;
 
-    @Autowired
-    WmsMaterialTransactionServiceImpl wmsMaterialTransactionServiceImpl;
-
     @ApiOperation(value = "storage-location/add", notes = "storage-location/add")
     @PostMapping("/wms/storage-location/add")
     public ApiResponse<Map<String, String>> storagelocationInsert(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation) {
@@ -59,11 +56,9 @@ public class WmsStorageLocationController {
 
     @ApiOperation(value = "storage-location/delete", notes = "storage-location/delete")
     @PostMapping("/wms/storage-location/delete")
-    public ApiResponse<Map<String, String>> storagelocationDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> storagelocationDelete(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
-            wmsStorageLocation.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsStorageLocationServiceImpl.deleteStorageLocationById(wmsStorageLocation)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
@@ -74,43 +69,10 @@ public class WmsStorageLocationController {
 
     @ApiOperation(value = "storage-location/get", notes = "storage-location/get")
     @PostMapping("/wms/storage-location/get")
-    //public ApiResponse<PageInfo<StorageLocationSelectAllResponse>> storagelocationSelectAll(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
     public ApiResponse<PageInfo<WmsStorageLocation>> storagelocationSelectAll(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             PageInfo<WmsStorageLocation> pageInfo = PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation));
             return new ApiResponse<>(pageInfo);
-
-            /*List<StorageLocationSelectAllResponse> StorageLocationSelectAllResponses = pageInfo.getList().stream().map(
-                    storageLocation -> {
-                        StorageLocationSelectAllResponse storageLocationSelectAllResponse = new StorageLocationSelectAllResponse(storageLocation);
-
-                        WmsMaterialTransaction materialTransactionquery = new WmsMaterialTransaction();
-                        materialTransactionquery.setWarehouse_id(storageLocation.getWarehouse_id());
-                        materialTransactionquery.setStock_location_id(storageLocation.getId());
-
-                        List<WmsMaterialTransaction> MaterialTransactions = wmsMaterialTransactionServiceImpl.selectAllGroupByMaterialCode(materialTransactionquery);
-
-                        List<StorageLocationSelectAllMaterial> storageLocationMaterials = MaterialTransactions.stream()
-                                .map(transaction -> {
-                                    StorageLocationSelectAllMaterial locationMaterial = new StorageLocationSelectAllMaterial(transaction);
-                                    WmsMaterial wmsMaterial = new WmsMaterial();
-                                    wmsMaterial.setProduct_code(transaction.getMaterial_code());
-                                    List<WmsMaterial> materials = wmsMaterialServiceImpl.selectAll(wmsMaterial);
-                                    if (!materials.isEmpty()) {
-                                        locationMaterial.setMaterial_name(materials.get(0).getName());
-                                    }
-                                    return locationMaterial;
-                                })
-                                .collect(Collectors.toList());
-
-                        storageLocationSelectAllResponse.setMaterials(storageLocationMaterials);
-                        return storageLocationSelectAllResponse;
-                    }
-            ).collect(Collectors.toList());
-            PageInfo<StorageLocationSelectAllResponse> responsePageInfo = new PageInfo<>(StorageLocationSelectAllResponses);
-            BeanUtils.copyProperties(pageInfo, responsePageInfo, "list"); // Copy pagination details except the list
-            return new ApiResponse<>(responsePageInfo);*/
-
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -174,7 +136,6 @@ public class WmsStorageLocationController {
                 index++;
             }
 
-            //PageInfo<ShelfModel> responsePageInfo = new PageInfo<ShelfModel>(shelfModels);
             ShelfModel shelfModel = new ShelfModel();
             shelfModel.setPlaneNames(planeNames);
             return new ApiResponse<>(shelfModel);

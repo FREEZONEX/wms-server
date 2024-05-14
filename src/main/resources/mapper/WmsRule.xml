@@ -13,14 +13,16 @@
         <result property="resource_id_list" column="resource_id_list" jdbcType="VARCHAR"/>
         <result property="people_name" column="people_name" jdbcType="VARCHAR"/>
         <result property="note" column="note" jdbcType="VARCHAR"/>
-        <result property="enabled" column="enabled" jdbcType="TINYINT"/>
-        <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
+        <result property="enabled" column="enabled" jdbcType="BOOLEAN"/>
         <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,task_type,warehouse_id,location_expression,resource_id_list,people_name,note,enabled,del_flag,create_time,update_time
+        id,name,task_type,warehouse_id,location_expression,
+        resource_id_list,people_name,
+        note,enabled,
+        create_time,update_time
     </sql>
     <insert id="insertSelective" parameterType="com.supos.app.entity.WmsRule" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_rule
@@ -33,7 +35,6 @@
             <if test="people_name != null">people_name,</if>
             <if test="note != null">note,</if>
             <if test="enabled != null">enabled,</if>
-            <if test="del_flag != null">del_flag,</if>
             <if test="create_time != null">create_time,</if>
             <if test="update_time != null">update_time,</if>
         </trim>
@@ -46,7 +47,6 @@
             <if test="people_name != null">#{people_name},</if>
             <if test="note != null">#{note},</if>
             <if test="enabled != null">#{enabled},</if>
-            <if test="del_flag != null">#{del_flag},</if>
             <if test="create_time != null">#{create_time},</if>
             <if test="update_time != null">#{update_time},</if>
         </trim>
@@ -63,22 +63,17 @@
             <if test="people_name != null">people_name = #{people_name},</if>
             <if test="note != null">note = #{note},</if>
             <if test="enabled != null">enabled = #{enabled},</if>
-            <if test="del_flag != null">del_flag = #{del_flag},</if>
             <if test="create_time != null">create_time = #{create_time},</if>
             <if test="update_time != null">update_time = #{update_time}</if>
         </set>
         WHERE id = #{id}
     </update>
-    <update id="deleteRuleById" parameterType="com.supos.app.entity.WmsRule">
-        UPDATE wms_rule
-        set del_flag= true
-        WHERE id = #{id}
-    </update>
+    <delete id="deleteRuleById" parameterType="com.supos.app.entity.WmsRule">
+        DELETE FROM wms_rule WHERE id = #{id}
+    </delete>
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT *
-        FROM wms_rule
+        SELECT * FROM wms_rule
         <where>
-            del_flag IS NULL
             <if test="id != null and id != ''">
                 AND id = #{id}
             </if>
@@ -93,6 +88,44 @@
             </if>
             <if test="location_expression != null and location_expression != ''">
                 AND location_expression = #{location_expression}
+            </if>
+            <if test="resource_id_list != null and resource_id_list != ''">
+                AND resource_id_list = #{resource_id_list}
+            </if>
+            <if test="people_name != null and people_name != ''">
+                AND people_name = #{people_name}
+            </if>
+            <if test="enabled != null and enabled != ''">
+                AND enabled = #{enabled}
+            </if>
+            <if test="note != null and note != ''">
+                AND note = #{note}
+            </if>
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
+        </where>
+    </select>
+    <select id="selectAllMatchRules" resultMap="BaseResultMap">
+        SELECT * FROM wms_rule
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="task_type != null and task_type != ''">
+                AND task_type = #{task_type}
+            </if>
+            <if test="warehouse_id != null and warehouse_id != ''">
+                AND warehouse_id = #{warehouse_id}
+            </if>
+            <if test="location_expression != null and location_expression != ''">
+                AND location_expression like #{location_expression}
             </if>
             <if test="resource_id_list != null and resource_id_list != ''">
                 AND resource_id_list = #{resource_id_list}

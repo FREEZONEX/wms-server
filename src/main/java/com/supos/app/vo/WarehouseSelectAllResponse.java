@@ -20,7 +20,6 @@ public class WarehouseSelectAllResponse {
         this.email = warehouse.getEmail();
         this.project_group = warehouse.getProject_group();
         this.note = warehouse.getNote();
-        this.del_flag = warehouse.getDel_flag();
         this.create_time = warehouse.getCreate_time();
         this.update_time = warehouse.getUpdate_time();
     }
@@ -68,11 +67,6 @@ public class WarehouseSelectAllResponse {
     private String note;
 
     private List<WarehouseSelectAllLocations> store_locations;
-
-    /**
-     *
-     */
-    private Integer del_flag;
 
     /**
      *
@@ -156,14 +150,6 @@ public class WarehouseSelectAllResponse {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public Integer getDel_flag() {
-        return del_flag;
-    }
-
-    public void setDel_flag(Integer del_flag) {
-        this.del_flag = del_flag;
     }
 
     public Date getCreate_time() {

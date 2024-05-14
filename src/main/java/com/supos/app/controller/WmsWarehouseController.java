@@ -33,7 +33,7 @@ public class WmsWarehouseController {
     public ApiResponse<Map<String, String>> warehouseInsert(@RequestBody(required = false) WmsWarehouse wmsWarehouse) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsWarehouseServiceImpl.insertSelective(wmsWarehouse)));
+            responseData.put("rows_affected", String.valueOf(wmsWarehouseServiceImpl.insertSelective(wmsWarehouse)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -46,7 +46,7 @@ public class WmsWarehouseController {
     public ApiResponse<Map<String, String>> warehouseUpdate(@RequestBody(required = false) WmsWarehouse wmsWarehouse) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsWarehouseServiceImpl.updateWarehouseById(wmsWarehouse)));
+            responseData.put("rows_affected", String.valueOf(wmsWarehouseServiceImpl.updateWarehouseById(wmsWarehouse)));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -61,7 +61,7 @@ public class WmsWarehouseController {
         try {
             WmsWarehouse wmsWarehouse = new WmsWarehouse();
             wmsWarehouse.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsWarehouseServiceImpl.deleteWarehouseById(wmsWarehouse)));
+            responseData.put("rows_affected", String.valueOf(wmsWarehouseServiceImpl.deleteWarehouseById(wmsWarehouse)));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -71,11 +71,13 @@ public class WmsWarehouseController {
 
     @ApiOperation(value = "warehouse/get", notes = "warehouse/get")
     @PostMapping("/wms/warehouse/get")
-    public ApiResponse<PageInfo<WarehouseSelectAllResponse>> warehouseSelectAll(@RequestBody(required = false) WmsWarehouse wmsWarehouse, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+    //public ApiResponse<PageInfo<WarehouseSelectAllResponse>> warehouseSelectAll(@RequestBody(required = false) WmsWarehouse wmsWarehouse, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+    public ApiResponse<PageInfo<WmsWarehouse>> warehouseSelectAll(@RequestBody(required = false) WmsWarehouse wmsWarehouse, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             PageInfo<WmsWarehouse> pageInfo = PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsWarehouseServiceImpl.selectAll(wmsWarehouse));
+            return new ApiResponse<>(pageInfo);
 
-            List<WmsWarehouse> wmsWarehouseList = pageInfo.getList();
+            /*List<WmsWarehouse> wmsWarehouseList = pageInfo.getList();
             List<WarehouseSelectAllResponse> warehouseSelectAllResponses = wmsWarehouseList.stream()
                     .map(warehouse -> {
                         WarehouseSelectAllResponse response = new WarehouseSelectAllResponse(warehouse);
@@ -85,7 +87,7 @@ public class WmsWarehouseController {
 
             PageInfo<WarehouseSelectAllResponse> responsePageInfo = new PageInfo<>(warehouseSelectAllResponses);
             BeanUtils.copyProperties(pageInfo, responsePageInfo, "list"); // Copy pagination details except the list
-            return new ApiResponse<>(responsePageInfo);
+            return new ApiResponse<>(responsePageInfo);*/
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());

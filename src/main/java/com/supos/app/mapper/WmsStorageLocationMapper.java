@@ -8,12 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
-* @author Wenhao
-* @description 针对表【wms_storage_location】的数据库操作Mapper
-* @createDate 2024-03-15 23:19:11
-* @Entity com.supos.app.entity.WmsStorageLocation
-*/
+
 @Mapper
 public interface WmsStorageLocationMapper extends BaseMapper<WmsStorageLocation> {
 

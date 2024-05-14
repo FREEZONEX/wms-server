@@ -10,13 +10,14 @@ import java.util.List;
 @Mapper
 public interface WmsTaskResourceMapper extends BaseMapper<WmsTaskResource> {
 
+    int insertSelective(WmsTaskResource wmsTaskResource);
     int insertAll(List<WmsTaskResource> wmsTaskResources);
 
     int updateSelective(WmsTaskResource wmsTaskResource);
 
-    int deleteWmsTaskResourceById(WmsTaskResource wmsTaskResource);
+    int deleteTaskResourceById(WmsTaskResource wmsTaskResource);
 
-    int deleteWmsTaskResourceByTaskId(WmsTaskResource wmsTaskResource);
+    int deleteTaskResourceByTaskId(WmsTaskResource wmsTaskResource);
 
     List<WmsTaskResource> selectAll(WmsTaskResource wmsTaskResource);
 }

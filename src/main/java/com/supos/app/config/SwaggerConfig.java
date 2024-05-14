@@ -38,7 +38,7 @@ public class SwaggerConfig {
             WmsOutboundController.class,
             WmsStocktakingController.class,
             WmsTodayController.class,
-            //WmsResourceController.class,
+            WmsResourceController.class,
             WmsTaskController.class,
             WmsRuleController.class
     ));

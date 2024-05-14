@@ -9,11 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
-* @author Wenhao
-* @description 针对表【wms_warehouse】的数据库操作Service实现
-* @createDate 2024-03-15 20:05:41
-*/
+
 @Service
 public class WmsWarehouseServiceImpl extends ServiceImpl<WmsWarehouseMapper, WmsWarehouse>
         implements WmsWarehouseService {

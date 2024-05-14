@@ -27,7 +27,7 @@ public class WmsRfidmaterialController {
     public ApiResponse<Map<String, String>> rfidmaterialInsert(@RequestBody(required = false) WmsRfidMaterial wmsRfidMaterial) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsRfidMaterialServiceImpl.insertSelective(wmsRfidMaterial)));
+            responseData.put("rows_affected", String.valueOf(wmsRfidMaterialServiceImpl.insertSelective(wmsRfidMaterial)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -40,7 +40,7 @@ public class WmsRfidmaterialController {
     public ApiResponse<Map<String, String>> rfidmaterialUpdate(@RequestBody(required = false) WmsRfidMaterial wmsRfidMaterial) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id",String.valueOf(wmsRfidMaterialServiceImpl.updateSelective(wmsRfidMaterial)));
+            responseData.put("rows_affected",String.valueOf(wmsRfidMaterialServiceImpl.updateSelective(wmsRfidMaterial)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -55,7 +55,7 @@ public class WmsRfidmaterialController {
         try {
             WmsRfidMaterial wmsRfidMaterial = new WmsRfidMaterial();
             wmsRfidMaterial.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsRfidMaterialServiceImpl.deleteSelective(wmsRfidMaterial)));
+            responseData.put("rows_affected", String.valueOf(wmsRfidMaterialServiceImpl.deleteSelective(wmsRfidMaterial)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());

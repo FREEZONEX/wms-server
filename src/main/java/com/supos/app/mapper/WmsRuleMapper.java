@@ -15,6 +15,8 @@ public interface WmsRuleMapper extends BaseMapper<WmsRule> {
     int deleteRuleById(WmsRule wmsRule);
 
     List<WmsRule> selectAll(WmsRule wmsRule);
+
+    List<WmsRule> selectAllMatchRules(WmsRule wmsRule);
 }
 
 

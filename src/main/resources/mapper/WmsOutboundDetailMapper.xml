@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supos.app.mapper.WmsOutboundDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsInventoryOperationDetail">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="operation_id" column="operation_id" jdbcType="BIGINT"/>
+        <result property="location_id" column="location_id" jdbcType="BIGINT"/>
+        <result property="material_id" column="material_id" jdbcType="BIGINT"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,operation_id,location_id,material_id,quantity,
+        update_time,create_time
+    </sql>
+    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsInventoryOperationDetail" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wms_outbound_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="operation_id != null">operation_id,</if>
+            <if test="location_id != null">location_id,</if>
+            <if test="material_id != null">material_id,</if>
+            <if test="quantity != null">quantity,</if>
+            <if test="update_time != null">update_time,</if>
+            <if test="create_time != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="operation_id != null">#{operation_id},</if>
+            <if test="location_id != null">#{location_id},</if>
+            <if test="material_id != null">#{material_id},</if>
+            <if test="quantity != null">#{quantity},</if>
+            <if test="update_time != null">#{update_time},</if>
+            <if test="create_time != null">#{create_time},</if>
+        </trim>
+    </insert>
+    <update id="updateRecordById" parameterType="com.supos.app.entity.WmsInventoryOperationDetail">
+        UPDATE wms_outbound_detail
+        <set>
+            <if test="operation_id != null">operation_id = #{operation_id},</if>
+            <if test="location_id != null">location_id = #{location_id},</if>
+            <if test="material_id != null">material_id = #{material_id},</if>
+            <if test="quantity != null">quantity = #{quantity},</if>
+            <if test="update_time != null">update_time = #{update_time},</if>
+            <if test="create_time != null">create_time = #{create_time}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteRecordById" parameterType="com.supos.app.entity.WmsInventoryOperationDetail">
+        DELETE FROM wms_outbound_detail WHERE id = #{id}
+    </delete>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM wms_outbound_detail
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <if test="operation_id != null and operation_id != ''">
+                AND operation_id = #{operation_id}
+            </if>
+            <if test="location_id != null">
+                AND location_id = #{location_id}
+            </if>
+            <if test="material_id != null">
+                AND material_id = #{material_id}
+            </if>
+            <if test="quantity != null">
+                AND quantity = #{quantity}
+            </if>
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+        </where>
+        ORDER BY material_id ASC
+    </select>
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supos.app.mapper.WmsStocktakingMapper">
+
+    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsInventoryOperation">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="source" column="source" jdbcType="VARCHAR"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="operator" column="operator" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="purchase_order_no" column="purchase_order_no" jdbcType="VARCHAR"/>
+        <result property="supplier" column="supplier" jdbcType="VARCHAR"/>
+        <result property="delivery_date" column="delivery_date" jdbcType="TIMESTAMP"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,type,source,note,
+        creator,operator,status
+        purchase_order_no,supplier,delivery_date,
+        create_time,update_time
+    </sql>
+    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsInventoryOperation" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wms_stocktaking
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="type != null">type,</if>
+            <if test="source != null">source,</if>
+            <if test="note != null">note,</if>
+            <if test="creator != null">creator,</if>
+            <if test="operator != null">operator,</if>
+            <if test="status != null">status,</if>
+            <if test="purchase_order_no != null">purchase_order_no,</if>
+            <if test="supplier != null">supplier,</if>
+            <if test="delivery_date != null">delivery_date,</if>
+            <if test="create_time != null">create_time,</if>
+            <if test="update_time != null">update_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=BIGINT},</if>
+            <if test="type != null">#{type},</if>
+            <if test="source != null">#{source},</if>
+            <if test="note != null">#{note},</if>
+            <if test="creator != null">#{creator},</if>
+            <if test="operator != null">#{operator},</if>
+            <if test="status != null">#{status},</if>
+            <if test="purchase_order_no != null">#{purchase_order_no},</if>
+            <if test="supplier != null">#{supplier},</if>
+            <if test="delivery_date != null">#{delivery_date},</if>
+            <if test="create_time != null">#{create_time},</if>
+            <if test="update_time != null">#{update_time},</if>
+        </trim>
+    </insert>
+    <!-- Update WmsInventoryOperation by ID -->
+    <update id="updateRecordById" parameterType="com.supos.app.entity.WmsInventoryOperation">
+        UPDATE wms_stocktaking
+        <set>
+            <if test="type != null">type = #{type},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="operator != null">operator = #{operator},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="purchase_order_no != null">purchase_order_no = #{purchase_order_no},</if>
+            <if test="supplier != null">supplier = #{supplier},</if>
+            <if test="delivery_date != null">delivery_date = #{delivery_date},</if>
+            <if test="create_time != null">create_time = #{create_time},</if>
+            <if test="update_time != null">update_time = #{update_time}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteRecordById" parameterType="com.supos.app.entity.WmsInventoryOperation">
+        DELETE FROM wms_stocktaking WHERE id = #{id}
+    </delete>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM wms_stocktaking
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="source != null and source != ''">
+                AND source = #{source}
+            </if>
+            <if test="note != null and note != ''">
+                AND note = #{note}
+            </if>
+            <if test="creator != null and creator != ''">
+                AND creator = #{creator}
+            </if>
+            <if test="operator != null and operator != ''">
+                AND operator = #{operator}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="purchase_order_no != null and purchase_order_no != ''">
+                AND purchase_order_no = #{purchase_order_no}
+            </if>
+            <if test="supplier != null and supplier != ''">
+                AND supplier = #{supplier}
+            </if>
+            <if test="delivery_date != null">
+                AND delivery_date = #{delivery_date}
+            </if>
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
+        </where>
+    </select>
+
+</mapper>

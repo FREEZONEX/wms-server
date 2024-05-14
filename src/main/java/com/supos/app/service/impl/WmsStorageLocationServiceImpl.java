@@ -19,11 +19,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.*;
 import java.util.zip.GZIPOutputStream;
 
-/**
-* @author Wenhao
-* @description 针对表【wms_storage_location】的数据库操作Service实现
-* @createDate 2024-03-15 23:19:11
-*/
+
 @Slf4j
 @Service
 public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocationMapper, WmsStorageLocation>
@@ -70,6 +66,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
         Map<String, Object> jsonData = new HashMap<>();
         jsonData.put("material", wmsStorageLocation.getMaterial_name());
         jsonData.put("location", locationName);
+        jsonData.put("warehouse_id", wmsStorageLocation.getWarehouse_id());
         // Wrap your map inside a list to form a single-element array
         String content = gson.toJson(Collections.singletonList(jsonData));
         sendMqttToUnity(mqttTopicIncrement, content, 2, false);
@@ -143,6 +140,7 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
             Map<String, Object> jsonData = new HashMap<>();
             jsonData.put("material", wmsStorageLocation.getMaterial_name());
             jsonData.put("location", wmsStorageLocation.getName());
+            jsonData.put("warehouse_id", wmsStorageLocation.getWarehouse_id());
             listOfMaps.add(jsonData);
 
             //count++; // Increment the counter

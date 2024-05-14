@@ -5,13 +5,15 @@
 <mapper namespace="com.supos.app.mapper.WmsMaterialExpectedLocationMapper">
 
     <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsMaterialExpectedLocation">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="material_id" column="material_id" jdbcType="BIGINT"/>
-            <result property="location_id" column="location_id" jdbcType="BIGINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="material_id" column="material_id" jdbcType="BIGINT"/>
+        <result property="location_id" column="location_id" jdbcType="BIGINT"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,material_id,location_id
+        id,material_id,location_id,create_time,update_time
     </sql>
     <insert id="insertAll" useGeneratedKeys="true" keyProperty="id">
         insert into wms_material_expected_location (material_id, location_id)
@@ -51,10 +53,10 @@
         DELETE FROM wms_material_expected_location WHERE material_id = #{material_id}
     </delete>
     <select id="selectAvailableLocations" resultMap="BaseResultMap">
-        SELECT wmel.*
-        FROM wms_material_expected_location AS wmel
-        JOIN wms_storage_location AS wsl
-        ON wmel.location_id = wsl.id
-        WHERE (wsl.material_name IS NULL OR wsl.material_name = '') AND wmel.material_id = #{material_id}
+        SELECT e.*
+        FROM wms_material_expected_location AS e
+        JOIN wms_storage_location AS s
+        ON e.location_id = s.id
+        WHERE (s.material_name IS NULL OR s.material_name = '') AND e.material_id = #{material_id} AND e.location_id NOT IN (#{exclude_location_ids})
     </select>
 </mapper>

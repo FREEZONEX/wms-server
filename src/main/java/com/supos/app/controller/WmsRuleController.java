@@ -6,7 +6,6 @@ import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsRule;
 import com.supos.app.service.impl.WmsRuleServiceImpl;
 import com.supos.app.vo.ID;
-import com.supos.app.vo.RuleSelectAllResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Api(value = "Rule API", tags = {"11. Rule"})
-
 @Slf4j
 @RestController
 public class WmsRuleController {
@@ -37,7 +35,7 @@ public class WmsRuleController {
     public ApiResponse<Map<String, String>> ruleInsert(@RequestBody(required = false) WmsRule wmsRule) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsRuleServiceImpl.insertSelective(wmsRule)));
+            responseData.put("rows_affected", String.valueOf(wmsRuleServiceImpl.insertSelective(wmsRule)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -50,7 +48,7 @@ public class WmsRuleController {
     public ApiResponse<Map<String, String>> ruleUpdate(@RequestBody(required = false) WmsRule wmsRule) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsRuleServiceImpl.updateRuleById(wmsRule)));
+            responseData.put("rows_affected", String.valueOf(wmsRuleServiceImpl.updateRuleById(wmsRule)));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -65,7 +63,7 @@ public class WmsRuleController {
         try {
             WmsRule wmsRule = new WmsRule();
             wmsRule.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsRuleServiceImpl.deleteRuleById(wmsRule)));
+            responseData.put("rows_affected", String.valueOf(wmsRuleServiceImpl.deleteRuleById(wmsRule)));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -75,11 +73,12 @@ public class WmsRuleController {
 
     @ApiOperation(value = "rule/get", notes = "rule/get")
     @PostMapping("/wms/rule/get")
-    public ApiResponse<PageInfo<RuleSelectAllResponse>> ruleSelectAll(@RequestBody(required = false) WmsRule wmsRule, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+    public ApiResponse<PageInfo<WmsRule>> ruleSelectAll(@RequestBody(required = false) WmsRule wmsRule, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             PageInfo<WmsRule> pageInfo = PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsRuleServiceImpl.selectAll(wmsRule));
+            return new ApiResponse<>(pageInfo);
 
-            List<WmsRule> wmsRuleList = pageInfo.getList();
+            /*List<WmsRule> wmsRuleList = pageInfo.getList();
             List<RuleSelectAllResponse> ruleSelectAllResponses = wmsRuleList.stream()
                     .map(rule -> {
                         RuleSelectAllResponse response = new RuleSelectAllResponse(rule);
@@ -89,7 +88,7 @@ public class WmsRuleController {
 
             PageInfo<RuleSelectAllResponse> responsePageInfo = new PageInfo<>();
             //BeanUtils.copyProperties(pageInfo, responsePageInfo, "list"); // Copy pagination details except the list
-            return new ApiResponse<>(responsePageInfo);
+            return new ApiResponse<>(responsePageInfo);*/
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());

@@ -5,25 +5,43 @@
 <mapper namespace="com.supos.app.mapper.WmsTaskResourceMapper">
 
     <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsTaskResource">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="task_id" column="task_id" jdbcType="BIGINT"/>
-            <result property="resource_id" column="resource_id" jdbcType="BIGINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="task_id" column="task_id" jdbcType="BIGINT"/>
+        <result property="resource_id" column="resource_id" jdbcType="BIGINT"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,task_id,resource_id
+        id,task_id,resource_id,
+        create_time,update_time
     </sql>
+    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsTaskResource" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wms_task_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="task_id != null">task_id,</if>
+            <if test="resource_id != null">resource_id,</if>
+            <if test="create_time != null">create_time,</if>
+            <if test="update_time != null">update_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="task_id != null">#{task_id},</if>
+            <if test="resource_id != null">#{resource_id},</if>
+            <if test="create_time != null">#{create_time},</if>
+            <if test="update_time != null">#{update_time},</if>
+        </trim>
+    </insert>
     <insert id="insertAll" useGeneratedKeys="true" keyProperty="id">
-        insert into wms_taskResource (task_id, resource_id)
+        insert into wms_task_resource (task_id, resource_id)
         values
         <foreach collection="list" item="item" separator=",">
             (#{item.task_id,jdbcType=BIGINT}, #{item.resource_id,jdbcType=BIGINT})
         </foreach>
     </insert>
-    <select id="selectAll" resultMap="BaseResultMap">.
+    <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from wms_taskResource
+        from wms_task_resource
         <where>
             <if test="id != null">
                 AND id = #{id}
@@ -34,20 +52,28 @@
             <if test="resource_id != null">
                 AND resource_id = #{resource_id}
             </if>
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
         </where>
     </select>
     <update id="updateSelective">
-        update wms_taskResource
+        update wms_task_resource
         <set>
             <if test="task_id != null">task_id=#{task_id,jdbcType=BIGINT},</if>
             <if test="resource_id != null">resource_id=#{resource_id,jdbcType=BIGINT},</if>
+            <if test="create_time != null">create_time = #{create_time},</if>
+            <if test="update_time != null">update_time = #{update_time}</if>
         </set>
         where id = #{id,jdbcType=NUMERIC}
     </update>
-    <delete id="deleteWmsTaskResourceById" parameterType="com.supos.app.entity.WmsTaskResource">
-        DELETE FROM wms_taskResource WHERE id = #{id}
+    <delete id="deleteTaskResourceById" parameterType="com.supos.app.entity.WmsTaskResource">
+        DELETE FROM wms_task_resource WHERE id = #{id}
     </delete>
-    <delete id="deleteWmsTaskResourceByTaskId" parameterType="com.supos.app.entity.WmsTaskResource">
-        DELETE FROM wms_taskResource WHERE task_id = #{task_id}
+    <delete id="deleteTaskResourceByTaskId" parameterType="com.supos.app.entity.WmsTaskResource">
+        DELETE FROM wms_task_resource WHERE task_id = #{task_id}
     </delete>
 </mapper>

@@ -5,19 +5,19 @@
 <mapper namespace="com.supos.app.mapper.WmsStorageLocationMapper">
 
     <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsStorageLocation">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="warehouse_id" column="warehouse_id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="material_name" column="material_name" jdbcType="VARCHAR"/>
-            <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="warehouse_id" column="warehouse_id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="material_name" column="material_name" jdbcType="VARCHAR"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,warehouse_id,name,
         material_name,
-        del_flag,update_time,create_time
+        quantity,update_time,create_time
     </sql>
     <insert id="insertSelective" parameterType="com.supos.app.entity.WmsStorageLocation" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_storage_location
@@ -25,7 +25,7 @@
             <if test="warehouse_id != null">warehouse_id,</if>
             <if test="name != null">name,</if>
             <if test="material_name != null">material_name,</if>
-            <if test="del_flag != null">del_flag,</if>
+            <if test="quantity != null">quantity,</if>
             <if test="update_time != null">update_time,</if>
             <if test="create_time != null">create_time,</if>
         </trim>
@@ -33,7 +33,7 @@
             <if test="warehouse_id != null">#{warehouse_id},</if>
             <if test="name != null">#{name},</if>
             <if test="material_name != null">#{material_name},</if>
-            <if test="del_flag != null">#{del_flag},</if>
+            <if test="quantity != null">#{quantity},</if>
             <if test="update_time != null">#{update_time},</if>
             <if test="create_time != null">#{create_time},</if>
         </trim>
@@ -44,42 +44,37 @@
             <if test="warehouse_id != null">warehouse_id = #{warehouse_id},</if>
             <if test="name != null">name = #{name},</if>
             <if test="material_name != null">material_name = #{material_name},</if>
-            <if test="del_flag != null">del_flag = #{del_flag},</if>
+            <if test="quantity != null">quantity = #{quantity},</if>
             <if test="update_time != null">update_time = #{update_time},</if>
             <if test="create_time != null">create_time = #{create_time}</if>
         </set>
         WHERE id = #{id}
     </update>
-    <update id="deleteStorageLocationById" parameterType="com.supos.app.entity.WmsStorageLocation">
-        UPDATE wms_storage_location
-        set del_flag= true
-        WHERE id = #{id}
-    </update>
+    <delete id="deleteStorageLocationById" parameterType="com.supos.app.entity.WmsStorageLocation">
+        DELETE FROM wms_storage_location WHERE id = #{id}
+    </delete>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT *
         FROM wms_storage_location
         <where>
-            del_flag IS NULL
             <if test="id != null and id != ''">
                 AND id = #{id}
             </if>
-            <!-- Warehouse ID condition -->
             <if test="warehouse_id != null and warehouse_id != ''">
                 AND warehouse_id = #{warehouse_id}
             </if>
-            <!-- Name condition -->
             <if test="name != null and name != ''">
                 AND name = #{name}
             </if>
-            <!-- Occupied condition -->
             <if test="material_name != null">
                 AND material_name = #{material_name}
             </if>
-            <!-- Update Time condition -->
+            <if test="quantity != null">
+                AND quantity = #{quantity}
+            </if>
             <if test="update_time != null">
                 AND update_time = #{update_time}
             </if>
-            <!-- Create Time condition -->
             <if test="create_time != null">
                 AND create_time = #{create_time}
             </if>
@@ -89,6 +84,6 @@
 
     <!-- For 3D Model -->
     <select id="selectAllStocked" resultMap="BaseResultMap">
-        SELECT * FROM wms_storage_location where warehouse_id = #{warehouse_id} and del_flag IS NULL and material_name IS NOT NULL and material_name &lt;&gt; ''
+        SELECT * FROM wms_storage_location where warehouse_id = #{warehouse_id} and material_name IS NOT NULL and material_name &lt;&gt; ''
     </select>
 </mapper>

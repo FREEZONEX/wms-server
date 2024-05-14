@@ -124,8 +124,8 @@ minio:
 mqtt:
   broker: ${MQTT_BROKER:tcp://47.236.10.165:30884}
   clientId: ${MQTT_CLIENTID:wms_server}
-  topic_increment: ${MQTT_TOPIC_INCREMENT:wms/threedmodel/increment}
-  topic_full_request: ${MQTT_TOPIC_FULL_REQUEST:wms/threedmodel/full/request}
-  topic_full_response: ${MQTT_TOPIC_FULL_RESPONSE:wms/threedmodel/full/response}
+  topic_increment: ${MQTT_TOPIC_INCREMENT:spBv2.0/wms/NDATA/server/increment}
+  topic_full_request: ${MQTT_TOPIC_FULL_REQUEST:spBv2.0/wms/NCMD/unity/full/request}
+  topic_full_response: ${MQTT_TOPIC_FULL_RESPONSE:spBv2.0/wms/NDATA/server/full/response}
   enable: ${MQTT_ENABLE:true}
 

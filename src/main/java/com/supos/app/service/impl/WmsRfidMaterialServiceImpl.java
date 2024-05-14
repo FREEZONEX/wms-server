@@ -9,11 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
-* @author Wenhao
-* @description 针对表【wms_rfid_material】的数据库操作Service实现
-* @createDate 2024-03-18 18:33:12
-*/
+
 @Service
 public class WmsRfidMaterialServiceImpl extends ServiceImpl<WmsRfidMaterialMapper, WmsRfidMaterial>
     implements WmsRfidMaterialService{

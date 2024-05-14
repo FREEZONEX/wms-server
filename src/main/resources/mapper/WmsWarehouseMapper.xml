@@ -5,24 +5,23 @@
 <mapper namespace="com.supos.app.mapper.WmsWarehouseMapper">
 
     <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsWarehouse">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="warehouse_id" column="warehouse_id" jdbcType="VARCHAR"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="type" column="type" jdbcType="VARCHAR"/>
-            <result property="manager" column="manager" jdbcType="VARCHAR"/>
-            <result property="department" column="department" jdbcType="VARCHAR"/>
-            <result property="email" column="email" jdbcType="VARCHAR"/>
-            <result property="project_group" column="project_group" jdbcType="VARCHAR"/>
-            <result property="note" column="note" jdbcType="VARCHAR"/>
-            <result property="del_flag" column="del_flag" jdbcType="TINYINT"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="warehouse_id" column="warehouse_id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="manager" column="manager" jdbcType="VARCHAR"/>
+        <result property="department" column="department" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="project_group" column="project_group" jdbcType="VARCHAR"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,warehouse_id,name,type,
         manager,department,email,
-        project_group,note,del_flag,
+        project_group,note,
         create_time,update_time
     </sql>
     <insert id="insertSelective" parameterType="com.supos.app.entity.WmsWarehouse" useGeneratedKeys="true" keyProperty="id">
@@ -36,7 +35,6 @@
             <if test="email != null">email,</if>
             <if test="project_group != null">project_group,</if>
             <if test="note != null">note,</if>
-            <if test="del_flag != null">del_flag,</if>
             <if test="create_time != null">create_time,</if>
             <if test="update_time != null">update_time,</if>
         </trim>
@@ -49,7 +47,6 @@
             <if test="email != null">#{email},</if>
             <if test="project_group != null">#{project_group},</if>
             <if test="note != null">#{note},</if>
-            <if test="del_flag != null">#{del_flag},</if>
             <if test="create_time != null">#{create_time},</if>
             <if test="update_time != null">#{update_time},</if>
         </trim>
@@ -66,62 +63,48 @@
             <if test="email != null">email = #{email},</if>
             <if test="project_group != null">project_group = #{project_group},</if>
             <if test="note != null">note = #{note},</if>
-            <if test="del_flag != null">del_flag = #{del_flag},</if>
             <if test="create_time != null">create_time = #{create_time},</if>
             <if test="update_time != null">update_time = #{update_time}</if>
         </set>
         WHERE id = #{id}
     </update>
-    <update id="deleteWarehouseById" parameterType="com.supos.app.entity.WmsWarehouse">
-        UPDATE wms_warehouse
-        set del_flag= true
-        WHERE id = #{id}
-    </update>
+    <delete id="deleteWarehouseById" parameterType="com.supos.app.entity.WmsWarehouse">
+        DELETE FROM wms_warehouse WHERE id = #{id}
+    </delete>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT *
         FROM wms_warehouse
         <where>
-            del_flag IS NULL
             <if test="id != null and id != ''">
                 AND id = #{id}
             </if>
-            <!-- Name condition -->
             <if test="warehouse_id != null and warehouse_id != ''">
                 AND warehouse_id = #{warehouse_id}
             </if>
-            <!-- Name condition -->
             <if test="name != null and name != ''">
                 AND name = #{name}
             </if>
-            <!-- Type condition -->
             <if test="type != null and type != ''">
                 AND type = #{type}
             </if>
-            <!-- Manager condition -->
             <if test="manager != null and manager != ''">
                 AND manager = #{manager}
             </if>
-            <!-- Department condition -->
             <if test="department != null and department != ''">
                 AND department = #{department}
             </if>
-            <!-- Email condition -->
             <if test="email != null and email != ''">
                 AND email = #{email}
             </if>
-            <!-- Project Group condition -->
             <if test="project_group != null and project_group != ''">
                 AND project_group = #{project_group}
             </if>
-            <!-- Note condition -->
             <if test="note != null and note != ''">
                 AND note = #{note}
             </if>
-            <!-- Create Time condition -->
             <if test="create_time != null">
                 AND create_time = #{create_time}
             </if>
-            <!-- Update Time condition -->
             <if test="update_time != null">
                 AND update_time = #{update_time}
             </if>

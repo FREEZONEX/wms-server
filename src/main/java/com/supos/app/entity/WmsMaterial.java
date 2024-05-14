@@ -14,9 +14,9 @@ import lombok.Data;
 public class WmsMaterial implements Serializable {
 
     private Long id;
-    private String product_code;
+    private String material_code;
     private String name;
-    private String product_type;
+    private String material_type;
     private String unit;
     private String note;
     private String specification;
@@ -47,9 +47,9 @@ public class WmsMaterial implements Serializable {
         }
         WmsMaterial other = (WmsMaterial) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getProduct_code() == null ? other.getProduct_code() == null : this.getProduct_code().equals(other.getProduct_code()))
+            && (this.getMaterial_code() == null ? other.getMaterial_code() == null : this.getMaterial_code().equals(other.getMaterial_code()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getProduct_type() == null ? other.getProduct_type() == null : this.getProduct_type().equals(other.getProduct_type()))
+            && (this.getMaterial_type() == null ? other.getMaterial_type() == null : this.getMaterial_type().equals(other.getMaterial_type()))
             && (this.getUnit() == null ? other.getUnit() == null : this.getUnit().equals(other.getUnit()))
             && (this.getNote() == null ? other.getNote() == null : this.getNote().equals(other.getNote()))
             && (this.getSpecification() == null ? other.getSpecification() == null : this.getSpecification().equals(other.getSpecification()))
@@ -68,9 +68,9 @@ public class WmsMaterial implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getProduct_code() == null) ? 0 : getProduct_code().hashCode());
+        result = prime * result + ((getMaterial_code() == null) ? 0 : getMaterial_code().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getProduct_type() == null) ? 0 : getProduct_type().hashCode());
+        result = prime * result + ((getMaterial_type() == null) ? 0 : getMaterial_type().hashCode());
         result = prime * result + ((getUnit() == null) ? 0 : getUnit().hashCode());
         result = prime * result + ((getNote() == null) ? 0 : getNote().hashCode());
         result = prime * result + ((getSpecification() == null) ? 0 : getSpecification().hashCode());
@@ -92,9 +92,9 @@ public class WmsMaterial implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", product_code=").append(product_code);
+        sb.append(", material_code=").append(material_code);
         sb.append(", name=").append(name);
-        sb.append(", product_type=").append(product_type);
+        sb.append(", material_type=").append(material_type);
         sb.append(", unit=").append(unit);
         sb.append(", note=").append(note);
         sb.append(", specification=").append(specification);
@@ -119,12 +119,12 @@ public class WmsMaterial implements Serializable {
         this.id = id;
     }
 
-    public String getProduct_code() {
-        return product_code;
+    public String getMaterial_code() {
+        return material_code;
     }
 
-    public void setProduct_code(String product_code) {
-        this.product_code = product_code;
+    public void setMaterial_code(String material_code) {
+        this.material_code = material_code;
     }
 
     public String getName() {
@@ -135,12 +135,12 @@ public class WmsMaterial implements Serializable {
         this.name = name;
     }
 
-    public String getProduct_type() {
-        return product_type;
+    public String getMaterial_type() {
+        return material_type;
     }
 
-    public void setProduct_type(String product_type) {
-        this.product_type = product_type;
+    public void setMaterial_type(String material_type) {
+        this.material_type = material_type;
     }
 
     public String getUnit() {

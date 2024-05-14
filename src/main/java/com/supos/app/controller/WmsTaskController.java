@@ -6,7 +6,6 @@ import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsTask;
 import com.supos.app.service.impl.WmsTaskServiceImpl;
 import com.supos.app.vo.ID;
-import com.supos.app.vo.TaskSelectAllResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ public class WmsTaskController {
     public ApiResponse<Map<String, String>> taskInsert(@RequestBody(required = false) WmsTask wmsTask) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsTaskServiceImpl.insertSelective(wmsTask)));
+            responseData.put("rows_affected", String.valueOf(wmsTaskServiceImpl.insertSelective(wmsTask)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -46,7 +45,7 @@ public class WmsTaskController {
     public ApiResponse<Map<String, String>> taskUpdate(@RequestBody(required = false) WmsTask wmsTask) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsTaskServiceImpl.updateTaskById(wmsTask)));
+            responseData.put("rows_affected", String.valueOf(wmsTaskServiceImpl.updateTaskById(wmsTask)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -61,7 +60,7 @@ public class WmsTaskController {
         try {
             WmsTask wmsTask = new WmsTask();
             wmsTask.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsTaskServiceImpl.deleteTaskById(wmsTask)));
+            responseData.put("rows_affected", String.valueOf(wmsTaskServiceImpl.deleteTaskById(wmsTask)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -71,7 +70,7 @@ public class WmsTaskController {
 
     @ApiOperation(value = "task/get", notes = "task/get")
     @PostMapping("/wms/task/get")
-    public ApiResponse<PageInfo<TaskSelectAllResponse>> taskSelectAll(@RequestBody(required = false) WmsTask wmsTask, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+    public ApiResponse<PageInfo<WmsTask>> taskSelectAll(@RequestBody(required = false) WmsTask wmsTask, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             return new ApiResponse<>(PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsTaskServiceImpl.selectAll(wmsTask)));
 

@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling //开启定时任务
+@EnableScheduling   //schedule task
 @EnableAsync
 public class WMSServerApplication {
 

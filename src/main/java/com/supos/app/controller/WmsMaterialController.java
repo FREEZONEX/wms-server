@@ -40,7 +40,7 @@ public class WmsMaterialController {
     public ApiResponse<Map<String, String>> materialUpdate(@RequestBody(required = false) WmsMaterial wmsMaterial) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsMaterialServiceImpl.updateMaterialById(wmsMaterial)));
+            responseData.put("rows_affected", String.valueOf(wmsMaterialServiceImpl.updateMaterialById(wmsMaterial)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());
@@ -55,7 +55,7 @@ public class WmsMaterialController {
         try {
             WmsMaterial wmsMaterial = new WmsMaterial();
             wmsMaterial.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsMaterialServiceImpl.deleteMaterialById(wmsMaterial)));
+            responseData.put("rows_affected", String.valueOf(wmsMaterialServiceImpl.deleteMaterialById(wmsMaterial)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){
             log.info(e.getMessage());

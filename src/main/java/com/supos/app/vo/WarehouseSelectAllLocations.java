@@ -49,7 +49,7 @@ public class WarehouseSelectAllLocations {
         this.warehouse_id = storageLocation.getWarehouse_id();
         this.name = storageLocation.getName();
         this.material_name = storageLocation.getMaterial_name();
-        this.del_flag = storageLocation.getDel_flag();
+        this.del_flag = storageLocation.getQuantity();
         this.update_time = storageLocation.getUpdate_time();
         this.create_time = storageLocation.getCreate_time();
     }
@@ -86,11 +86,11 @@ public class WarehouseSelectAllLocations {
         this.material_name = material_name;
     }
 
-    public Integer getDel_flag() {
+    public Integer getQuantity() {
         return del_flag;
     }
 
-    public void setDel_flag(Integer del_flag) {
+    public void setQuantity(Integer del_flag) {
         this.del_flag = del_flag;
     }
 

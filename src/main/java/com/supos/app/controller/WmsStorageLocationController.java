@@ -31,12 +31,12 @@ public class WmsStorageLocationController {
     @Autowired
     WmsMaterialTransactionServiceImpl wmsMaterialTransactionServiceImpl;
 
-    @ApiOperation(value = "storagelocation/add", notes = "storagelocation/add")
-    @PostMapping("/wms/storagelocation/add")
+    @ApiOperation(value = "storage-location/add", notes = "storage-location/add")
+    @PostMapping("/wms/storage-location/add")
     public ApiResponse<Map<String, String>> storagelocationInsert(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsStorageLocationServiceImpl.insertSelective(wmsStorageLocation)));
+            responseData.put("rows_affected", String.valueOf(wmsStorageLocationServiceImpl.insertSelective(wmsStorageLocation)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -44,12 +44,12 @@ public class WmsStorageLocationController {
         }
     }
 
-    @ApiOperation(value = "storagelocation/update", notes = "storagelocation/update")
+    @ApiOperation(value = "storage-location/update", notes = "storage-location/update")
     @PostMapping("/wms/storage-location/update")
     public ApiResponse<Map<String, String>> storagelocationUpdate(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation)));
+            responseData.put("rows_affected", String.valueOf(wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -57,14 +57,14 @@ public class WmsStorageLocationController {
         }
     }
 
-    @ApiOperation(value = "storagelocation/delete", notes = "storagelocation/delete")
+    @ApiOperation(value = "storage-location/delete", notes = "storage-location/delete")
     @PostMapping("/wms/storage-location/delete")
     public ApiResponse<Map<String, String>> storagelocationDelete(@RequestBody(required = false) ID id) {
         Map<String, String> responseData = new HashMap<>();
         try {
             WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
             wmsStorageLocation.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsStorageLocationServiceImpl.deleteStorageLocationById(wmsStorageLocation)));
+            responseData.put("rows_affected", String.valueOf(wmsStorageLocationServiceImpl.deleteStorageLocationById(wmsStorageLocation)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -72,14 +72,15 @@ public class WmsStorageLocationController {
         }
     }
 
-    @ApiOperation(value = "storagelocation/get", notes = "storagelocation/get")
+    @ApiOperation(value = "storage-location/get", notes = "storage-location/get")
     @PostMapping("/wms/storage-location/get")
-    public ApiResponse<PageInfo<StorageLocationSelectAllResponse>> storagelocationSelectAll(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
-
+    //public ApiResponse<PageInfo<StorageLocationSelectAllResponse>> storagelocationSelectAll(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+    public ApiResponse<PageInfo<WmsStorageLocation>> storagelocationSelectAll(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             PageInfo<WmsStorageLocation> pageInfo = PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation));
+            return new ApiResponse<>(pageInfo);
 
-            List<StorageLocationSelectAllResponse> StorageLocationSelectAllResponses = pageInfo.getList().stream().map(
+            /*List<StorageLocationSelectAllResponse> StorageLocationSelectAllResponses = pageInfo.getList().stream().map(
                     storageLocation -> {
                         StorageLocationSelectAllResponse storageLocationSelectAllResponse = new StorageLocationSelectAllResponse(storageLocation);
 
@@ -108,7 +109,7 @@ public class WmsStorageLocationController {
             ).collect(Collectors.toList());
             PageInfo<StorageLocationSelectAllResponse> responsePageInfo = new PageInfo<>(StorageLocationSelectAllResponses);
             BeanUtils.copyProperties(pageInfo, responsePageInfo, "list"); // Copy pagination details except the list
-            return new ApiResponse<>(responsePageInfo);
+            return new ApiResponse<>(responsePageInfo);*/
 
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -116,8 +117,8 @@ public class WmsStorageLocationController {
         }
     }
 
-    @ApiOperation(value = "storagelocation/namemap", notes = "storagelocation/namemap")
-    @PostMapping("/wms/storagelocation/namemap")
+    @ApiOperation(value = "storage-location/namemap", notes = "storage-location/namemap")
+    @PostMapping("/wms/storage-location/namemap")
     public ApiResponse<PageInfo<WarehouseNamemap>> storagelocationNamemap(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             PageInfo<WmsStorageLocation> pageInfo = PageHelper.startPage(pageNum, pageSize)
@@ -155,7 +156,7 @@ public class WmsStorageLocationController {
     }
 
     @ApiOperation(value = "Fetch Plane Location Information", notes = "Get an overhead view of the warehouse, return {{'A-01', 'A-02', 'A-03', 'A-04', 'A-05'}, {'B-01', 'B-02', 'B-03', 'B-04', 'B-05'}}")
-    @PostMapping("/wms/storagelocation/plane-locations")
+    @PostMapping("/wms/storage-location/plane-locations")
     public ApiResponse<ShelfModel> getPlaneLocations(@RequestBody(required = false) WmsStorageLocation wmsStorageLocation) {
         try {
             Map<String, List<String>> planeNames = new HashMap<String, List<String>>();

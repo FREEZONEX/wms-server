@@ -33,6 +33,10 @@ public class WmsRuleServiceImpl extends ServiceImpl<WmsRuleMapper, WmsRule>
         return wmsRuleMapper.selectAll(wmsRule);
     }
 
+    public List<WmsRule> selectAllMatchRules(WmsRule wmsRule) {
+        return wmsRuleMapper.selectAll(wmsRule);
+    }
+
 }
 
 

@@ -4,10 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsResource;
-import com.supos.app.service.impl.WmsStorageLocationServiceImpl;
 import com.supos.app.service.impl.WmsResourceServiceImpl;
 import com.supos.app.vo.ID;
-import com.supos.app.vo.ResourceSelectAllResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +34,7 @@ public class WmsResourceController {
     public ApiResponse<Map<String, String>> resourceInsert(@RequestBody(required = false) WmsResource wmsResource) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsResourceServiceImpl.insertSelective(wmsResource)));
+            responseData.put("rows_affected", String.valueOf(wmsResourceServiceImpl.insertSelective(wmsResource)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -49,7 +47,7 @@ public class WmsResourceController {
     public ApiResponse<Map<String, String>> resourceUpdate(@RequestBody(required = false) WmsResource wmsResource) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            responseData.put("id", String.valueOf(wmsResourceServiceImpl.updateResourceById(wmsResource)));
+            responseData.put("rows_affected", String.valueOf(wmsResourceServiceImpl.updateResourceById(wmsResource)));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -64,7 +62,7 @@ public class WmsResourceController {
         try {
             WmsResource wmsResource = new WmsResource();
             wmsResource.setId(id.getID());
-            responseData.put("id", String.valueOf(wmsResourceServiceImpl.deleteResourceById(wmsResource)));
+            responseData.put("rows_affected", String.valueOf(wmsResourceServiceImpl.deleteResourceById(wmsResource)));
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
@@ -74,11 +72,11 @@ public class WmsResourceController {
 
     @ApiOperation(value = "resource/get", notes = "resource/get")
     @PostMapping("/wms/resource/get")
-    public ApiResponse<PageInfo<ResourceSelectAllResponse>> resourceSelectAll(@RequestBody(required = false) WmsResource wmsResource, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+    public ApiResponse<PageInfo<WmsResource>> resourceSelectAll(@RequestBody(required = false) WmsResource wmsResource, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             PageInfo<WmsResource> pageInfo = PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsResourceServiceImpl.selectAll(wmsResource));
-
-            List<WmsResource> wmsResourceList = pageInfo.getList();
+            return new ApiResponse<>(pageInfo);
+            /*List<WmsResource> wmsResourceList = pageInfo.getList();
             List<ResourceSelectAllResponse> resourceSelectAllResponses = wmsResourceList.stream()
                     .map(resource -> {
                         ResourceSelectAllResponse response = new ResourceSelectAllResponse(resource);
@@ -88,7 +86,7 @@ public class WmsResourceController {
 
             PageInfo<ResourceSelectAllResponse> responsePageInfo = new PageInfo<>(resourceSelectAllResponses);
             BeanUtils.copyProperties(pageInfo, responsePageInfo, "list"); // Copy pagination details except the list
-            return new ApiResponse<>(responsePageInfo);
+            return new ApiResponse<>(responsePageInfo);*/
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());

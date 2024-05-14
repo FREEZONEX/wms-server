@@ -1,5 +1,6 @@
 package com.supos.app.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.supos.app.entity.WmsMaterial;
 import com.supos.app.entity.WmsMaterialExpectedLocation;
@@ -16,11 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Wenhao
- * @description 针对表【wms_material】的数据库操作Service实现
- * @createDate 2024-03-16 07:54:43
- */
+
 @Slf4j
 @Service
 public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMaterial>
@@ -36,8 +33,11 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
     private  WmsStorageLocationServiceImpl wmsStorageLocationServiceImpl;
 
     public long insertSelective(WmsMaterial wmsMaterial) {
-        long material_id = CommonUtils.generateUnsignedLongUUID();
-        wmsMaterial.setId(material_id);
+        if (wmsMaterial.getId() == null) {
+            //long material_id = CommonUtils.generateUnsignedLongUUID();
+            long material_id = IdWorker.getId();
+            wmsMaterial.setId(material_id);
+        }
         wmsMaterialMapper.insertSelective(wmsMaterial);
         long warehouse_id = wmsMaterial.getExpect_wh_id();
         //String[] locations=wmsMaterial.getLocations();
@@ -45,10 +45,11 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
         if(expect_storage_locations != null && !expect_storage_locations.isEmpty()){
             String[] locations = expect_storage_locations.split(",");
             //wmsMaterial.setExpect_storage_locations(joinedLocations);
-            List<WmsMaterialExpectedLocation> wmsMaterialExpectedLocations = ConstructLocationsFromPlane(warehouse_id, locations, (long) material_id);
-            wmsMaterialExpectedLocationMapper.insertAll(wmsMaterialExpectedLocations);
+            List<WmsMaterialExpectedLocation> wmsMaterialExpectedLocations = ConstructLocationsFromPlane(warehouse_id, locations, wmsMaterial.getId());
+            if (!wmsMaterialExpectedLocations.isEmpty())
+                wmsMaterialExpectedLocationMapper.insertAll(wmsMaterialExpectedLocations);
         }
-        return material_id;
+        return wmsMaterial.getId();
     }
 
     @NotNull
@@ -102,16 +103,20 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
 
     public List<WmsMaterial> selectAll(WmsMaterial wmsMaterial) {
         List<WmsMaterial> wmsMaterialList = wmsMaterialMapper.selectAll(wmsMaterial);
+        List<String> excludeLocationIdsList = new ArrayList<>();
+
         for(WmsMaterial material: wmsMaterialList) {
-            List<WmsMaterialExpectedLocation> availableLocations = wmsMaterialExpectedLocationMapper.selectAvailableLocations(material.getId());
+            List<WmsMaterialExpectedLocation> availableLocations = wmsMaterialExpectedLocationMapper.selectAvailableLocations(material.getId(), String.join(",", excludeLocationIdsList));
             if(!availableLocations.isEmpty()) {
                 Long location_id = availableLocations.get(0).getLocation_id();
                 material.setSuggested_storage_location_id(location_id);
                 WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
                 wmsStorageLocation.setId(location_id);
                 List<WmsStorageLocation> locationList = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
-                if (locationList != null && !locationList.isEmpty())
+                if (locationList != null && !locationList.isEmpty()) {
                     material.setSuggested_storage_location_name(locationList.get(0).getName());
+                    excludeLocationIdsList.add(String.valueOf(locationList.get(0).getId()));
+                }
             }
         }
 

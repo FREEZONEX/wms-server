@@ -23,9 +23,9 @@ public class MaterialSelectAllResponse {
 
     public MaterialSelectAllResponse(WmsMaterial material) {
         this.id = material.getId();
-        this.product_code = material.getProduct_code();
+        this.product_code = material.getMaterial_code();
         this.name = material.getName();
-        this.product_type = material.getProduct_type();
+        this.product_type = material.getMaterial_type();
         this.unit = material.getUnit();
         this.note = material.getNote();
         this.del_flag = material.getDel_flag();

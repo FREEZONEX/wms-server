@@ -11,41 +11,17 @@ public class StorageLocationSelectAllResponse {
         this.warehouse_id = wmsStorageLocation.getWarehouse_id();
         this.name = wmsStorageLocation.getName();
         this.material_name = wmsStorageLocation.getMaterial_name();
-        this.del_flag = wmsStorageLocation.getDel_flag();
+        this.quantity = wmsStorageLocation.getQuantity();
         this.update_time = wmsStorageLocation.getUpdate_time();
         this.create_time = wmsStorageLocation.getCreate_time();
     }
 
     private Long id;
-
-    /**
-     *
-     */
     private Long warehouse_id;
-
-    /**
-     *
-     */
     private String name;
-
-    /**
-     *
-     */
     private String material_name;;
-
-    /**
-     *
-     */
-    private Integer del_flag;
-
-    /**
-     *
-     */
+    private Integer quantity;
     private Date update_time;
-
-    /**
-     *
-     */
     private Date create_time;
 
     private static final long serialVersionUID = 1L;
@@ -84,12 +60,12 @@ public class StorageLocationSelectAllResponse {
         this.material_name = material_name;
     }
 
-    public Integer getDel_flag() {
-        return del_flag;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setDel_flag(Integer del_flag) {
-        this.del_flag = del_flag;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Date getUpdate_time() {

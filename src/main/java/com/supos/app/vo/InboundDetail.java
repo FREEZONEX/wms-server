@@ -17,9 +17,9 @@ public class InboundDetail implements Serializable {
     public InboundDetail() {}
 
     public InboundDetail(WmsMaterialTransaction transaction, WmsMaterial material) {
-        this.product_code = material.getProduct_code();
+        this.product_code = material.getMaterial_code();
         this.name = material.getName();
-        this.product_type = material.getProduct_type();
+        this.product_type = material.getMaterial_type();
         this.unit = material.getUnit();
         this.note = material.getNote();
         this.specification = material.getSpecification();
@@ -31,7 +31,7 @@ public class InboundDetail implements Serializable {
         this.quantity = transaction.getQuantity();
         this.id = transaction.getId();
         this.material_code = transaction.getMaterial_code();
-        this.type = material.getProduct_type();
+        this.type = material.getMaterial_type();
         this.source = transaction.getSource();
         this.inbound_id = transaction.getInbound_id();
         this.stocktaking_id = transaction.getStocktaking_id();

@@ -76,4 +76,34 @@ public class WmsTaskController {
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
         }
     }
+
+    @ApiOperation(value = "task/count/pending", notes = "task/count/pending")
+    @PostMapping("/wms/task/count/pending")
+    public ApiResponse<Map<String, String>> taskSelectCountPending() {
+        Map<String, String> responseData = new HashMap<>();
+        try {
+            WmsTask wmsTask = new WmsTask();
+             wmsTask.setStatus("pending");
+            responseData.put("count", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
+            return new ApiResponse<>(responseData);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "task/count/done", notes = "task/count/done")
+    @PostMapping("/wms/task/count/done")
+    public ApiResponse<Map<String, String>> taskSelectCountDone() {
+        Map<String, String> responseData = new HashMap<>();
+        try {
+            WmsTask wmsTask = new WmsTask();
+            wmsTask.setStatus("done");
+            responseData.put("count", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
+            return new ApiResponse<>(responseData);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
+        }
+    }
 }

@@ -15,6 +15,8 @@ public interface WmsTaskMapper extends BaseMapper<WmsTask> {
     int deleteTaskById(WmsTask wmsTask);
 
     List<WmsTask> selectAll(WmsTask wmsTask);
+
+    int selectCount(WmsTask wmsTask);
 }
 
 

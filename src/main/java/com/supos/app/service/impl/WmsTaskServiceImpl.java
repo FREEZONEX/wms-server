@@ -62,6 +62,9 @@ public class WmsTaskServiceImpl extends ServiceImpl<WmsTaskMapper, WmsTask>
         return tasks;
     }
 
+    public int selectCount(WmsTask wmsTask) {
+        return wmsTaskMapper.selectCount(wmsTask);
+    }
 }
 
 

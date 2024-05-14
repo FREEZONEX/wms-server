@@ -85,5 +85,34 @@
             </if>
         </where>
     </select>
+    <select id="selectCount" resultType="integer">
+        SELECT count(*) FROM wms_task
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id}
+            </if>
+            <if test="operation_id != null and operation_id != ''">
+                AND operation_id = #{operation_id}
+            </if>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="note != null and note != ''">
+                AND note = #{note}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="people_name != null and people_name != ''">
+                AND people_name = #{people_name}
+            </if>
+            <if test="create_time != null">
+                AND create_time = #{create_time}
+            </if>
+            <if test="update_time != null">
+                AND update_time = #{update_time}
+            </if>
+        </where>
+    </select>
 
 </mapper>

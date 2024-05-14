@@ -64,7 +64,6 @@ public class WmsMaterialController {
     @ApiOperation(value = "material/get", notes = "material/get")
     @PostMapping("/wms/material/get")
     public ApiResponse<PageInfo<WmsMaterial>> materialSelectAll(@RequestBody(required = false) WmsMaterial wmsMaterial, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
-    //public ApiResponse<PageInfo<MaterialSelectAllResponse>> materialSelectAll(@RequestBody(required = false) WmsMaterial wmsMaterial, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
         try {
             return new ApiResponse<>(PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsMaterialServiceImpl.selectAll(wmsMaterial)));
 

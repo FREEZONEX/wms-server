@@ -121,6 +121,7 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
     }
 
     public int updateOperationById(WmsInventoryOperation wmsInventoryOperation) {
+        // need update resource usage also
         return wmsInventoryOperationMapper.updateRecordById(wmsInventoryOperation);
     }
 

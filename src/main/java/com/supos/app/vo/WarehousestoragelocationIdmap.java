@@ -6,19 +6,14 @@ import java.util.List;
 
 public class WarehousestoragelocationIdmap {
     private Long id;
-
     private String  name;
-
     List<WarehouseNamemap> warehouseNamemap;
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public List<WarehouseNamemap> getWarehouseNamemap() {
         return warehouseNamemap;
     }

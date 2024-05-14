@@ -50,11 +50,9 @@ public class WmsMaterialController {
 
     @ApiOperation(value = "material/delete",notes = "material/delete")
     @PostMapping("/wms/material/delete")
-    public ApiResponse<Map<String, String>> materialDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> materialDelete(@RequestBody(required = false) WmsMaterial wmsMaterial) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsMaterial wmsMaterial = new WmsMaterial();
-            wmsMaterial.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsMaterialServiceImpl.deleteMaterialById(wmsMaterial)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){

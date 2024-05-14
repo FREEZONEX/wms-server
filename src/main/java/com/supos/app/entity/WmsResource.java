@@ -20,8 +20,7 @@ public class WmsResource implements Serializable {
     private Date create_time;
     private Date update_time;
 
-    public WmsResource() {
-    }
+    public WmsResource() {}
 
     // Constructor with id parameter
     public WmsResource(Long id) {

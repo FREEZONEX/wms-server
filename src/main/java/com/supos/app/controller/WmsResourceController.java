@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsResource;
 import com.supos.app.service.impl.WmsResourceServiceImpl;
-import com.supos.app.vo.ID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -57,11 +56,9 @@ public class WmsResourceController {
 
     @ApiOperation(value = "resource/delete", notes = "resource/delete")
     @PostMapping("/wms/resource/delete")
-    public ApiResponse<Map<String, String>> resourceDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> resourceDelete(@RequestBody(required = false) WmsResource wmsResource) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsResource wmsResource = new WmsResource();
-            wmsResource.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsResourceServiceImpl.deleteResourceById(wmsResource)));
         } catch (Exception e) {
             log.info(e.getMessage());

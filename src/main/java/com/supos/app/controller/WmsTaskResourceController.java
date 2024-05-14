@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.supos.app.config.ApiResponse;
 import com.supos.app.entity.WmsTaskResource;
 import com.supos.app.service.impl.WmsTaskResourceServiceImpl;
-import com.supos.app.vo.ID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -55,11 +54,9 @@ public class WmsTaskResourceController {
 
     @ApiOperation(value = "taskresource/delete",notes = "taskresource/delete")
     @PostMapping("/wms/taskresource/delete")
-    public ApiResponse<Map<String, String>> taskresourceDelete(@RequestBody(required = false) ID id) {
+    public ApiResponse<Map<String, String>> taskresourceDelete(@RequestBody(required = false) WmsTaskResource wmsTaskResource) {
         Map<String, String> responseData = new HashMap<>();
         try {
-            WmsTaskResource wmsTaskResource = new WmsTaskResource();
-            wmsTaskResource.setId(id.getID());
             responseData.put("rows_affected", String.valueOf(wmsTaskResourceServiceImpl.deleteTaskResourceById(wmsTaskResource)));
             return new ApiResponse<>(responseData);
         }catch (Exception e){

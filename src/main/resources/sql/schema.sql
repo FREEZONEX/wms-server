@@ -238,6 +238,7 @@ CREATE TABLE IF NOT EXISTS `wms_resource` (
 -- resource occupy log, update_time - create_time is total time for this section
 CREATE TABLE IF NOT EXISTS `wms_resource_occupy_log` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `task_id` BIGINT UNSIGNED NOT NULL,
     `resource_id` BIGINT UNSIGNED NOT NULL,
     `is_occupy` tinyINT(1) DEFAULT 1,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

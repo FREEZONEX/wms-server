@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `wms_warehouse` (
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY `name` (`name`),
     UNIQUE KEY `warehouse_id` (`warehouse_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- warehouse shelf's, 1 location can only store 1 kind os material
 CREATE TABLE IF NOT EXISTS `wms_storage_location` (
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `wms_storage_location` (
     CONSTRAINT `fk_storage_location_warehouse_id` FOREIGN KEY (`warehouse_id`) REFERENCES `wms_warehouse` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1481 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- material predefined
 CREATE TABLE IF NOT EXISTS `wms_material` (
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `wms_material` (
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY `material_code` (`material_code`),
     UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- material sub table, store all expected locations for material type
 CREATE TABLE IF NOT EXISTS `wms_material_expected_location` (
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `wms_material_expected_location` (
     CONSTRAINT `fk_material_expected_location_location_id` FOREIGN KEY (`location_id`) REFERENCES `wms_storage_location` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1481 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- rfid and single material mapping definition
 CREATE TABLE IF NOT EXISTS `wms_rfid_material` (
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `wms_rfid_material` (
     CONSTRAINT `fk_rfid_material_material_id` FOREIGN KEY (`material_id`) REFERENCES `wms_material` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- material storage location detail, 1 material can storage at N locations
 CREATE TABLE IF NOT EXISTS `wms_material_storage_location` (
@@ -90,36 +90,7 @@ CREATE TABLE IF NOT EXISTS `wms_material_storage_location` (
     CONSTRAINT `fk_material_storage_location_id` FOREIGN KEY (`location_id`) REFERENCES `wms_storage_location` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-);
-
--- combine inbound, outbound,stocktaking together
-/*CREATE TABLE `wms_material_transaction` (
-    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `material_code` VARCHAR(100) CHARACTER SET utf8mb4  NOT NULL,
-    `type` VARCHAR(100) CHARACTER SET utf8mb4  DEFAULT NULL,
-    `source` VARCHAR(100) CHARACTER SET utf8mb4  DEFAULT NULL,
-    `inbound_id` BIGINT UNSIGNED DEFAULT NULL,
-    `stocktaking_id` BIGINT UNSIGNED DEFAULT NULL,
-    `outbound_id` BIGINT DEFAULT NULL,
-    `warehouse_id` BIGINT DEFAULT NULL,
-    `location_id` BIGINT DEFAULT NULL,
-    `rf_id` VARCHAR(100) CHARACTER SET utf8mb4  DEFAULT NULL,
-    `operator` VARCHAR(100) CHARACTER SET utf8mb4  DEFAULT NULL,
-    `inbound_status` VARCHAR(100) CHARACTER SET utf8mb4  DEFAULT NULL,
-    `outbound_status` VARCHAR(100) DEFAULT NULL,
-    `note` VARCHAR(200) DEFAULT NULL,
-    `inbound_creator` VARCHAR(100) DEFAULT NULL,
-    `outbound_creator` VARCHAR(100) DEFAULT NULL,
-    `inbound_purchase_order_no` VARCHAR(100) DEFAULT NULL,
-    `outbound_purchase_order_no` VARCHAR(100) DEFAULT NULL,
-    `inbound_supplier` VARCHAR(100) DEFAULT NULL,
-    `outbound_supplier` VARCHAR(100) DEFAULT NULL,
-    `inbound_delivery_date` TIMESTAMP NULL DEFAULT NULL,
-    `outbound_delivery_date` TIMESTAMP NULL DEFAULT NULL,
-    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3648 DEFAULT CHARSET=utf8mb4;*/
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- inbound record
 CREATE TABLE IF NOT EXISTS `wms_inbound` (
@@ -135,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `wms_inbound` (
     `delivery_date` TIMESTAMP NULL DEFAULT NULL,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- inbound detail
 CREATE TABLE IF NOT EXISTS `wms_inbound_detail` (
@@ -149,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `wms_inbound_detail` (
     CONSTRAINT `fk_inbound_detail_operation_id` FOREIGN KEY (`operation_id`) REFERENCES `wms_inbound` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- outbound record
 CREATE TABLE IF NOT EXISTS `wms_outbound` (
@@ -165,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `wms_outbound` (
     `delivery_date` TIMESTAMP NULL DEFAULT NULL,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- outbound detail
 CREATE TABLE IF NOT EXISTS wms_outbound_detail (
@@ -179,7 +150,7 @@ CREATE TABLE IF NOT EXISTS wms_outbound_detail (
     CONSTRAINT `fk_outbound_detail_operation_id` FOREIGN KEY (`operation_id`) REFERENCES `wms_outbound` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- stocktaking record
 CREATE TABLE IF NOT EXISTS `wms_stocktaking` (
@@ -195,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `wms_stocktaking` (
     `delivery_date` TIMESTAMP NULL DEFAULT NULL,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- stocktaking detail
 CREATE TABLE IF NOT EXISTS wms_stocktaking_detail (
@@ -211,7 +182,7 @@ CREATE TABLE IF NOT EXISTS wms_stocktaking_detail (
     CONSTRAINT `fk_stocktaking_detail_operation_id` FOREIGN KEY (`operation_id`) REFERENCES `wms_stocktaking` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- 3D model table for BI, not use anymore
 /*CREATE TABLE `wms_threed_warehouse` (
@@ -233,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `wms_resource` (
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- resource occupy log, update_time - create_time is total time for this section
 CREATE TABLE IF NOT EXISTS `wms_resource_occupy_log` (
@@ -246,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `wms_resource_occupy_log` (
     CONSTRAINT `fk_resource_id` FOREIGN KEY (`resource_id`) REFERENCES `wms_resource` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 /*CREATE TABLE `wms_people` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -269,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `wms_task` (
     `people_name` VARCHAR(200) DEFAULT NULL,   -- assigned people name, 1 task can only assign to 1 people
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- task resource allocate, 1 task can be assigned many resources
 CREATE TABLE IF NOT EXISTS `wms_task_resource` (
@@ -282,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `wms_task_resource` (
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     CONSTRAINT `uc_task_id_resource_id` UNIQUE (`task_id`, `resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- rule for task assignment, include resource assignment and people assignment
 CREATE TABLE IF NOT EXISTS `wms_rule` (
@@ -300,4 +271,19 @@ CREATE TABLE IF NOT EXISTS `wms_rule` (
     CONSTRAINT `fk_rule_warehouse_id` FOREIGN KEY (`warehouse_id`) REFERENCES `wms_warehouse` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `supos_user` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(100) NOT NULL,
+  `accountType` INT DEFAULT NULL,
+  `lockStatus` INT DEFAULT NULL,
+  `valid` TINYINT DEFAULT NULL,
+  `personCode` VARCHAR(100) NOT NULL,
+  `personName` VARCHAR(100) NOT NULL,
+  `delFlag` TINYINT DEFAULT NULL,
+  `createTime` TIMESTAMP NOT NULL,
+  `modifyTime` TIMESTAMP NOT NULL,
+  `syncTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `personCode` (`personCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;

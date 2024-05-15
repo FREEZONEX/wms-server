@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(value = "Sup API", tags = {"99. Supos Related"})
+@Api(value = "SupOS API", tags = {"12. SupOS API"})
 
 @Slf4j
 @RestController
@@ -21,8 +21,8 @@ public class WmsSupController {
     @Autowired
     SysUserService sysUserServiceImpl;
 
-    @ApiOperation(value = "sup/getUsers", notes = "rule/getUsers")
-    @PostMapping("/wms/sup/getUsers")
+    @ApiOperation(value = "user/get", notes = "user/get")
+    @PostMapping("/wms/user/get")
     public ApiResponse<List<SysUser>> getUsers() {
         try {
             return new ApiResponse<>(sysUserServiceImpl.queryAll());

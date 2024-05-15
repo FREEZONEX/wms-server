@@ -8,6 +8,7 @@ import com.supos.app.service.InventoryUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,9 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
     private WmsStorageLocationServiceImpl wmsStorageLocationServiceImpl;
 
     @Autowired
+    private WmsMaterialServiceImpl wmsMaterialServiceImpl;
+
+    @Autowired
     private WmsInboundServiceImpl wmsInboundServiceImpl;
 
     //@Autowired
@@ -39,7 +43,53 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
     @Autowired
     private WmsTaskResourceServiceImpl wmsTaskResourceServiceImpl;
 
-    @Transactional
+    @Override
+    public void updateStorageLocationMaterial(Long location_id, Long material_id, int quantity, boolean isInbound) {
+
+        WmsMaterial wmsMaterial = new WmsMaterial();
+        wmsMaterial.setId(material_id);
+        List<WmsMaterial> wmsMaterials = wmsMaterialServiceImpl.selectAll(wmsMaterial);
+
+        if(wmsMaterials.isEmpty())
+            throw new RuntimeException("material_id cannot be found: " + material_id);
+
+        WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
+        wmsStorageLocation.setId(location_id);
+        List<WmsStorageLocation> wmsStorageLocations = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
+        if(wmsStorageLocations.isEmpty())
+            throw new RuntimeException("location_id cannot be found: " + location_id);
+
+        wmsMaterial = wmsMaterials.get(0);
+        wmsStorageLocation = wmsStorageLocations.get(0);
+        String exist_material_name = wmsStorageLocation.getMaterial_name();
+        String new_material_name = wmsMaterial.getName();
+
+        int existQuantity = (wmsStorageLocation.getQuantity() != null) ? wmsStorageLocation.getQuantity() : 0;
+        int newQuantity = 0;
+
+        // inbound check, actually also can add maximum capacity check in future
+        if (isInbound) {
+            if (!StringUtils.isEmpty(exist_material_name) && !exist_material_name.equals(new_material_name))
+                throw new RuntimeException("Inbound check fail, storage location, id: " + wmsStorageLocation.getId() + ", name: " + wmsStorageLocation.getName() +  ", already have existing material: " + exist_material_name + ", cannot inbound new material, id: " + wmsMaterial.getId() + ", " + new_material_name);
+            newQuantity = existQuantity + quantity;
+        } else {
+            if (StringUtils.isEmpty(exist_material_name) && !exist_material_name.equals(new_material_name))
+                throw new RuntimeException("Outbound check fail, storage location, id: " + wmsStorageLocation.getId() + ", name: " + wmsStorageLocation.getName() + ", existing material: " + exist_material_name + ", cannot outbound material, id: " + wmsMaterial.getId() + ", " + new_material_name + ", must be same material");
+            if (existQuantity < quantity)
+                throw new RuntimeException("Outbound check fail, storage location, id: " + wmsStorageLocation.getId() + ", name: " + wmsStorageLocation.getName() + ", existing quantity: " + existQuantity + ", less than required outbound quantity: " + quantity);
+            newQuantity = existQuantity - quantity;
+        }
+
+        if (newQuantity > 0) {
+            wmsStorageLocation.setMaterial_name(new_material_name);
+            wmsStorageLocation.setQuantity(newQuantity);
+        } else {
+            wmsStorageLocation.setMaterial_name("");
+            wmsStorageLocation.setQuantity(0);
+        }
+        wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation);
+    }
+
     @Override
     public void updateMaterialStorageLocation(Long material_id, Long location_id, int quantity, boolean isInbound) {
 
@@ -52,13 +102,19 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
 
         List<WmsMaterialStorageLocation> wmsMaterialStorageLocations = wmsMaterialStorageLocationMapper.selectAll(wmsMaterialStorageLocation);
 
-        // if not exist, will add record
+        // specified location have no this material
         if (wmsMaterialStorageLocations.isEmpty()) {
+            // outbound fail directly
+            if(!isInbound)
+                throw new IllegalArgumentException("No stock for outbound operation on material: " + material_id + " at location: " + location_id + ", exist quantity: " + 0 + ", required quantity: " + quantity);
+
+            // inbound success directly
             wmsMaterialStorageLocation.setQuantity(quantity);
             wmsMaterialStorageLocationMapper.insertSelective(wmsMaterialStorageLocation);
         } else {
             int existQuantity = wmsMaterialStorageLocations.get(0).getQuantity();
             int updatedQuantity = isInbound ? existQuantity + quantity : existQuantity - quantity;
+
             if (!isInbound && updatedQuantity < 0) {
                 throw new IllegalArgumentException("Insufficient stock for outbound operation on material: " + material_id + " at location: " + location_id + ", exist quantity: " + existQuantity + ", required quantity: " + quantity);
             }
@@ -72,7 +128,6 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
         }
     }
 
-    @Transactional
     @Override
     public void updatePeopleAndResourceByRule(WmsTask wmsTask)
     {

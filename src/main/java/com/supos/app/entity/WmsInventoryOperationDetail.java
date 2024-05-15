@@ -18,4 +18,9 @@ public class WmsInventoryOperationDetail implements Serializable {
     private String rf_id;
     private Date create_time;
     private Date update_time;
+
+    //below 2 properties is only used for stocktaking result output
+    private String material_name;
+    private Integer stock_quantity;
+    private Integer discrepancy;
 }

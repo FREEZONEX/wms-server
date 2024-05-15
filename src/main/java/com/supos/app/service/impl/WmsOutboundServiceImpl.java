@@ -11,6 +11,8 @@ import com.supos.app.service.WmsOutboundService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,9 +45,13 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
     @Autowired
     private WmsTaskServiceImpl wmsTaskServiceImpl;
 
+    @Transactional
     public int insertSelective(WmsInventoryOperation wmsInventoryOperation) {
         if( wmsInventoryOperation.getWmsInventoryOperationDetails() == null || wmsInventoryOperation.getWmsInventoryOperationDetails().isEmpty()) {
-            throw new IllegalArgumentException("Inventory operation details are required.");
+            throw new IllegalArgumentException("inventory operation details are required");
+        }
+        if( !"PDA".equals(wmsInventoryOperation.getSource()) &&  !"manual".equals(wmsInventoryOperation.getSource()) ) {
+            throw new IllegalArgumentException("source must be PDA or manual");
         }
         // 1. insert wms_outbound table
         Long id = wmsInventoryOperation.getId();
@@ -77,7 +83,8 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
                     }
                 }
             });
-            if (!material_id_detail_map.isEmpty()) {
+            if (!material_id_detail_map.isEmpty())
+            {
                 wmsInventoryOperation.setWmsInventoryOperationDetails((List<WmsInventoryOperationDetail>) material_id_detail_map.values());
             }
         }
@@ -89,22 +96,13 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
         }
 
         // 3. update wms_storage_location table, assume 1 storage location only store 1 kind of material
-        wmsInventoryOperation.getWmsInventoryOperationDetails().forEach(wmsInventoryOperationDetail -> {
-            WmsMaterial wmsMaterial = new WmsMaterial();
-            wmsMaterial.setId(wmsInventoryOperationDetail.getMaterial_id());
-            List<WmsMaterial> wmsMaterials = wmsMaterialServiceImpl.selectAll(wmsMaterial);
-            if(!wmsMaterials.isEmpty()) {
-                WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
-                wmsStorageLocation.setId(wmsInventoryOperationDetail.getLocation_id());
-                wmsStorageLocation.setMaterial_name(wmsMaterials.get(0).getName());
-                wmsStorageLocation.setQuantity(wmsInventoryOperationDetail.getQuantity());
-                wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation);
-            }
-        });
+        for (WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
+            inventoryUpdateService.updateStorageLocationMaterial(wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getQuantity(), false);
+        }
 
         // 4. update wms_material_storage_location table
         for (WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
-            inventoryUpdateService.updateMaterialStorageLocation(wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getQuantity(), true);
+            inventoryUpdateService.updateMaterialStorageLocation(wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getQuantity(), false);
         }
 
         // 5. create pickup task
@@ -112,7 +110,7 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
         wmsTask.setId(IdWorker.getId());
         wmsTask.setOperation_id(id);
         wmsTask.setType("pickup");
-        wmsTask.setNote("Outbound triggered pickup task on " + DateTime.now().toString());
+        wmsTask.setNote("Outbound triggered pickup task on " + DateTime.now());
         wmsTask.setStatus("pending");
         wmsTaskServiceImpl.insertSelective(wmsTask);
 

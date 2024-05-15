@@ -1,8 +1,8 @@
 package com.supos.app.controller;
 
 import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.SysUser;
-import com.supos.app.service.SysUserService;
+import com.supos.app.entity.SuposUser;
+import com.supos.app.service.SuposUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +19,13 @@ import java.util.List;
 public class WmsSupController {
 
     @Autowired
-    SysUserService sysUserServiceImpl;
+    SuposUserService suposUserServiceImpl;
 
     @ApiOperation(value = "user/get", notes = "user/get")
     @PostMapping("/wms/user/get")
-    public ApiResponse<List<SysUser>> getUsers() {
+    public ApiResponse<List<SuposUser>> getUsers() {
         try {
-            return new ApiResponse<>(sysUserServiceImpl.queryAll());
+            return new ApiResponse<>(suposUserServiceImpl.selectAll());
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());

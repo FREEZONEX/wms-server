@@ -6,10 +6,10 @@ import com.bluetron.eco.sdk.dto.common.ApiResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import com.supos.app.entity.SysUser;
-import com.supos.app.mapper.SysUserMapper;
+import com.supos.app.entity.SuposUser;
+import com.supos.app.mapper.SuposUserMapper;
 import com.supos.app.service.SuposService;
-import com.supos.app.service.SysUserService;
+import com.supos.app.service.SuposUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class SuposServiceImpl implements SuposService {
 
     @Autowired
-    SysUserService sysUserService;
+    SuposUserService suposUserService;
 
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
@@ -54,50 +54,50 @@ public class SuposServiceImpl implements SuposService {
         }
         JsonNode nodes = jsonNode.get("list");
         if (nodes != null && nodes.isArray()) {
-            SysUser user;
+            SuposUser user;
 
-            List<SysUser> userWmsList = sysUserService.queryAll();
+            List<SuposUser> userWmsList = suposUserService.selectAll();
 
-            List<SysUser> addUserList = new ArrayList<>();
-            List<SysUser> updateUserList = new ArrayList<>();
+            List<SuposUser> addUserList = new ArrayList<>();
+            List<SuposUser> updateUserList = new ArrayList<>();
             for (JsonNode userNode : nodes) {
-                user = new SysUser();
+                user = new SuposUser();
 
                 String personCode = userNode.get("personCode").asText();
                 String modifyTime = userNode.get("modifyTime").asText();
                 Date modifyDate = this.convertDate(modifyTime);
 
-                List<SysUser> userWMSExist = userWmsList.stream()
+                List<SuposUser> userWMSExist = userWmsList.stream()
                         .filter(obj -> obj.getPersoncode().equals(personCode))
                         .collect(Collectors.toList());
 
                 if (userWMSExist.isEmpty()) {//new
-                    SysUser savingUser = this.getSysUser(user, userNode);
+                    SuposUser savingUser = this.getSuposUser(user, userNode);
                     addUserList.add(savingUser);
                 } else {//modify
-                    for (SysUser userWms : userWMSExist) {
+                    for (SuposUser userWms : userWMSExist) {
                         if (userWms.getModifytime().equals(modifyDate)) //The user already exists and has been modified from supos side
                             continue;
                         user.setId(userWms.getId());
-                        SysUser savingUser = this.getSysUser(user, userNode);
+                        SuposUser savingUser = this.getSuposUser(user, userNode);
                         updateUserList.add(savingUser);
                     }
                 }
             }
 
             if (!addUserList.isEmpty())
-                sysUserService.insertBatch(addUserList);
+                suposUserService.insertBatch(addUserList);
             if (!updateUserList.isEmpty())
                 this.updateUserList(updateUserList);
         }
     }
 
 
-    private void updateUserList(List<SysUser> userList) {
+    private void updateUserList(List<SuposUser> userList) {
         SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH);
-        SysUserMapper mapper = sqlSession.getMapper(SysUserMapper.class);
+        SuposUserMapper mapper = sqlSession.getMapper(SuposUserMapper.class);
         try {
-            for (SysUser entity : userList) {
+            for (SuposUser entity : userList) {
                 mapper.update(entity);
             }
             sqlSession.commit();
@@ -108,7 +108,7 @@ public class SuposServiceImpl implements SuposService {
         }
     }
 
-    private SysUser getSysUser(SysUser user, JsonNode userNode) {
+    private SuposUser getSuposUser(SuposUser user, JsonNode userNode) {
         user.setUsername(userNode.get("username").asText());
         user.setAccounttype(userNode.get("accountType").asInt());
         user.setLockstatus(userNode.get("lockStatus").asInt());

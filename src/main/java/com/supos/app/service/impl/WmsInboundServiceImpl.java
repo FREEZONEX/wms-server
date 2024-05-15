@@ -10,6 +10,7 @@ import com.supos.app.service.InventoryUpdateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,7 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
     @Autowired
     private WmsTaskServiceImpl wmsTaskServiceImpl;
 
+    @Transactional
     public int insertSelective(WmsInventoryOperation wmsInventoryOperation) {
         if( wmsInventoryOperation.getWmsInventoryOperationDetails() == null || wmsInventoryOperation.getWmsInventoryOperationDetails().isEmpty()) {
             throw new IllegalArgumentException("Inventory operation details are required.");
@@ -87,18 +89,9 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
         }
 
         // 3. update wms_storage_location table, assume 1 storage location only store 1 kind of material
-        wmsInventoryOperation.getWmsInventoryOperationDetails().forEach(wmsInventoryOperationDetail -> {
-            WmsMaterial wmsMaterial = new WmsMaterial();
-            wmsMaterial.setId(wmsInventoryOperationDetail.getMaterial_id());
-            List<WmsMaterial> wmsMaterials = wmsMaterialServiceImpl.selectAll(wmsMaterial);
-            if(!wmsMaterials.isEmpty()) {
-                WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
-                wmsStorageLocation.setId(wmsInventoryOperationDetail.getLocation_id());
-                wmsStorageLocation.setMaterial_name(wmsMaterials.get(0).getName());
-                wmsStorageLocation.setQuantity(wmsInventoryOperationDetail.getQuantity());
-                wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation);
-            }
-        });
+        for (WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
+            inventoryUpdateService.updateStorageLocationMaterial(wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getQuantity(), true);
+        }
 
         // 4. update wms_material_storage_location table
         for (WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {

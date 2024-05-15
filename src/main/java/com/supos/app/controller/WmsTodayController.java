@@ -50,7 +50,7 @@ public class WmsTodayController {
 
     @ApiOperation(value = "today/outbound/done",notes = "today/outbound/done")
     @PostMapping("wms/today/outbound/done")
-    public ApiResponse<Map<String, String>> todayOunboundDone() {
+    public ApiResponse<Map<String, String>> todayOutboundDone() {
         Map<String, String> responseData = new HashMap<>();
         try {
             WmsInventoryOperation wmsInventoryOperation = new WmsInventoryOperation();
@@ -69,7 +69,7 @@ public class WmsTodayController {
 
     @ApiOperation(value = "today/outbound",notes = "today/outbound")
     @PostMapping("wms/today/outbound")
-    public ApiResponse<Map<String, String>> todayOubound() {
+    public ApiResponse<Map<String, String>> todayOutbound() {
         Map<String, String> responseData = new HashMap<>();
         try {
             WmsInventoryOperation wmsInventoryOperation = new WmsInventoryOperation();

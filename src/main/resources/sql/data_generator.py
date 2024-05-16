@@ -31,14 +31,14 @@ warehouse_id_start = 1
 warehouse_id_end = 11
 update_time = "2024-04-19 16:22:27"
 create_time = "2024-04-19 16:22:27"
-del_flag = "NULL"
+# del_flag = "NULL"
 
 for warehouse_id in range(warehouse_id_start, warehouse_id_end + 1):
     for name in full_names:
         # Location table
         material_name = random.choices(materials + [None], weights=probabilities, k=1)[0]
         material_name_sql = 'NULL' if material_name is None else f"'{material_name}'"
-        location_statement = f"INSERT INTO wms_storage_location (id, warehouse_id, name, material_name, del_flag, update_time, create_time) VALUES ({location_id}, {warehouse_id}, '{name}', {material_name_sql}, {del_flag}, '{update_time}', '{create_time}');"
+        location_statement = f"INSERT INTO wms_storage_location (id, warehouse_id, name, material_name, update_time, create_time) VALUES ({location_id}, {warehouse_id}, '{name}', {material_name_sql}, '{update_time}', '{create_time}');"
         location_statements.append(location_statement)
 
         # wms_threed_warehouse table

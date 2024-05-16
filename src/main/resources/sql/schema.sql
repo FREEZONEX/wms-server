@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `wms_outbound` (
     `note` VARCHAR(200) DEFAULT NULL,
     `creator` VARCHAR(100) DEFAULT NULL,
     `operator` VARCHAR(100) DEFAULT NULL,
-    `status` VARCHAR(100) DEFAULT NULL,
+    `status` VARCHAR(100) DEFAULT NULL,                     -- pending | done
     `purchase_order_no` VARCHAR(100) DEFAULT NULL,
     `supplier` VARCHAR(100) DEFAULT NULL,
     `delivery_date` TIMESTAMP NULL DEFAULT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `wms_stocktaking` (
     `note` VARCHAR(200) DEFAULT NULL,
     `creator` VARCHAR(100) DEFAULT NULL,
     `operator` VARCHAR(100) DEFAULT NULL,
-    `status` VARCHAR(100) DEFAULT NULL,
+    `status` VARCHAR(100) DEFAULT NULL,                     -- pending | done
     `purchase_order_no` VARCHAR(100) DEFAULT NULL,
     `supplier` VARCHAR(100) DEFAULT NULL,
     `delivery_date` TIMESTAMP NULL DEFAULT NULL,
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS wms_stocktaking_detail (
 CREATE TABLE IF NOT EXISTS `wms_resource` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(100) NOT NULL,
-    `type` VARCHAR(100) NOT NULL,
+    `type` VARCHAR(100) NOT NULL,                   -- forklift | pane
     `note` VARCHAR(200) DEFAULT NULL,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -234,9 +234,9 @@ CREATE TABLE IF NOT EXISTS `wms_resource_occupy_log` (
 CREATE TABLE IF NOT EXISTS `wms_task` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `operation_id` BIGINT UNSIGNED NOT NULL,   -- operation_id is inbound id for putaway task, and is outbound id for picking task
-    `type` VARCHAR(100) NOT NULL,              -- putaway | picking
+    `type` VARCHAR(100) NOT NULL,              -- putaway | pickup
     `note` VARCHAR(200) DEFAULT NULL,
-    `status` VARCHAR(100) NOT NULL,            -- pending | assigned | completed
+    `status` VARCHAR(100) NOT NULL,            -- pending | done
     `people_name` VARCHAR(200) DEFAULT NULL,   -- assigned people name, 1 task can only assign to 1 people
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -259,10 +259,10 @@ CREATE TABLE IF NOT EXISTS `wms_task_resource` (
 CREATE TABLE IF NOT EXISTS `wms_rule` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(100) NOT NULL,
-    `task_type` VARCHAR(100) NOT NULL,                  -- putaway | picking | all
+    `task_type` VARCHAR(100) NOT NULL,                  -- putaway | pickup
     `warehouse_id` BIGINT UNSIGNED NOT NULL,
     `location_expression` VARCHAR(100) NOT NULL,        -- location name match expression: "A-%", "AC-%", "%-01-%"
-    `resource_id_list` VARCHAR(500) NOT NULL,           -- resource id array, split by comma ","
+    `resource_id_list` VARCHAR(500) NOT NULL,           -- resource id array, split by comma ",", for example: "1,2,3"
     `people_name` VARCHAR(200) NOT NULL,                -- assigned people name, 1 task can only assign to 1 people
     `note` VARCHAR(200) DEFAULT NULL,
     `enabled` tinyINT(1) DEFAULT 1,

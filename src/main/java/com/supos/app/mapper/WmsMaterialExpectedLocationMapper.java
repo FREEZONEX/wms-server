@@ -1,8 +1,7 @@
 package com.supos.app.mapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
-import com.supos.app.entity.WmsMaterialExpectedLocation;
+import com.supos.app.domain.entity.WmsMaterialExpectedLocation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;

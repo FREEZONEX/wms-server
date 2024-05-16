@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsTaskMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsTask">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsTask">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <id property="operation_id" column="operation_id" jdbcType="BIGINT"/>
         <result property="type" column="type" jdbcType="VARCHAR"/>
@@ -18,7 +18,7 @@
     <sql id="Base_Column_List">
         id,name,type,note,create_time,update_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsTask" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsTask" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_task
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="operation_id != null">operation_id,</if>
@@ -40,7 +40,7 @@
         </trim>
     </insert>
     <!-- Update WmsTask by ID -->
-    <update id="updateTaskById" parameterType="com.supos.app.entity.WmsTask">
+    <update id="updateTaskById" parameterType="com.supos.app.domain.entity.WmsTask">
         UPDATE wms_task
         <set>
             <if test="operation_id != null">operation_id = #{operation_id},</if>
@@ -53,7 +53,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    <delete id="deleteTaskById" parameterType="com.supos.app.entity.WmsTask">
+    <delete id="deleteTaskById" parameterType="com.supos.app.domain.entity.WmsTask">
         DELETE FROM wms_task WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">

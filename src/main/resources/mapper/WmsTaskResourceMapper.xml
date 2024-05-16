@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsTaskResourceMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsTaskResource">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsTaskResource">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="task_id" column="task_id" jdbcType="BIGINT"/>
         <result property="resource_id" column="resource_id" jdbcType="BIGINT"/>
@@ -16,7 +16,7 @@
         id,task_id,resource_id,
         create_time,update_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsTaskResource" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsTaskResource" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_task_resource
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="task_id != null">task_id,</if>
@@ -70,10 +70,10 @@
         </set>
         where id = #{id,jdbcType=NUMERIC}
     </update>
-    <delete id="deleteTaskResourceById" parameterType="com.supos.app.entity.WmsTaskResource">
+    <delete id="deleteTaskResourceById" parameterType="com.supos.app.domain.entity.WmsTaskResource">
         DELETE FROM wms_task_resource WHERE id = #{id}
     </delete>
-    <delete id="deleteTaskResourceByTaskId" parameterType="com.supos.app.entity.WmsTaskResource">
+    <delete id="deleteTaskResourceByTaskId" parameterType="com.supos.app.domain.entity.WmsTaskResource">
         DELETE FROM wms_task_resource WHERE task_id = #{task_id}
     </delete>
 </mapper>

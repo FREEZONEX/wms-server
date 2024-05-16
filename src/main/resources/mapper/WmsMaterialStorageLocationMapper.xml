@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsMaterialStorageLocationMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsMaterialStorageLocation">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsMaterialStorageLocation">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="material_id" column="material_id" jdbcType="BIGINT"/>
         <result property="location_id" column="location_id" jdbcType="BIGINT"/>
@@ -17,7 +17,7 @@
         id,material_id,location_id,quantity,
         update_time,create_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsMaterialStorageLocation" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsMaterialStorageLocation" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_material_storage_location
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="material_id != null">material_id,</if>
@@ -34,7 +34,7 @@
             <if test="create_time != null">#{create_time},</if>
         </trim>
     </insert>
-    <update id="updateMaterialStorageLocationById" parameterType="com.supos.app.entity.WmsMaterialStorageLocation">
+    <update id="updateMaterialStorageLocationById" parameterType="com.supos.app.domain.entity.WmsMaterialStorageLocation">
         UPDATE wms_material_storage_location
         <set>
             <if test="material_id != null">material_id = #{material_id},</if>
@@ -45,7 +45,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    <delete id="deleteMaterialStorageLocationById" parameterType="com.supos.app.entity.WmsMaterialStorageLocation">
+    <delete id="deleteMaterialStorageLocationById" parameterType="com.supos.app.domain.entity.WmsMaterialStorageLocation">
         DELETE FROM wms_material_storage_location WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">

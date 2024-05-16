@@ -1,8 +1,7 @@
 package com.supos.app.mapper;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-import com.supos.app.entity.WmsRfidMaterial;
+import com.supos.app.domain.entity.WmsRfidMaterial;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,9 +1,9 @@
 package com.supos.app.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.supos.app.entity.WmsResource;
-import com.supos.app.entity.WmsTask;
-import com.supos.app.entity.WmsTaskResource;
+import com.supos.app.domain.entity.WmsResource;
+import com.supos.app.domain.entity.WmsTask;
+import com.supos.app.domain.entity.WmsTaskResource;
 import com.supos.app.mapper.WmsTaskMapper;
 import com.supos.app.service.WmsTaskService;
 import org.springframework.beans.factory.annotation.Autowired;

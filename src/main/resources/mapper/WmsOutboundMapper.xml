@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsOutboundMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsInventoryOperation">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsInventoryOperation">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="type" column="type" jdbcType="VARCHAR"/>
         <result property="source" column="source" jdbcType="VARCHAR"/>
@@ -25,7 +25,7 @@
         purchase_order_no,supplier,delivery_date,
         create_time,update_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsInventoryOperation" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsInventoryOperation" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_outbound
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
@@ -57,7 +57,7 @@
         </trim>
     </insert>
     <!-- Update WmsInventoryOperation by ID -->
-    <update id="updateRecordById" parameterType="com.supos.app.entity.WmsInventoryOperation">
+    <update id="updateRecordById" parameterType="com.supos.app.domain.entity.WmsInventoryOperation">
         UPDATE wms_outbound
         <set>
             <if test="type != null">type = #{type},</if>
@@ -74,7 +74,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    <delete id="deleteRecordById" parameterType="com.supos.app.entity.WmsInventoryOperation">
+    <delete id="deleteRecordById" parameterType="com.supos.app.domain.entity.WmsInventoryOperation">
         DELETE FROM wms_outbound WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">

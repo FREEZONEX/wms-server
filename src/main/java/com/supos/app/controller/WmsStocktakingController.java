@@ -2,8 +2,8 @@ package com.supos.app.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.WmsInventoryOperation;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.WmsInventoryOperation;
 import com.supos.app.service.impl.WmsStocktakingServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

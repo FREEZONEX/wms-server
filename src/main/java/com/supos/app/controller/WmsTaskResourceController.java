@@ -2,8 +2,8 @@ package com.supos.app.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.WmsTaskResource;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.WmsTaskResource;
 import com.supos.app.service.impl.WmsTaskResourceServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

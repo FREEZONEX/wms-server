@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsStocktakingDetailMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsInventoryOperationDetail">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsInventoryOperationDetail">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="operation_id" column="operation_id" jdbcType="BIGINT"/>
         <result property="location_id" column="location_id" jdbcType="BIGINT"/>
@@ -18,7 +18,7 @@
         id,operation_id,location_id,material_id,quantity,
         update_time,create_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsInventoryOperationDetail" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsInventoryOperationDetail" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_stocktaking_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="operation_id != null">operation_id,</if>
@@ -38,7 +38,7 @@
             <if test="create_time != null">#{create_time},</if>
         </trim>
     </insert>
-    <update id="updateRecordById" parameterType="com.supos.app.entity.WmsInventoryOperationDetail">
+    <update id="updateRecordById" parameterType="com.supos.app.domain.entity.WmsInventoryOperationDetail">
         UPDATE wms_stocktaking_detail
         <set>
             <if test="operation_id != null">operation_id = #{operation_id},</if>
@@ -50,7 +50,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    <delete id="deleteRecordById" parameterType="com.supos.app.entity.WmsInventoryOperationDetail">
+    <delete id="deleteRecordById" parameterType="com.supos.app.domain.entity.WmsInventoryOperationDetail">
         DELETE FROM wms_stocktaking_detail WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">

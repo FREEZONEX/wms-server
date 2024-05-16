@@ -2,13 +2,12 @@ package com.supos.app.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.supos.app.entity.WmsMaterial;
-import com.supos.app.entity.WmsMaterialExpectedLocation;
-import com.supos.app.entity.WmsStorageLocation;
+import com.supos.app.domain.entity.WmsMaterial;
+import com.supos.app.domain.entity.WmsMaterialExpectedLocation;
+import com.supos.app.domain.entity.WmsStorageLocation;
 import com.supos.app.mapper.WmsMaterialExpectedLocationMapper;
 import com.supos.app.service.WmsMaterialService;
 import com.supos.app.mapper.WmsMaterialMapper;
-import com.supos.app.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

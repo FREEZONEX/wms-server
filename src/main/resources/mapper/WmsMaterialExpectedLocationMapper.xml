@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsMaterialExpectedLocationMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsMaterialExpectedLocation">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsMaterialExpectedLocation">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="material_id" column="material_id" jdbcType="BIGINT"/>
         <result property="location_id" column="location_id" jdbcType="BIGINT"/>
@@ -46,10 +46,10 @@
         </set>
         where id = #{id,jdbcType=NUMERIC}
     </update>
-    <delete id="deleteWmsMaterialExpectedLocationById" parameterType="com.supos.app.entity.WmsMaterialExpectedLocation">
+    <delete id="deleteWmsMaterialExpectedLocationById" parameterType="com.supos.app.domain.entity.WmsMaterialExpectedLocation">
         DELETE FROM wms_material_expected_location WHERE id = #{id}
     </delete>
-    <delete id="deleteWmsMaterialExpectedLocationByMaterialId" parameterType="com.supos.app.entity.WmsMaterialExpectedLocation">
+    <delete id="deleteWmsMaterialExpectedLocationByMaterialId" parameterType="com.supos.app.domain.entity.WmsMaterialExpectedLocation">
         DELETE FROM wms_material_expected_location WHERE material_id = #{material_id}
     </delete>
     <select id="selectAvailableLocations" resultMap="BaseResultMap">

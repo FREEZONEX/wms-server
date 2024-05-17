@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,4 +26,5 @@ public class WmsTask implements Serializable {
     private Date update_time;
 
     private Map<Long, String> resources;
+    private Map<String, Integer> materials;
 }

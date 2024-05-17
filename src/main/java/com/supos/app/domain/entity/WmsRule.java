@@ -24,4 +24,8 @@ public class WmsRule implements Serializable {
     private Boolean enabled;
     private Date create_time;
     private Date update_time;
+
+    // only for response
+    private String warehouse_name;
+    private String resource_name_list;
 }

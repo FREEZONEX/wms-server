@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsWarehouseMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsWarehouse">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsWarehouse">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="warehouse_id" column="warehouse_id" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
         project_group,note,
         create_time,update_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsWarehouse" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsWarehouse" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_warehouse
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="warehouse_id != null">warehouse_id,</if>
@@ -52,7 +52,7 @@
         </trim>
     </insert>
     <!-- Update WmsWarehouse by ID -->
-    <update id="updateWarehouseById" parameterType="com.supos.app.entity.WmsWarehouse">
+    <update id="updateWarehouseById" parameterType="com.supos.app.domain.entity.WmsWarehouse">
         UPDATE wms_warehouse
         <set>
             <if test="warehouse_id != null">warehouse_id = #{warehouse_id},</if>
@@ -68,7 +68,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    <delete id="deleteWarehouseById" parameterType="com.supos.app.entity.WmsWarehouse">
+    <delete id="deleteWarehouseById" parameterType="com.supos.app.domain.entity.WmsWarehouse">
         DELETE FROM wms_warehouse WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">

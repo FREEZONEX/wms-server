@@ -1,6 +1,6 @@
 package com.supos.app.service;
 
-import com.supos.app.entity.SuposUser;
+import com.supos.app.domain.entity.SuposUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

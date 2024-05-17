@@ -1,11 +1,11 @@
 package com.supos.app.supopenapi;
 
 import com.alibaba.fastjson.JSONObject;
-import com.supos.app.dto.PropValues;
-import com.supos.app.dto.SuposObjectPropertyCurrentBody;
-import com.supos.app.dto.SuposObjectPropertySetValuesBody;
-import com.supos.app.utils.HttpUtils;
-import com.supos.app.utils.JsonUtils;
+import com.supos.app.domain.dto.PropValues;
+import com.supos.app.domain.dto.SuposObjectPropertyCurrentBody;
+import com.supos.app.domain.dto.SuposObjectPropertySetValuesBody;
+import com.supos.app.common.utils.HttpUtils;
+import com.supos.app.common.utils.JsonUtils;
 import org.springframework.http.HttpHeaders;
 
 import java.util.HashMap;

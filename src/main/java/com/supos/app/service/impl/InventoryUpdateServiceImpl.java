@@ -1,18 +1,14 @@
 package com.supos.app.service.impl;
 
-import com.supos.app.entity.*;
+import com.supos.app.domain.entity.*;
 import com.supos.app.mapper.WmsMaterialStorageLocationMapper;
-import com.supos.app.mapper.WmsTaskMapper;
-import com.supos.app.mapper.WmsTaskResourceMapper;
 import com.supos.app.service.InventoryUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

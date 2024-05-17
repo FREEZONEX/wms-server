@@ -1,7 +1,7 @@
 package com.supos.app.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.supos.app.entity.WmsRule;
+import com.supos.app.domain.entity.WmsRule;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

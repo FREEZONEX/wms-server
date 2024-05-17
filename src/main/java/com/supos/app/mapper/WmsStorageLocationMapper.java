@@ -1,9 +1,7 @@
 package com.supos.app.mapper;
 
-import com.supos.app.entity.WmsStorageLocation;
+import com.supos.app.domain.entity.WmsStorageLocation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.supos.app.entity.WmsThreedWarehouse;
-import com.supos.app.entity.WmsWarehouse;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

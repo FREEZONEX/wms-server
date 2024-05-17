@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsStorageLocationMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsStorageLocation">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsStorageLocation">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="warehouse_id" column="warehouse_id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
@@ -19,7 +19,7 @@
         material_name,
         quantity,update_time,create_time
     </sql>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsStorageLocation" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsStorageLocation" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wms_storage_location
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="warehouse_id != null">warehouse_id,</if>
@@ -38,7 +38,7 @@
             <if test="create_time != null">#{create_time},</if>
         </trim>
     </insert>
-    <update id="updateStorageLocationById" parameterType="com.supos.app.entity.WmsStorageLocation">
+    <update id="updateStorageLocationById" parameterType="com.supos.app.domain.entity.WmsStorageLocation">
         UPDATE wms_storage_location
         <set>
             <if test="warehouse_id != null">warehouse_id = #{warehouse_id},</if>
@@ -50,7 +50,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    <delete id="deleteStorageLocationById" parameterType="com.supos.app.entity.WmsStorageLocation">
+    <delete id="deleteStorageLocationById" parameterType="com.supos.app.domain.entity.WmsStorageLocation">
         DELETE FROM wms_storage_location WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">

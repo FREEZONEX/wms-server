@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsMaterialMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsMaterial">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsMaterial">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="material_code" column="material_code" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
@@ -28,10 +28,10 @@
         status,expect_wh_id,expect_storage_locations,
         create_time,update_time
     </sql>
-    <delete id="deleteWmsMaterialById" parameterType="com.supos.app.entity.WmsMaterial">
+    <delete id="deleteWmsMaterialById" parameterType="com.supos.app.domain.entity.WmsMaterial">
         DELETE FROM wms_material WHERE id = #{id}
     </delete>
-    <insert id="insertSelective" parameterType="com.supos.app.entity.WmsMaterial">
+    <insert id="insertSelective" parameterType="com.supos.app.domain.entity.WmsMaterial">
         insert into wms_material
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>

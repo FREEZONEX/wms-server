@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.WmsRfidMaterialMapper">
 
-    <resultMap id="BaseResultMap" type="com.supos.app.entity.WmsRfidMaterial">
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsRfidMaterial">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="rf_id" column="rf_id" jdbcType="VARCHAR"/>
         <result property="material_id" column="material_id" jdbcType="BIGINT"/>

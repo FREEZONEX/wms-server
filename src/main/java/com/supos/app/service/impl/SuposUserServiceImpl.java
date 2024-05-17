@@ -1,6 +1,6 @@
 package com.supos.app.service.impl;
 
-import com.supos.app.entity.SuposUser;
+import com.supos.app.domain.entity.SuposUser;
 import com.supos.app.mapper.SuposUserMapper;
 import com.supos.app.service.SuposUserService;
 import org.springframework.beans.factory.annotation.Autowired;

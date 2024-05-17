@@ -1,8 +1,6 @@
 package com.supos.app.service;
 
-import com.supos.app.entity.WmsInventoryOperation;
-import com.supos.app.entity.WmsInventoryOperationDetail;
-import com.supos.app.entity.WmsTask;
+import com.supos.app.domain.entity.WmsTask;
 
 public interface InventoryUpdateService {
 

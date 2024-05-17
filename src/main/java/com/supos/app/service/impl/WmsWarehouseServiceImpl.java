@@ -1,7 +1,7 @@
 package com.supos.app.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.supos.app.entity.WmsWarehouse;
+import com.supos.app.domain.entity.WmsWarehouse;
 import com.supos.app.service.WmsWarehouseService;
 import com.supos.app.mapper.WmsWarehouseMapper;
 import org.springframework.beans.factory.annotation.Autowired;

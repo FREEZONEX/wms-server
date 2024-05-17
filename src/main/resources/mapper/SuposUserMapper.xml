@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.supos.app.mapper.SuposUserMapper">
 
-    <resultMap type="com.supos.app.entity.SuposUser" id="SuposUserMap">
+    <resultMap type="com.supos.app.domain.entity.SuposUser" id="SuposUserMap">
         <result property="id" column="id" jdbcType="BIGINT"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="accounttype" column="accountType" jdbcType="INTEGER"/>

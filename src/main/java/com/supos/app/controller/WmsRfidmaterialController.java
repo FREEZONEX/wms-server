@@ -2,10 +2,9 @@ package com.supos.app.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.*;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.WmsRfidMaterial;
 import com.supos.app.service.impl.*;
-import com.supos.app.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

@@ -1,21 +1,16 @@
 package com.supos.app.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.*;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.WmsInventoryOperation;
 import com.supos.app.service.impl.*;
-import com.supos.app.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Api(value = "Inbound API", tags = {"05. Inbound"})
 

@@ -2,24 +2,20 @@ package com.supos.app.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.WmsRule;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.WmsRule;
 import com.supos.app.service.impl.WmsRuleServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Api(value = "Rule API", tags = {"11. Rule"})
 @Slf4j

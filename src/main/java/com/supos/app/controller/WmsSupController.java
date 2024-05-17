@@ -1,7 +1,7 @@
 package com.supos.app.controller;
 
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.SuposUser;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.SuposUser;
 import com.supos.app.service.SuposUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

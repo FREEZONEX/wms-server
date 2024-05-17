@@ -2,8 +2,8 @@ package com.supos.app.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.supos.app.config.ApiResponse;
-import com.supos.app.entity.WmsTask;
+import com.supos.app.common.config.ApiResponse;
+import com.supos.app.domain.entity.WmsTask;
 import com.supos.app.service.impl.WmsTaskServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -83,7 +83,7 @@ public class WmsTaskController {
         Map<String, String> responseData = new HashMap<>();
         try {
             WmsTask wmsTask = new WmsTask();
-             wmsTask.setStatus("pending");
+            wmsTask.setStatus("pending");
             responseData.put("count", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {

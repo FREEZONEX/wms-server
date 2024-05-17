@@ -6,7 +6,7 @@ import com.bluetron.eco.sdk.dto.common.ApiResponse;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import com.supos.app.entity.SuposUser;
+import com.supos.app.domain.entity.SuposUser;
 import com.supos.app.mapper.SuposUserMapper;
 import com.supos.app.service.SuposService;
 import com.supos.app.service.SuposUserService;

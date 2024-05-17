@@ -5,9 +5,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.supos.app.dto.sampleMailDto;
-import com.supos.app.entity.SuposApi;
-import com.supos.app.aksk.SignUtils;
+import com.supos.app.domain.dto.sampleMailDto;
+import com.supos.app.domain.entity.SuposApi;
+import com.supos.app.common.aksk.SignUtils;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-import static com.supos.app.impl.SampleMail.sendMail;
+import static com.supos.app.common.impl.SampleMail.sendMail;
 
 
 @Slf4j

@@ -1,6 +1,6 @@
 package com.supos.app.controller;
 
-import com.supos.app.entity.SuposApi;
+import com.supos.app.domain.entity.SuposApi;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;

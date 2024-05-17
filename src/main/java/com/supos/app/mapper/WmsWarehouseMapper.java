@@ -1,6 +1,6 @@
 package com.supos.app.mapper;
 
-import com.supos.app.entity.WmsWarehouse;
+import com.supos.app.domain.entity.WmsWarehouse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

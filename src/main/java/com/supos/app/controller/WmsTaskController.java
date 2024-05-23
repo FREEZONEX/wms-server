@@ -83,8 +83,11 @@ public class WmsTaskController {
         Map<String, String> responseData = new HashMap<>();
         try {
             WmsTask wmsTask = new WmsTask();
-             wmsTask.setStatus("pending");
-            responseData.put("count", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
+            wmsTask.setStatus("pending");
+            wmsTask.setType("putaway");
+            responseData.put("putaway", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
+            wmsTask.setType("pickup");
+            responseData.put("pickup", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());
@@ -99,7 +102,10 @@ public class WmsTaskController {
         try {
             WmsTask wmsTask = new WmsTask();
             wmsTask.setStatus("done");
-            responseData.put("count", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
+            wmsTask.setType("putaway");
+            responseData.put("putaway", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
+            wmsTask.setType("pickup");
+            responseData.put("pickup", String.valueOf(wmsTaskServiceImpl.selectCount(wmsTask)));
             return new ApiResponse<>(responseData);
         } catch (Exception e) {
             log.info(e.getMessage());

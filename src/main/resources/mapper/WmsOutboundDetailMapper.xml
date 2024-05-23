@@ -12,6 +12,7 @@
         <result property="quantity" column="quantity" jdbcType="INTEGER"/>
         <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="material_name" column="material_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -54,30 +55,38 @@
         DELETE FROM wms_outbound_detail WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM wms_outbound_detail
+        SELECT
+        d.*,
+        m.name as material_name
+        FROM
+        wms_outbound_detail d
+        LEFT JOIN
+        wms_material m
+        ON
+        d.material_id = m.id
         <where>
             <if test="id != null and id != ''">
-                AND id = #{id}
+                AND d.id = #{id}
             </if>
             <if test="operation_id != null and operation_id != ''">
-                AND operation_id = #{operation_id}
+                AND d.operation_id = #{operation_id}
             </if>
             <if test="location_id != null">
-                AND location_id = #{location_id}
+                AND d.location_id = #{location_id}
             </if>
             <if test="material_id != null">
-                AND material_id = #{material_id}
+                AND d.material_id = #{material_id}
             </if>
             <if test="quantity != null">
-                AND quantity = #{quantity}
+                AND d.quantity = #{quantity}
             </if>
             <if test="update_time != null">
-                AND update_time = #{update_time}
+                AND d.update_time = #{update_time}
             </if>
             <if test="create_time != null">
-                AND create_time = #{create_time}
+                AND d.create_time = #{create_time}
             </if>
         </where>
-        ORDER BY material_id ASC
+        ORDER BY d.material_id ASC
     </select>
 </mapper>

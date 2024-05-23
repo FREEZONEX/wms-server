@@ -55,8 +55,8 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
     private List<WmsMaterialExpectedLocation> ConstructLocationsFromPlane(long warehouse_id, String[] locations, long material_id) {
         List<WmsMaterialExpectedLocation> wmsMaterialExpectedLocations = new ArrayList<>();
         for(String location : locations){
-            // Filling location to F7
-            for (int i = 0; i < 6; i++) {
+            // Filling locations
+            for (int i = 0; i < 9; i++) {
                 for (int j = 1; j < 6; j++) {
                     String shelfLocation = location + "-" + (char)('A' + i) + j;
                     WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();

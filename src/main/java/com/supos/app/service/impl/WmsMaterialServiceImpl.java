@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.supos.app.domain.entity.WmsMaterial;
 import com.supos.app.domain.entity.WmsMaterialExpectedLocation;
+import com.supos.app.domain.entity.WmsMaterialStorageLocation;
 import com.supos.app.domain.entity.WmsStorageLocation;
 import com.supos.app.mapper.WmsMaterialExpectedLocationMapper;
+import com.supos.app.mapper.WmsMaterialStorageLocationMapper;
 import com.supos.app.service.WmsMaterialService;
 import com.supos.app.mapper.WmsMaterialMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,9 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
 
     @Autowired
     private WmsMaterialExpectedLocationMapper wmsMaterialExpectedLocationMapper;
+
+    @Autowired
+    private WmsMaterialStorageLocationMapper wmsMaterialStorageLocationMapper;
 
     @Autowired
     private  WmsStorageLocationServiceImpl wmsStorageLocationServiceImpl;
@@ -105,6 +110,7 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
         List<String> excludeLocationIdsList = new ArrayList<>();
 
         for(WmsMaterial material: wmsMaterialList) {
+            // 1. calculate suggested storage location id
             List<WmsMaterialExpectedLocation> availableLocations = wmsMaterialExpectedLocationMapper.selectAvailableLocations(material.getId(), String.join(",", excludeLocationIdsList));
             if(!availableLocations.isEmpty()) {
                 Long location_id = availableLocations.get(0).getLocation_id();
@@ -116,6 +122,14 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
                     material.setSuggested_storage_location_name(locationList.get(0).getName());
                     excludeLocationIdsList.add(String.valueOf(locationList.get(0).getId()));
                 }
+            }
+
+            // 2. fill exist stocks for this material
+            if(Boolean.TRUE.equals(wmsMaterial.getShow_stock())) {
+                WmsMaterialStorageLocation wmsMaterialStorageLocation = new WmsMaterialStorageLocation();
+                wmsMaterialStorageLocation.setMaterial_id(wmsMaterial.getId());
+                List<WmsMaterialStorageLocation> wmsMaterialStorageLocations = wmsMaterialStorageLocationMapper.selectAll(wmsMaterialStorageLocation);
+                material.setWmsMaterialStorageLocations(wmsMaterialStorageLocations);
             }
         }
 

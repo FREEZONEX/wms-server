@@ -19,4 +19,6 @@ public class WmsMaterialStorageLocation implements Serializable {
     private Integer quantity;
     private Date create_time;
     private Date update_time;
+
+    private String material_name;
 }

@@ -175,8 +175,8 @@ CREATE TABLE IF NOT EXISTS wms_stocktaking_detail (
     `location_id` BIGINT UNSIGNED NOT NULL,
     `material_id` BIGINT UNSIGNED NOT NULL,
     `quantity` INT NOT NULL,
-    `discrepancy` INT DEFAULT NULL,
     `stock_quantity` INT DEFAULT NULL,
+    `discrepancy` INT DEFAULT NULL,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT `fk_stocktaking_detail_operation_id` FOREIGN KEY (`operation_id`) REFERENCES `wms_stocktaking` (`id`)

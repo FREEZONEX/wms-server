@@ -55,15 +55,7 @@
         DELETE FROM wms_inbound_detail WHERE id = #{id}
     </delete>
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT
-        d.*,
-        m.name as material_name
-        FROM
-        wms_inbound_detail d
-        LEFT JOIN
-        wms_material m
-        ON
-        d.material_id = m.id
+        SELECT d.*, m.name as material_name FROM wms_inbound_detail d LEFT JOIN wms_material m ON d.material_id = m.id
         <where>
             <if test="id != null and id != ''">
                 AND d.id = #{id}

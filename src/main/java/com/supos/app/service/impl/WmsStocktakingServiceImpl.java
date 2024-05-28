@@ -62,6 +62,19 @@ public class WmsStocktakingServiceImpl extends ServiceImpl<WmsStocktakingMapper,
         // 2. insert wms_stocktaking_detail table
         for (WmsInventoryOperationDetail detail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
             detail.setOperation_id(id);
+            // get stock_quantity and calculate discrepancy
+            WmsMaterialStorageLocation wmsMaterialStorageLocation = new WmsMaterialStorageLocation();
+            wmsMaterialStorageLocation.setLocation_id(detail.getLocation_id());
+            wmsMaterialStorageLocation.setMaterial_id(detail.getMaterial_id());
+            List<WmsMaterialStorageLocation> wmsMaterialStorageLocations = wmsMaterialStorageLocationMapper.selectAll(wmsMaterialStorageLocation);
+
+            int quantity = detail.getQuantity();
+            int stock_quantity = 0;
+            if(!wmsMaterialStorageLocations.isEmpty()) {
+                stock_quantity = wmsMaterialStorageLocations.get(0).getQuantity();
+            }
+            detail.setStock_quantity(stock_quantity);
+            detail.setDiscrepancy(stock_quantity - quantity);
             wmsInventoryOperationDetailMapper.insertSelective(detail);
         }
 
@@ -92,19 +105,6 @@ public class WmsStocktakingServiceImpl extends ServiceImpl<WmsStocktakingMapper,
                 if(!wmsMaterials.isEmpty()) {
                     detail.setMaterial_name(wmsMaterials.get(0).getName());
                 }
-
-                WmsMaterialStorageLocation wmsMaterialStorageLocation = new WmsMaterialStorageLocation();
-                wmsMaterialStorageLocation.setLocation_id(detail.getLocation_id());
-                wmsMaterialStorageLocation.setMaterial_id(detail.getMaterial_id());
-                List<WmsMaterialStorageLocation> wmsMaterialStorageLocations = wmsMaterialStorageLocationMapper.selectAll(wmsMaterialStorageLocation);
-
-                int quantity = detail.getQuantity();
-                int stock_quantity = 0;
-                if(!wmsMaterialStorageLocations.isEmpty()) {
-                    stock_quantity = wmsMaterialStorageLocations.get(0).getQuantity();
-                }
-                detail.setStock_quantity(stock_quantity);
-                detail.setDiscrepancy(stock_quantity - quantity);
             }
             operation.setWmsInventoryOperationDetails(details);
         }

@@ -12,10 +12,10 @@ def generate_insert_statements():
     ]
 
     location_expressions = [
-        r"^(A-|B-|C-|D-|E-|F-|G-|H-|I-|J-)",
-        r"^(K-|L-|M-|N-|O-|P-|Q-|R-|S-|T-)",
-        r"^(U-|V-|W-|X-|Y-|Z-|AA-|AB-|AC-|AD-)",
-        r"^(AE-|AF-|AG-|AH-|AI-|AJ-|AK-|AL-|AM-|AN-)"
+        r"^(A-|B-|C-|D-|E-|F-|G-|H-|I-|J-).*",
+        r"^(K-|L-|M-|N-|O-|P-|Q-|R-|S-|T-).*",
+        r"^(U-|V-|W-|X-|Y-|Z-|AA-|AB-|AC-|AD-).*",
+        r"^(AE-|AF-|AG-|AH-|AI-|AJ-|AK-|AL-|AM-|AN-).*"
     ]
 
     create_time = "2024-04-19 16:22:27"

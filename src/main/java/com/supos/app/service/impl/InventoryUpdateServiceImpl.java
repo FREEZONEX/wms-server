@@ -31,8 +31,8 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
     @Autowired
     private WmsInboundServiceImpl wmsInboundServiceImpl;
 
-    //@Autowired
-    //private WmsOutboundServiceImpl wmsOutboundServiceImpl;
+    @Autowired
+    private WmsOutboundServiceImpl wmsOutboundServiceImpl;
 
     @Autowired
     private WmsTaskServiceImpl wmsTaskServiceImpl;
@@ -139,7 +139,7 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
                 wmsInventoryOperations = wmsInboundServiceImpl.selectAll(wmsInventoryOperation);
                 break;
             case "pickup":
-                //wmsInventoryOperations = wmsOutboundServiceImpl.selectAll(wmsInventoryOperation);
+                wmsInventoryOperations = wmsOutboundServiceImpl.selectAll(wmsInventoryOperation);
                 break;
             default:
                 return;

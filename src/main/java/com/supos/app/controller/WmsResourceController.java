@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.supos.app.common.config.ApiResponse;
 import com.supos.app.domain.entity.WmsResource;
+import com.supos.app.domain.entity.WmsResourceOccupyLog;
+import com.supos.app.service.WmsResourceOccupyLogService;
 import com.supos.app.service.impl.WmsResourceServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.*;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +28,9 @@ public class WmsResourceController {
 
     @Autowired
     WmsResourceServiceImpl wmsResourceServiceImpl;
+
+    @Autowired
+    WmsResourceOccupyLogService wmsResourceOccupyLogService;
 
     @ApiOperation(value = "resource/add", notes = "resource/add")
     @PostMapping("/wms/resource/add")
@@ -87,19 +94,30 @@ public class WmsResourceController {
         }
     }
 
-//    @ApiOperation(value = "resource/getUtilization", notes = "resource/getUtilization")
-//    @PostMapping("/wms/resource/getUtilization")
-//    public ApiResponse<PageInfo<WmsResource>> getUtilization() {
-//        try {
-//            Map<String, String> responseData = new HashMap<>();
-//
-//            PageInfo<WmsResource> pageInfo = PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsResourceServiceImpl.selectAll(wmsResource));
-//            return new ApiResponse<>(pageInfo);
-//
-//        } catch (Exception e) {
-//            log.info(e.getMessage());
-//            return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
-//        }
-//    }
+    @ApiOperation(value = "resource/getUtilization", notes = "resource/getUtilization")
+    @PostMapping("/wms/resource/getUtilization")
+    public ApiResponse<Map<String, Object>> getUtilization() {
+        try {
+            WmsResourceOccupyLog model=new WmsResourceOccupyLog();
+            int periodDay=30;
+            LocalDateTime endOfDay = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+            LocalDateTime someDaysAgo = LocalDateTime.of(LocalDate.now(), LocalTime.MIN).minusDays(periodDay);
+
+            ZonedDateTime endZonedDateTime = endOfDay.atZone(ZoneId.systemDefault());
+            Instant endInstant = endZonedDateTime.toInstant();
+            ZonedDateTime startZonedDateTime = someDaysAgo.atZone(ZoneId.systemDefault());
+            Instant startInstant = startZonedDateTime.toInstant();
+
+            model.setCreate_time(Date.from(startInstant));
+            model.setUpdate_time(Date.from(endInstant));
+
+            Map<String, Object> result=wmsResourceOccupyLogService.selectUtilization(model,periodDay);
+            return new ApiResponse<>(result);
+
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
+        }
+    }
 
 }

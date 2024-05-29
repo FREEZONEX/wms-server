@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supos.app.mapper.WmsResourceOccupyLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.supos.app.domain.entity.WmsResourceOccupyLog">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="task_id" column="task_id" jdbcType="BIGINT"/>
+        <result property="resource_id" column="resource_id" jdbcType="BIGINT"/>
+        <result property="is_occupy" column="is_occupy" jdbcType="TINYINT"/>
+        <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="resource_name" column="resource_name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="total_time_diff_seconds" column="total_time_difference_seconds" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,task_id,resource_id,
+        is_occupy,create_time,update_time
+    </sql>
+
+    <select id="selectResourceOccupyTime" resultMap="BaseResultMap">
+        select
+        r.name as resource_name,
+        r.type,
+        SUM(TIMESTAMPDIFF(SECOND,
+        COALESCE(GREATEST(#{create_time}, l.create_time), #{create_time}),
+        IF(l.update_time is null,null,COALESCE(LEAST('2024-05-29 23:59:59', l.update_time),'2024-05-29 23:59:59')))
+        ) as total_time_difference_seconds
+        from
+        wms_resource r
+        left join
+        (
+        select
+        resource_id,
+        is_occupy,
+        create_time,
+        update_time
+        from
+        wms_resource_occupy_log
+        <where>
+            <if test="id != null and id != ''">
+                AND l.id = #{id}
+            </if>
+            <if test="is_occupy != null">
+                AND l.is_occupy = #{is_occupy}
+            </if>
+            <if test="create_time != null and update_time !=null">
+                AND create_time between #{create_time} and #{update_time}
+            </if>
+        </where>
+        ) as l
+        on
+        r.id = l.resource_id
+        group by
+        r.id,
+        r.`type`
+        order by
+        r.name
+    </select>
+    <select id="selectTaskCountInRange" resultType="int">
+        SELECT COUNT(DISTINCT task_id)
+        FROM wms_resource_occupy_log
+        <where>
+            <if test="is_occupy != null">
+                AND is_occupy = #{is_occupy}
+            </if>
+            <if test="create_time != null and update_time !=null">
+                AND create_time between #{create_time} and #{update_time}
+            </if>
+        </where>
+    </select>
+</mapper>

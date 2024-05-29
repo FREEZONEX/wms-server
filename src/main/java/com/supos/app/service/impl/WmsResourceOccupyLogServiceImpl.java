@@ -62,7 +62,7 @@ public class WmsResourceOccupyLogServiceImpl extends ServiceImpl<WmsResourceOccu
         }
 
         int pastOccupyTaskCount=wmsResourceOccupyLogMapper.selectTaskCountInRange(wmsResourceOccupyLog);
-        long average=occupyTotal/pastOccupyTaskCount;
+        long average=pastOccupyTaskCount>0?occupyTotal/pastOccupyTaskCount:pastOccupyTaskCount;
         responseData.put("averageTime",getOccupyTime(average));
         responseData.put("occupy",occupyResult);
         responseData.put("idle",idleResult);

@@ -1,7 +1,6 @@
 package com.supos.app.service.impl;
 
 import com.supos.app.domain.entity.*;
-import com.supos.app.domain.entity.*;
 import com.supos.app.mapper.WmsMaterialStorageLocationMapper;
 import com.supos.app.service.InventoryUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +38,10 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
 
     @Autowired
     private WmsTaskResourceServiceImpl wmsTaskResourceServiceImpl;
+
+    @Autowired
+    private WmsResourceOccupyLogServiceImpl wmsResourceOccupyLogServiceImpl;
+
 
     @Override
     public void updateStorageLocationMaterial(Long location_id, Long material_id, int quantity, boolean isInbound) {
@@ -188,7 +191,15 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
                         wmsTaskResource.setTask_id(wmsTask.getId());
                         wmsTaskResource.setResource_id(Long.parseLong(resource_id));
                         wmsTaskResourceServiceImpl.insertSelective(wmsTaskResource, true, true);
+
+                        // 6. add resource occupy log
+                        WmsResourceOccupyLog wmsResourceOccupyLog = new WmsResourceOccupyLog();
+                        wmsResourceOccupyLog.setTask_id(wmsTask.getId());
+                        wmsResourceOccupyLog.setResource_id(Long.parseLong(resource_id));
+                        wmsResourceOccupyLog.setIs_occupy(1);
+                        wmsResourceOccupyLogServiceImpl.insertSelective(wmsResourceOccupyLog);
                     }
+
                     break;          // find first matched rule, then break
                 }
             }

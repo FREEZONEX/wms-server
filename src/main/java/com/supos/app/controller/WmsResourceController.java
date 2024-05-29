@@ -99,7 +99,7 @@ public class WmsResourceController {
     public ApiResponse<Map<String, Object>> getUtilization() {
         try {
             WmsResourceOccupyLog model=new WmsResourceOccupyLog();
-            int periodDay=30;
+            int periodDay=7;
             LocalDateTime endOfDay = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
             LocalDateTime someDaysAgo = LocalDateTime.of(LocalDate.now(), LocalTime.MIN).minusDays(periodDay);
 

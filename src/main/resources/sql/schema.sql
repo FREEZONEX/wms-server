@@ -287,3 +287,12 @@ CREATE TABLE `supos_user` (
   `syncTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY `personCode` (`personCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+-- time series data prediction data
+CREATE TABLE IF NOT EXISTS `wms_prediction` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `material_id` BIGINT UNSIGNED NOT NULL,
+    `material_name` VARCHAR(100) NOT NULL,
+    `prediction_date` TIMESTAMP NOT NULL,
+    `prediction_count` INT DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;

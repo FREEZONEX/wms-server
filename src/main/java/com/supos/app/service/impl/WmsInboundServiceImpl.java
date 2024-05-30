@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,8 +94,10 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
         }
 
         // 3. update wms_storage_location table, assume 1 storage location only store 1 kind of material
+        List<WmsStorageLocation> wmsStorageLocations = new ArrayList<>();
         for (WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
-            inventoryUpdateService.updateStorageLocationMaterial(wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getQuantity(), true);
+            WmsStorageLocation wmsStorageLocation = inventoryUpdateService.updateStorageLocationMaterial(wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getQuantity(), true);
+            wmsStorageLocations.add(wmsStorageLocation);
         }
 
         // 4. update wms_material_storage_location table
@@ -112,7 +115,7 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
         wmsTaskServiceImpl.insertSelective(wmsTask);
 
         // 6. use rule to auto assign people and resources
-        inventoryUpdateService.updatePeopleAndResourceByRule(wmsTask);
+        List<String> resources = inventoryUpdateService.updatePeopleAndResourceByRule(wmsTask);
 
         return rows_affected;
     }

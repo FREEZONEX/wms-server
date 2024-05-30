@@ -128,8 +128,12 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
         // 6. use rule to auto assign people and resources
         List<String> resources = inventoryUpdateService.updatePeopleAndResourceByRule(wmsTask);
 
-        // 7. send mqtt message to unity
+        // 7. send mqtt message to unity for increment
         mqttServiceImpl.sendIncrementToUnity(wmsStorageLocations, resources, true);
+
+        // 8. send mqtt message to AI for full data
+        Long warehouse_id = wmsStorageLocations.get(0).getWarehouse_id();
+        mqttServiceImpl.sendIncrementFullToAI(warehouse_id);
 
         return rows_affected;
     }

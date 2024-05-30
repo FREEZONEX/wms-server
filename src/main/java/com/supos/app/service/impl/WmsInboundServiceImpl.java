@@ -3,6 +3,7 @@ package com.supos.app.service.impl;
 import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.gson.Gson;
 import com.supos.app.domain.entity.WmsInventoryOperation;
 import com.supos.app.domain.entity.WmsInventoryOperationDetail;
 import com.supos.app.domain.entity.WmsRfidMaterial;
@@ -13,6 +14,7 @@ import com.supos.app.service.WmsInboundService;
 import com.supos.app.service.InventoryUpdateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,12 +49,21 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
     @Autowired
     private WmsTaskServiceImpl wmsTaskServiceImpl;
 
+    @Autowired
+    private MqttServiceImpl mqttServiceImpl;
+
+    @Value("${mqtt.topic_increment}")
+    private String mqttTopicIncrement;
+
     @Transactional
     public int insertSelective(WmsInventoryOperation wmsInventoryOperation) {
         if( wmsInventoryOperation.getWmsInventoryOperationDetails() == null || wmsInventoryOperation.getWmsInventoryOperationDetails().isEmpty()) {
             throw new IllegalArgumentException("Inventory operation details are required.");
         }
-        // 1. insert wms_inbound table
+        if( !"PDA".equals(wmsInventoryOperation.getSource()) &&  !"manual".equals(wmsInventoryOperation.getSource()) ) {
+            throw new IllegalArgumentException("source must be PDA or manual");
+        }
+        // 1. insert wms_outbound table
         Long id = wmsInventoryOperation.getId();
         if (id == null) {
             id = IdWorker.getId();
@@ -105,24 +116,26 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
             inventoryUpdateService.updateMaterialStorageLocation(wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getQuantity(), true);
         }
 
-        // 5. create put away task
+        // 5. create putaway task
         WmsTask wmsTask = new WmsTask();
         wmsTask.setId(IdWorker.getId());
         wmsTask.setOperation_id(id);
         wmsTask.setType("putaway");
-        wmsTask.setNote("Inbound triggered putaway task on " + DateTime.now().toString());
+        wmsTask.setNote("Inbound triggered putaway task on " + DateTime.now());
         wmsTask.setStatus("pending");
         wmsTaskServiceImpl.insertSelective(wmsTask);
 
         // 6. use rule to auto assign people and resources
         List<String> resources = inventoryUpdateService.updatePeopleAndResourceByRule(wmsTask);
 
+        // 7. send mqtt message to unity
+        mqttServiceImpl.sendIncrementToUnity(wmsStorageLocations, resources, true);
+
         return rows_affected;
     }
 
     public int updateOperationById(WmsInventoryOperation wmsInventoryOperation) {
-        // need update resource usage also
-        return wmsInventoryOperationMapper.updateRecordById(wmsInventoryOperation);
+         return wmsInventoryOperationMapper.updateRecordById(wmsInventoryOperation);
     }
 
     public int deleteOperationById(WmsInventoryOperation wmsInventoryOperation) {

@@ -40,6 +40,10 @@ public class WmsStorageLocationServiceImpl extends ServiceImpl<WmsStorageLocatio
     public List<WmsStorageLocation> selectAllStocked(int warehouseId) {
         return wmsStorageLocationMapper.selectAllStocked(warehouseId);
     }
+
+    public List<Map<String, Integer>> groupMaterialQuantity(Long warehouse_id) {
+        return wmsStorageLocationMapper.groupMaterialQuantity(warehouse_id);
+    }
 }
 
 

@@ -130,6 +130,10 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
         // 7. send mqtt message to unity
         mqttServiceImpl.sendIncrementToUnity(wmsStorageLocations, resources, false);
 
+        // 8. send mqtt message to AI for full data
+        Long warehouse_id = wmsStorageLocations.get(0).getWarehouse_id();
+        mqttServiceImpl.sendIncrementFullToAI(warehouse_id);
+
         return rows_affected;
     }
 

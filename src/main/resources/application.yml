@@ -127,5 +127,6 @@ mqtt:
   topic_increment: ${MQTT_TOPIC_INCREMENT:spBv2.0/wms/NDATA/server/increment}
   topic_full_request: ${MQTT_TOPIC_FULL_REQUEST:spBv2.0/wms/NCMD/unity/full/request}
   topic_full_response: ${MQTT_TOPIC_FULL_RESPONSE:spBv2.0/wms/NDATA/server/full/response}
+  topic_increment_full: ${MQTT_TOPIC_INCREMENT_FULL:spBv2.0/wms/NDATA/server/stock}
   enable: ${MQTT_ENABLE:true}
 

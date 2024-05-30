@@ -46,5 +46,6 @@ wms_resource_occupy_log \
 wms_task \
 wms_task_resource \
 wms_rule \
+wms_prediction \
 --no-create-info --skip-triggers --complete-insert --skip-extended-insert --skip-comments --compact > data.sql
 ```

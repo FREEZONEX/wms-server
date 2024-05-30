@@ -53,21 +53,40 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
     WmsPredictionMapper wmsPredictionMapper;
 
     // MQTT json string to Unity, inbound: {"material": "SR20VET", "location": "A-01-A2"}, outbound: {"location": "A-01-A2"}
-    public int updateSelectiveByLocationId(WmsStorageLocation wmsStorageLocation) {
-        String locationName = "";
-        List<WmsStorageLocation> storageLocations = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
-        if (!storageLocations.isEmpty()) {
-            locationName = storageLocations.get(0).getName();
+    public void sendIncrementToUnity(List<WmsStorageLocation> wmsStorageLocations, List<String> resources, boolean isInbound) {
+
+        // 1. put increment data
+        List<Map<String, Object>> incrementList = new ArrayList<>();
+        for (WmsStorageLocation wmsStorageLocation : wmsStorageLocations) {
+            Map<String, Object> jsonData = new HashMap<>();
+            jsonData.put("warehouse_id", wmsStorageLocation.getWarehouse_id());
+            jsonData.put("location", wmsStorageLocation.getName());
+            if(isInbound)
+                jsonData.put("material", wmsStorageLocation.getMaterial_name());
+            /*int quantity = wmsStorageLocation.getQuantity();
+            if(!isInbound)
+                quantity = -quantity;           //outbound will be negative
+            jsonData.put("quantity", quantity);*/
+            incrementList.add(jsonData);
         }
+
+        // 2. combine then send to mqtt
+        Map<String, Object> allData = new HashMap<>();
+        allData.put("increment", incrementList);
+        allData.put("resource", resources);
+
         Gson gson = new Gson();
-        Map<String, Object> jsonData = new HashMap<>();
-        jsonData.put("material", wmsStorageLocation.getMaterial_name());
-        jsonData.put("location", locationName);
-        jsonData.put("warehouse_id", wmsStorageLocation.getWarehouse_id());
-        // Wrap your map inside a list to form a single-element array
-        String content = gson.toJson(Collections.singletonList(jsonData));
+        String content = gson.toJson(allData);
+
         sendMqttToUnity(mqttTopicIncrement, content, 2, false);
-        return wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation);
+
+        System.out.println("Response published to topic: " + mqttTopicIncrement);
+        if (content.length() > 30) {
+            System.out.println("Publishing message of length: " + content.length() + " characters");
+            log.info("Increment published to topic: {}, content json array size: {}", mqttTopicIncrement, allData.size());
+        } else {
+            log.info("Increment published to topic: {}, content: {}", mqttTopicIncrement, content);
+        }
     }
 
     @PostConstruct
@@ -106,7 +125,7 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
     @Override
     public void connectionLost(Throwable cause) {
         // Handle connection lost
-        //log.error("Connected lost: {}", mqttBroker);
+        log.error("Connected lost: {}", mqttBroker);
         // Schedule a reconnection attempt
         //scheduleReconnect();
     }
@@ -127,7 +146,7 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
             log.info("warehouse_id: " + warehouseId);
             log.info("use_zip: " + useZip);
 
-            // 1. get current date
+            // 1. get current data
             List<Map<String, Object>> currentList = new ArrayList<>();
             List<WmsStorageLocation> listStock = wmsStorageLocationServiceImpl.selectAllStocked(warehouseId);
             for (WmsStorageLocation wmsStorageLocation : listStock) {
@@ -162,12 +181,12 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
             else
                 sendMqttToUnity(mqttTopicFullResponse, content, 2, false);
 
-            System.out.println("Response published to topic: " + mqttTopicFullResponse);
+            System.out.println("Full data published to topic: " + mqttTopicFullResponse);
             if (content.length() > 30) {
                 System.out.println("Publishing message of length: " + content.length() + " characters");
-                log.info("Response published to topic: {}, content json array size: {}", mqttTopicFullResponse, allStock.size());
+                log.info("Full data published to topic: {}, content json array size: {}", mqttTopicFullResponse, allStock.size());
             } else {
-                log.info("Response published to topic: {}, content: {}", mqttTopicFullResponse, content);
+                log.info("Full data published to topic: {}, content: {}", mqttTopicFullResponse, content);
             }
         } catch (JsonSyntaxException | IllegalStateException e) {
             String content = "Failed to parse JSON: " + e.getMessage();
@@ -189,9 +208,9 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
         log.info("Delivery Complete for token: {}", token.isComplete());
     }
 
-    public void sendMqttToUnity(String topic, String content, int qos, boolean retained) {
+    public boolean sendMqttToUnity(String topic, String content, int qos, boolean retained) {
         if (!mqttEnable)
-            return;
+            return false;
         try {
             if (content.length() > 30) {
                 System.out.println("Publishing message of length: " + content.length() + " characters");
@@ -214,6 +233,7 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
             System.out.println("excep " + me);
             me.printStackTrace();
         }
+        return true;
     }
 
     public void sendMqttToUnityByZip(String topic, String content, int qos, boolean retained) {

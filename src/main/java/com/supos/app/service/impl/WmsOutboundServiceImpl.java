@@ -3,6 +3,7 @@ package com.supos.app.service.impl;
 import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.gson.Gson;
 import com.supos.app.domain.entity.WmsInventoryOperation;
 import com.supos.app.domain.entity.WmsInventoryOperationDetail;
 import com.supos.app.domain.entity.WmsRfidMaterial;
@@ -14,9 +15,11 @@ import com.supos.app.service.InventoryUpdateService;
 import com.supos.app.service.WmsOutboundService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +50,9 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
 
     @Autowired
     private WmsTaskServiceImpl wmsTaskServiceImpl;
+
+    @Autowired
+    private MqttServiceImpl mqttServiceImpl;
 
     @Transactional
     public int insertSelective(WmsInventoryOperation wmsInventoryOperation) {
@@ -86,8 +92,7 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
                     }
                 }
             });
-            if (!material_id_detail_map.isEmpty())
-            {
+            if (!material_id_detail_map.isEmpty()) {
                 wmsInventoryOperation.setWmsInventoryOperationDetails((List<WmsInventoryOperationDetail>) material_id_detail_map.values());
             }
         }
@@ -99,8 +104,10 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
         }
 
         // 3. update wms_storage_location table, assume 1 storage location only store 1 kind of material
+        List<WmsStorageLocation> wmsStorageLocations = new ArrayList<>();
         for (WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
-            inventoryUpdateService.updateStorageLocationMaterial(wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getQuantity(), false);
+            WmsStorageLocation wmsStorageLocation = inventoryUpdateService.updateStorageLocationMaterial(wmsInventoryOperationDetail.getLocation_id(), wmsInventoryOperationDetail.getMaterial_id(), wmsInventoryOperationDetail.getQuantity(), false);
+            wmsStorageLocations.add(wmsStorageLocation);
         }
 
         // 4. update wms_material_storage_location table
@@ -118,7 +125,10 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
         wmsTaskServiceImpl.insertSelective(wmsTask);
 
         //6. use rule to auto assign people and resources
-        inventoryUpdateService.updatePeopleAndResourceByRule(wmsTask);
+        List<String> resources = inventoryUpdateService.updatePeopleAndResourceByRule(wmsTask);
+
+        // 7. send mqtt message to unity
+        mqttServiceImpl.sendIncrementToUnity(wmsStorageLocations, resources, false);
 
         return rows_affected;
     }

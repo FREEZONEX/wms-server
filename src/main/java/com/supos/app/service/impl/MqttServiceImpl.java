@@ -39,6 +39,9 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
     @Value("${mqtt.topic_increment}")
     private String mqttTopicIncrement;
 
+    @Value("${mqtt.topic_increment_full}")
+    private String mqttTopicIncrementFull;
+
     @Value("${mqtt.enable}")
     private boolean mqttEnable;
 
@@ -52,7 +55,6 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
     @Autowired
     WmsPredictionMapper wmsPredictionMapper;
 
-    // MQTT json string to Unity, inbound: {"material": "SR20VET", "location": "A-01-A2"}, outbound: {"location": "A-01-A2"}
     public void sendIncrementToUnity(List<WmsStorageLocation> wmsStorageLocations, List<String> resources, boolean isInbound) {
 
         // 1. put increment data
@@ -80,12 +82,31 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
 
         sendMqttToUnity(mqttTopicIncrement, content, 2, false);
 
-        System.out.println("Response published to topic: " + mqttTopicIncrement);
+        System.out.println("Increment published to topic: " + mqttTopicIncrement);
         if (content.length() > 30) {
             System.out.println("Publishing message of length: " + content.length() + " characters");
             log.info("Increment published to topic: {}, content json array size: {}", mqttTopicIncrement, allData.size());
         } else {
             log.info("Increment published to topic: {}, content: {}", mqttTopicIncrement, content);
+        }
+    }
+
+    public void sendIncrementFullToAI(Long warehouse_id) {
+
+        // 1. put increment data
+        List<Map<String, Integer>> fullList= wmsStorageLocationServiceImpl.groupMaterialQuantity(warehouse_id);
+
+        Gson gson = new Gson();
+        String content = gson.toJson(fullList);
+
+        sendMqttToUnity(mqttTopicIncrementFull, content, 2, false);
+
+        System.out.println("Increment full data published to topic: " + mqttTopicIncrementFull);
+        if (content.length() > 30) {
+            System.out.println("Publishing message of length: " + content.length() + " characters");
+            log.info("Increment full data published to topic: {}, content json array size: {}", mqttTopicIncrementFull, fullList.size());
+        } else {
+            log.info("Increment full data published to topic: {}, content: {}", mqttTopicIncrementFull, content);
         }
     }
 

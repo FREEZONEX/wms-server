@@ -86,4 +86,11 @@
     <select id="selectAllStocked" resultMap="BaseResultMap">
         SELECT * FROM wms_storage_location where warehouse_id = #{warehouse_id} and material_name IS NOT NULL and material_name &lt;&gt; ''
     </select>
+
+    <select id="groupMaterialQuantity" resultType="map">
+        SELECT material_name, SUM(quantity) AS quantity FROM wms_storage_location
+        where warehouse_id = #{warehouse_id} and material_name IS NOT NULL and material_name &lt;&gt; ''
+        GROUP BY material_name
+        ORDER BY material_name ASC;
+    </select>
 </mapper>

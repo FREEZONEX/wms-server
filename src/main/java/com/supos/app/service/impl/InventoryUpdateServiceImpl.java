@@ -1,6 +1,7 @@
 package com.supos.app.service.impl;
 
 import com.supos.app.domain.entity.*;
+import com.supos.app.domain.entity.*;
 import com.supos.app.mapper.WmsMaterialStorageLocationMapper;
 import com.supos.app.service.InventoryUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,10 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
     private WmsTaskResourceServiceImpl wmsTaskResourceServiceImpl;
 
     @Autowired
-    private WmsResourceOccupyLogServiceImpl wmsResourceOccupyLogServiceImpl;
-
+    private WmsResourceServiceImpl wmsResourceServiceImpl;
 
     @Override
-    public void updateStorageLocationMaterial(Long location_id, Long material_id, int quantity, boolean isInbound) {
+    public WmsStorageLocation updateStorageLocationMaterial(Long location_id, Long material_id, int quantity, boolean isInbound) {
 
         WmsMaterial wmsMaterial = new WmsMaterial();
         wmsMaterial.setId(material_id);
@@ -88,6 +88,7 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
             wmsStorageLocation.setQuantity(0);
         }
         wmsStorageLocationServiceImpl.updateStorageLocationById(wmsStorageLocation);
+        return wmsStorageLocation;
     }
 
     @Override
@@ -129,8 +130,9 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
     }
 
     @Override
-    public void updatePeopleAndResourceByRule(WmsTask wmsTask)
+    public List<String> updatePeopleAndResourceByRule(WmsTask wmsTask)
     {
+        List<String> resources = new ArrayList<>();
         // 1. get task detail
         String task_type = wmsTask.getType();
         Long operation_id = wmsTask.getOperation_id();
@@ -145,7 +147,7 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
                 wmsInventoryOperations = wmsOutboundServiceImpl.selectAll(wmsInventoryOperation);
                 break;
             default:
-                return;
+                return new ArrayList<>();
         }
 
         // 2. decide resource allocation by task detail
@@ -159,7 +161,7 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
                 wmsStorageLocation.setId(location_id);
                 List<WmsStorageLocation> locations = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
                 if (locations.isEmpty())
-                    return;
+                    return new ArrayList<>();
                 Long warehouse_id = locations.get(0).getWarehouse_id();
                 String location_name = locations.get(0).getName();
 
@@ -191,19 +193,17 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
                         wmsTaskResource.setTask_id(wmsTask.getId());
                         wmsTaskResource.setResource_id(Long.parseLong(resource_id));
                         wmsTaskResourceServiceImpl.insertSelective(wmsTaskResource, true, true);
-
-                        // 6. add resource occupy log
-                        WmsResourceOccupyLog wmsResourceOccupyLog = new WmsResourceOccupyLog();
-                        wmsResourceOccupyLog.setTask_id(wmsTask.getId());
-                        wmsResourceOccupyLog.setResource_id(Long.parseLong(resource_id));
-                        wmsResourceOccupyLog.setIs_occupy(1);
-                        wmsResourceOccupyLogServiceImpl.insertSelective(wmsResourceOccupyLog);
+                        WmsResource wmsResource = new WmsResource();
+                        wmsResource.setId(Long.parseLong(resource_id));
+                        List<WmsResource> wmsResources = wmsResourceServiceImpl.selectAll(wmsResource);
+                        if(!wmsResources.isEmpty()) {
+                            resources.add(wmsResources.get(0).getName());
+                        }
                     }
-
                     break;          // find first matched rule, then break
                 }
             }
         }
-
+        return resources;
     }
 }

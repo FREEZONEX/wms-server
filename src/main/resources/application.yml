@@ -122,7 +122,7 @@ minio:
   accessKey: IM5kMVqX8VJQQmMkQ0cL #访问的key
   secretKey: MjLonwS3EMQmPU4pgBYG4WV1rjetjx9Kad9cjxd4 #访问的秘钥
 mqtt:
-  broker: ${MQTT_BROKER:tcp://47.236.10.165:30884}
+  broker: ${MQTT_BROKER:tcp://supcononenorth.fortiddns.com:1883}
   clientId: ${MQTT_CLIENTID:wms_server}
   topic_increment: ${MQTT_TOPIC_INCREMENT:spBv2.0/wms/NDATA/server/increment}
   topic_full_request: ${MQTT_TOPIC_FULL_REQUEST:spBv2.0/wms/NCMD/unity/full/request}

@@ -31,5 +31,7 @@ public class SuposUser implements Serializable {
     private Date modifytime;
 
     private Date synctime;
+
+    private String password;
 }
 

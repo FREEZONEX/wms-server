@@ -18,5 +18,6 @@ public interface SuposUserMapper {
 
     int insertBatch(@Param("entities") List<SuposUser> entities);
 
+    SuposUser login(@Param("username") String username);
 }
 

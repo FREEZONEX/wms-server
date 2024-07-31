@@ -35,7 +35,7 @@ public class SuposServiceImpl implements SuposService {
     @Override
     public void syncUserData() {
         Map<String, Object> param = ImmutableMap.of("pageIndex", 1, "pageSize", 499, "companyCode", "default_org_company");
-        ApiResponse supResponse = SuposApiV2.get(SuposApiEnum.USER_LISTS.getUrl(), param);
+         ApiResponse supResponse = SuposApiV2.get(SuposApiEnum.USER_LISTS.getUrl(), param);
         if (supResponse.getHttpCode() != 200) {
             log.error("Failed to access the supos platform.");
             return;
@@ -80,6 +80,8 @@ public class SuposServiceImpl implements SuposService {
                             continue;
                         user.setId(userWms.getId());
                         SuposUser savingUser = this.getSuposUser(user, userNode);
+                        //keep accounttype value for wms modification
+                        savingUser.setAccounttype(userWms.getAccounttype());
                         updateUserList.add(savingUser);
                     }
                 }

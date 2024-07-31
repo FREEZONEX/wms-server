@@ -14,4 +14,5 @@ public interface SuposUserService {
 
     int insertBatch(@Param("entities") List<SuposUser> entities);
 
+    SuposUser login(String username,String password);
 }

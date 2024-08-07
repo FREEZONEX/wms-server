@@ -72,4 +72,15 @@ public class WmsMaterialController {
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
         }
     }
+    @ApiOperation(value = "material/getMaterialForOutbound", notes = "material/getMaterialForOutbound")
+    @PostMapping("/wms/material/getMaterialForOutbound")
+    public ApiResponse<PageInfo<WmsMaterial>> materialSelectAllForOutbound(@RequestBody(required = false) WmsMaterial wmsMaterial, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "10") int pageSize) {
+        try {
+            return new ApiResponse<>(PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> wmsMaterialServiceImpl.selectAllForOutbound(wmsMaterial)));
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
+        }
+    }
+
 }

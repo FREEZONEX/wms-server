@@ -135,6 +135,36 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
 
         return wmsMaterialList;
     }
+    public List<WmsMaterial> selectAllForOutbound(WmsMaterial wmsMaterial) {
+        List<WmsMaterial> wmsMaterialList = wmsMaterialMapper.selectAll(wmsMaterial);
+        List<String> excludeLocationIdsList = new ArrayList<>();
+
+        for(WmsMaterial material: wmsMaterialList) {
+            // 1. calculate suggested storage location id
+            List<WmsMaterialExpectedLocation> availableLocations = wmsMaterialExpectedLocationMapper.selectAvailableLocationsForOutbound(material.getId(), String.join(",", excludeLocationIdsList));
+            if(!availableLocations.isEmpty()) {
+                Long location_id = availableLocations.get(0).getLocation_id();
+                material.setSuggested_storage_location_id(location_id);
+                WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
+                wmsStorageLocation.setId(location_id);
+                List<WmsStorageLocation> locationList = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
+                if (locationList != null && !locationList.isEmpty()) {
+                    material.setSuggested_storage_location_name(locationList.get(0).getName());
+                    excludeLocationIdsList.add(String.valueOf(locationList.get(0).getId()));
+                }
+            }
+
+            // 2. fill exist stocks for this material
+            if(Boolean.TRUE.equals(wmsMaterial.getShow_stock())) {
+                WmsMaterialStorageLocation wmsMaterialStorageLocation = new WmsMaterialStorageLocation();
+                wmsMaterialStorageLocation.setMaterial_id(wmsMaterial.getId());
+                List<WmsMaterialStorageLocation> wmsMaterialStorageLocations = wmsMaterialStorageLocationMapper.selectAll(wmsMaterialStorageLocation);
+                material.setWmsMaterialStorageLocations(wmsMaterialStorageLocations);
+            }
+        }
+
+        return wmsMaterialList;
+    }
 }
 
 

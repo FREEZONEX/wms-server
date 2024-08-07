@@ -21,6 +21,9 @@ public interface WmsMaterialExpectedLocationMapper extends BaseMapper<WmsMateria
     List<WmsMaterialExpectedLocation> selectAll(WmsMaterialExpectedLocation wmsMaterialExpectedLocation);
 
     List<WmsMaterialExpectedLocation> selectAvailableLocations(long material_id, String exclude_location_ids);      // exclude_location_ids is comma separated string
+
+    List<WmsMaterialExpectedLocation> selectAvailableLocationsForOutbound(long material_id, String exclude_location_ids); //avalibale locations of exsiting material
+
 }
 
 

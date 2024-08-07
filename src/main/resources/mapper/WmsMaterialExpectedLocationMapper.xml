@@ -59,4 +59,11 @@
         ON e.location_id = s.id
         WHERE (s.material_name IS NULL OR s.material_name = '') AND e.material_id = #{material_id} AND e.location_id NOT IN (#{exclude_location_ids})
     </select>
+    <select id="selectAvailableLocationsForOutbound" resultMap="BaseResultMap">
+        SELECT e.*
+        FROM wms_material_expected_location AS e
+        JOIN wms_storage_location AS s
+        ON e.location_id = s.id
+        WHERE (s.material_name IS NOT NULL AND s.material_name !='') AND e.material_id = #{material_id} AND e.location_id NOT IN (#{exclude_location_ids})
+    </select>
 </mapper>

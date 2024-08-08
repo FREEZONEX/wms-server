@@ -31,6 +31,7 @@ public class WmsMaterialExpectedLocationServiceImpl extends ServiceImpl<WmsMater
     public List<WmsMaterialExpectedLocation> selectAll(WmsMaterialExpectedLocation wmsMaterialExpectedLocation) {
         return wmsMaterialExpectedLocationMapper.selectAll(wmsMaterialExpectedLocation);
     }
+
 }
 
 

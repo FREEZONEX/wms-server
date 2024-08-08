@@ -108,7 +108,7 @@
                 AND supplier = #{supplier}
             </if>
             <if test="delivery_date != null">
-                AND delivery_date = #{delivery_date}
+                AND DATE(delivery_date) = DATE(#{delivery_date})
             </if>
             <if test="create_time != null">
                 AND create_time = #{create_time}

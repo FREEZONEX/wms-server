@@ -20,6 +20,9 @@ import java.util.*;
 import java.util.zip.GZIPOutputStream;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 @Slf4j
 @Service
@@ -184,7 +187,19 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
             List<WmsPrediction> wmsPredictions = wmsPredictionMapper.CalculatePrediction();
             for (WmsPrediction wmsPrediction : wmsPredictions) {
                 Map<String, Object> jsonData = new HashMap<>();
-                jsonData.put("date", wmsPrediction.getDate());
+
+                String dateStr = wmsPrediction.getDate(); // '2024-05-11 00:00:00'
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(dateStr, formatter);
+
+                // Add 4 months to the date
+                LocalDateTime newDateTime = dateTime.plusMonths(4);
+
+                // Format the new date back to the original format
+                String newDateStr = newDateTime.format(formatter);
+
+                jsonData.put("date", newDateStr);
+
                 jsonData.put("count", wmsPrediction.getCount());
                 historyList.add(jsonData);
             }

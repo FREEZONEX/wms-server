@@ -181,6 +181,7 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
                 jsonData.put("quantity", wmsStorageLocation.getQuantity());
                 currentList.add(jsonData);
             }
+            log.info("Read " + currentList.size() + " storage location data");
 
             // 2. put history data
             List<Map<String, Object>> historyList = new ArrayList<>();
@@ -189,6 +190,11 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
                 Map<String, Object> jsonData = new HashMap<>();
 
                 String dateStr = wmsPrediction.getDate(); // '2024-05-11 00:00:00'
+                // Check if dateStr contains time part
+                if (!dateStr.contains(":")) {
+                    // Append default time if no time part exists
+                    dateStr = dateStr + " 00:00:00";
+                }
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(dateStr, formatter);
 
@@ -203,6 +209,7 @@ public class MqttServiceImpl extends MqttService implements MqttCallbackExtended
                 jsonData.put("count", wmsPrediction.getCount());
                 historyList.add(jsonData);
             }
+            log.info("Read " + currentList.size() + " prediction data");
 
             //3. combine then send to mqtt
             Map<String, Object> allStock = new HashMap<>();

@@ -1,0 +1,2 @@
+INSERT INTO `kafka_test` (`id`, `warehouse_id`, `name`, `type`, `manager`, `department`, `email`, `project_group`, `note`, `create_time`, `update_time`) VALUES (1,'1','name12','type1','manager1','department1','email1','project_group1','note1','2024-06-24 10:02:23','2024-06-25 05:06:13');
+INSERT INTO `kafka_test` (`id`, `warehouse_id`, `name`, `type`, `manager`, `department`, `email`, `project_group`, `note`, `create_time`, `update_time`) VALUES (2,'dfg','dfgd','fghfgh','fgh','fgh','fgh','fgh','fgh','2024-06-25 02:32:23','2024-06-25 02:32:23');

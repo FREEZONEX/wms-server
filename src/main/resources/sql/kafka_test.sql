@@ -1,0 +1,16 @@
+-- kafka_test definition
+CREATE TABLE IF NOT EXISTS `kafka_test` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `warehouse_id` VARCHAR(100) NOT NULL,
+    `name` VARCHAR(100) NOT NULL,
+    `type` VARCHAR(100) NOT NULL,
+    `manager` VARCHAR(100) DEFAULT NULL,
+    `department` VARCHAR(100) DEFAULT NULL,
+    `email` VARCHAR(200) DEFAULT NULL,
+    `project_group` VARCHAR(100) DEFAULT NULL,
+    `note` VARCHAR(200) DEFAULT NULL,
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY `name` (`name`),
+    UNIQUE KEY `warehouse_id` (`warehouse_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;

@@ -73,4 +73,8 @@
         </where>
         ORDER BY l.material_id ASC
     </select>
+    <select id="getMaterialQuantity" resultType="int">
+        SELECT SUM(quantity) AS quantity FROM wms_material_storage_location
+        where material_id = #{material_id};
+    </select>
 </mapper>

@@ -26,6 +26,7 @@ public class WmsMaterial implements Serializable {
     private String specification;
     private Long max;
     private Long min;
+    private Long quantity;
     private String status;
     private Long expect_wh_id;
     private String expect_storage_locations;

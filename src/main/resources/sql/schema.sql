@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `wms_material` (
     `specification` VARCHAR(100) DEFAULT NULL,
     `max` BIGINT DEFAULT NULL,
     `min` BIGINT DEFAULT NULL,
+    `quantity` BIGINT DEFAULT NULL,
     `status` VARCHAR(100) DEFAULT NULL,
     `expect_wh_id` BIGINT DEFAULT NULL,
     `expect_storage_locations` VARCHAR(1000) DEFAULT NULL,

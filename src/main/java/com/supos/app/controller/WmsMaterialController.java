@@ -10,7 +10,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.*;
 
 @Api(value = "Material API", tags = {"03. Material"})
@@ -70,6 +73,19 @@ public class WmsMaterialController {
         } catch (Exception e) {
             log.info(e.getMessage());
             return new ApiResponse<>(null, "Error occurred while processing the request: " + e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "material/import", notes = "material/import")
+    @PostMapping("/wms/material/import")
+    public ApiResponse<Map<String, String>> upload(@RequestParam("file") MultipartFile file) {
+        Map<String, String> responseData = new HashMap<>();
+        try {
+            responseData.put("count", String.valueOf(wmsMaterialServiceImpl.importMaterialCSV(file)));
+            return new ApiResponse<>(responseData);
+        }catch (Exception e){
+            log.info(e.getMessage());
+            return new ApiResponse<>( null,"Error occurred while processing the request: " + e.getMessage());
         }
     }
 }

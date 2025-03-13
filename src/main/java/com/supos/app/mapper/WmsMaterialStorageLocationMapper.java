@@ -17,4 +17,6 @@ public interface WmsMaterialStorageLocationMapper extends BaseMapper<WmsMaterial
     int deleteMaterialStorageLocationById(WmsMaterialStorageLocation wmsMaterialStorageLocation);
 
     List<WmsMaterialStorageLocation> selectAll(WmsMaterialStorageLocation wmsMaterialStorageLocation);
+
+    int GetMaterialQuantity(Long material_id);
 }

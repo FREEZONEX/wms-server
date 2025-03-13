@@ -4,10 +4,6 @@ import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
-import com.supos.app.domain.entity.WmsInventoryOperation;
-import com.supos.app.domain.entity.WmsInventoryOperationDetail;
-import com.supos.app.domain.entity.WmsRfidMaterial;
-import com.supos.app.domain.entity.WmsTask;
 import com.supos.app.domain.entity.*;
 import com.supos.app.mapper.*;
 import com.supos.app.service.WmsInboundService;
@@ -55,6 +51,29 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
     @Value("${mqtt.topic_increment}")
     private String mqttTopicIncrement;
 
+    private String checkInboundCondition(WmsInventoryOperation wmsInventoryOperation) {
+        for(WmsInventoryOperationDetail wmsInventoryOperationDetail : wmsInventoryOperation.getWmsInventoryOperationDetails()) {
+            Long material_id = wmsInventoryOperationDetail.getMaterial_id();
+            Integer quantity = wmsInventoryOperationDetail.getQuantity();
+            if( material_id == null || quantity == null || quantity <= 0 ) {
+                return "Material ID and quantity are required.";
+            }
+            WmsMaterial wmsMaterial = new WmsMaterial();
+            wmsMaterial.setId(material_id);
+            List<WmsMaterial> wmsMaterials = wmsMaterialServiceImpl.selectAll(wmsMaterial);
+            if(!wmsMaterials.isEmpty()) {
+                wmsMaterial = wmsMaterials.get(0);
+                Long max_quantity = wmsMaterial.getMax();
+                int stock_quantity = inventoryUpdateService.GetMaterialQuantity(material_id);
+                if( stock_quantity + quantity > max_quantity) {
+                    return "Insufficient stock for material: " + material_id + ", stock quantity: " + stock_quantity + ", maximum quantity: " + max_quantity + ", required inbound quantity: " + quantity;
+                }
+            }
+            return "material not found: " + material_id;
+        }
+        return "";
+    }
+
     @Transactional
     public int insertSelective(WmsInventoryOperation wmsInventoryOperation) {
         if( wmsInventoryOperation.getWmsInventoryOperationDetails() == null || wmsInventoryOperation.getWmsInventoryOperationDetails().isEmpty()) {
@@ -63,7 +82,11 @@ public class WmsInboundServiceImpl extends ServiceImpl<WmsInboundMapper, WmsInve
         if( !"PDA".equals(wmsInventoryOperation.getSource()) &&  !"manual".equals(wmsInventoryOperation.getSource()) ) {
             throw new IllegalArgumentException("source must be PDA or manual");
         }
-        // 1. insert wms_outbound table
+        String checkResult = checkInboundCondition(wmsInventoryOperation);
+        if( checkResult != "" ) {
+            throw new IllegalArgumentException(checkResult);
+        }
+        // 1. insert wms_inbound table
         Long id = wmsInventoryOperation.getId();
         if (id == null) {
             id = IdWorker.getId();

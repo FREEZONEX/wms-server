@@ -12,4 +12,6 @@ public interface InventoryUpdateService {
     void updateMaterialStorageLocation(Long material_id, Long location_id, int quantity, boolean isInbound);
 
     List<String> updatePeopleAndResourceByRule(WmsTask wmsTask);
+
+    int GetMaterialQuantity(Long material_id);
 }

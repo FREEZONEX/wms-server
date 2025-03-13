@@ -14,6 +14,7 @@
         <result property="specification" column="specification" jdbcType="VARCHAR"/>
         <result property="max" column="max" jdbcType="BIGINT"/>
         <result property="min" column="min" jdbcType="BIGINT"/>
+        <result property="quantity" column="quantity" jdbcType="BIGINT"/>
         <result property="status" column="status" jdbcType="VARCHAR"/>
         <result property="expect_wh_id" column="expect_wh_id" jdbcType="BIGINT"/>
         <result property="expect_storage_locations" column="expect_storage_locations" jdbcType="VARCHAR"/>
@@ -24,7 +25,7 @@
     <sql id="Base_Column_List">
         id,material_code,name,
         material_type,unit,note,
-        specification,max,min,
+        specification,max,min,quantity,
         status,expect_wh_id,expect_storage_locations,
         create_time,update_time
     </sql>
@@ -43,6 +44,7 @@
             <if test="specification != null">specification,</if>
             <if test="max != null">max,</if>
             <if test="min != null">min,</if>
+            <if test="quantity != null">quantity,</if>
             <if test="status != null">status,</if>
             <if test="expect_wh_id != null">expect_wh_id,</if>
             <if test="expect_storage_locations != null">expect_storage_locations,</if>
@@ -60,6 +62,7 @@
             <if test="specification != null">#{specification,jdbcType=VARCHAR},</if>
             <if test="max != null">#{max,jdbcType=BIGINT},</if>
             <if test="min != null">#{min,jdbcType=BIGINT},</if>
+            <if test="quantity != null">#{quantity,jdbcType=BIGINT},</if>
             <if test="status != null">#{status,jdbcType=VARCHAR},</if>
             <if test="expect_wh_id != null">#{expect_wh_id,jdbcType=BIGINT},</if>
             <if test="expect_storage_locations != null">#{expect_storage_locations,jdbcType=VARCHAR},</if>
@@ -78,6 +81,7 @@
             <if test="specification != null">specification=#{specification,jdbcType=VARCHAR},</if>
             <if test="max != null">max=#{max,jdbcType=NUMERIC},</if>
             <if test="min != null">min=#{min,jdbcType=NUMERIC},</if>
+            <if test="quantity != null">quantity=#{quantity,jdbcType=NUMERIC},</if>
             <if test="status != null">status=#{status,jdbcType=VARCHAR},</if>
             <if test="expect_wh_id != null">expect_wh_id=#{expect_wh_id,jdbcType=NUMERIC},</if>
             <if test="expect_storage_locations != null">
@@ -119,6 +123,9 @@
             </if>
             <if test="min != null">
                 AND min = #{min}
+            </if>
+            <if test="quantity != null">
+                AND quantity = #{quantity}
             </if>
             <if test="status != null">
                 AND status = #{status}

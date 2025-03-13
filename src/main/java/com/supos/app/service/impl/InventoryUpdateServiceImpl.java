@@ -1,7 +1,6 @@
 package com.supos.app.service.impl;
 
 import com.supos.app.domain.entity.*;
-import com.supos.app.domain.entity.*;
 import com.supos.app.mapper.WmsMaterialStorageLocationMapper;
 import com.supos.app.service.InventoryUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -205,5 +204,10 @@ public class InventoryUpdateServiceImpl implements InventoryUpdateService {
             }
         }
         return resources;
+    }
+
+    @Override
+    public int GetMaterialQuantity(Long material_id) {
+        return wmsMaterialStorageLocationMapper.GetMaterialQuantity(material_id);
     }
 }

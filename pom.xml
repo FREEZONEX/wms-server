@@ -48,8 +48,9 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!--version>1.18.28</version-->
-            <version>edge-SNAPSHOT</version> <!--这个版本是关键-->
+            <version>1.18.30</version>
+            <scope>provided</scope>
+            <!--version>edge-SNAPSHOT</version--> <!--这个版本是关键-->
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -184,6 +185,11 @@
             <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
             <version>1.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.10.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -198,11 +204,11 @@
         </plugins>
     </build>
 
-    <repositories>
+    <!--repositories>
         <repository>
             <id>projectlombok.org</id>
             <url>https://projectlombok.org/edge-releases</url>
         </repository>
-    </repositories>
+    </repositories-->
 
 </project>

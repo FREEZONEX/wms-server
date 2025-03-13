@@ -1,22 +1,33 @@
 package com.supos.app.service.impl;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.supos.app.domain.entity.WmsMaterial;
 import com.supos.app.domain.entity.WmsMaterialExpectedLocation;
 import com.supos.app.domain.entity.WmsMaterialStorageLocation;
 import com.supos.app.domain.entity.WmsStorageLocation;
+import com.supos.app.domain.entity.WmsWarehouse;
 import com.supos.app.mapper.WmsMaterialExpectedLocationMapper;
 import com.supos.app.mapper.WmsMaterialStorageLocationMapper;
 import com.supos.app.service.WmsMaterialService;
 import com.supos.app.mapper.WmsMaterialMapper;
+import com.supos.app.mapper.WmsWarehouseMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -29,6 +40,9 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
 
     @Autowired
     private WmsMaterialExpectedLocationMapper wmsMaterialExpectedLocationMapper;
+
+    @Autowired
+    private WmsWarehouseMapper wmsWarehouseMapper;
 
     @Autowired
     private WmsMaterialStorageLocationMapper wmsMaterialStorageLocationMapper;
@@ -134,6 +148,91 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
         }
 
         return wmsMaterialList;
+    }
+
+    public Long importMaterialCSV(MultipartFile file) {
+        Long count = 0L;
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
+            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.builder()
+                .setHeader()
+                .setSkipHeaderRecord(true) // Skip the first record as it is the header
+                .build())) {
+/*
+    private Long id;
+    private String material_code;
+    private String name;
+    private String material_type;
+    private String unit;
+    private String note;
+    private String specification;
+    private Long max;
+    private Long min;
+    private Long quantity;
+    private String status;
+    private Long expect_wh_id;
+    private String expect_storage_locations;
+ */
+            for (CSVRecord record : csvParser) {
+                WmsMaterial wmsMaterial = new WmsMaterial();
+                Long material_id = Long.parseLong(record.get("id"));
+                wmsMaterial.setId(material_id);
+                wmsMaterial.setMaterial_code(record.get("material_code"));
+                wmsMaterial.setName(record.get("name"));
+                wmsMaterial.setMaterial_type(record.get("material_type"));
+                wmsMaterial.setUnit(record.get("unit"));
+                wmsMaterial.setNote(record.get("note"));
+                wmsMaterial.setSpecification(record.get("specification"));
+                wmsMaterial.setMax(Long.parseLong(record.get("max")));
+                wmsMaterial.setMin(Long.parseLong(record.get("min")));
+                wmsMaterial.setQuantity(Long.parseLong(record.get("quantity")));
+                wmsMaterial.setStatus(record.get("status"));
+                
+                // add material to db first
+                wmsMaterialMapper.insertSelective(wmsMaterial);
+                count++;
+
+                // then add expected locations to db
+                String expect_warehouse = record.get("expect_warehouse");
+                if (expect_warehouse != null && !expect_warehouse.isEmpty()) {
+                    WmsWarehouse wmsWarehouse = new WmsWarehouse();
+                    wmsWarehouse.setName(expect_warehouse);
+                    List<WmsWarehouse> wmsWarehouseList = wmsWarehouseMapper.selectAll(wmsWarehouse);
+                    if (wmsWarehouseList != null &&!wmsWarehouseList.isEmpty()) {
+                        Long warehouse_id = wmsWarehouseList.get(0).getId();
+
+                        String expect_storage_locations = record.get("expect_storage_locations");
+                        if(expect_storage_locations != null && !expect_storage_locations.isEmpty()) {
+                            List<String> location_names = Arrays.stream(expect_storage_locations.split("/"))
+                                    .map(String::trim)
+                                    .collect(Collectors.toList());
+                            
+                            List<WmsMaterialExpectedLocation> wmsMaterialExpectedLocations = new ArrayList<>();
+                            for(String location_name : location_names) {
+                                WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
+                                wmsStorageLocation.setWarehouse_id(warehouse_id);
+                                wmsStorageLocation.setName(location_name);
+                                List<WmsStorageLocation> locationList = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
+                                if (locationList != null && !locationList.isEmpty()) {
+                                    long locationId = locationList.get(0).getId();
+                                    WmsMaterialExpectedLocation wmsMaterialExpectedLocation = new WmsMaterialExpectedLocation();
+                                    wmsMaterialExpectedLocation.setMaterial_id(material_id);
+                                    wmsMaterialExpectedLocation.setLocation_id(locationId);
+                                    wmsMaterialExpectedLocations.add(wmsMaterialExpectedLocation);
+                                }
+                            }
+                            
+                            wmsMaterialExpectedLocationMapper.insertAll(wmsMaterialExpectedLocations);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("CSV import fail: {}", e.getMessage(), e);
+            throw new RuntimeException("CSV import fail：" + e.getMessage());
+        }
+
+        return count;
     }
 }
 

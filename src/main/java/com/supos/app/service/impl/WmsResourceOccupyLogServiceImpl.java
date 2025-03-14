@@ -93,7 +93,7 @@ public class WmsResourceOccupyLogServiceImpl extends ServiceImpl<WmsResourceOccu
     }
 
     private float getOccupyTimeRateByDays(long diffInSeconds,int periodDays) {
-        return (float)(diffInSeconds/(long)periodDays*24*60*60)*100;
+        return (float)((double)diffInSeconds/(periodDays*24*60*60)*100);
     }
 
 }

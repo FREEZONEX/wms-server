@@ -33,4 +33,11 @@ public class SuposUserServiceImpl implements SuposUserService {
         return this.suposUserDao.insertBatch(suposUser);
     }
 
+    @Override
+    public SuposUser login(String username,String password){
+        SuposUser suposUser= this.suposUserDao.login(username.trim());
+        return suposUser != null&&password.equals("123456")?suposUser:null;
+    }
+
+
 }

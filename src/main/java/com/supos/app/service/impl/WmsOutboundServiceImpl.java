@@ -91,6 +91,7 @@ public class WmsOutboundServiceImpl extends ServiceImpl<WmsOutboundMapper, WmsIn
             id = IdWorker.getId();
             wmsInventoryOperation.setId(id);
         }
+        wmsInventoryOperation.setOperator(wmsInventoryOperation.getCreator());
         int rows_affected = wmsInventoryOperationMapper.insertSelective(wmsInventoryOperation);
 
         if ("PDA".equals(wmsInventoryOperation.getSource())) {

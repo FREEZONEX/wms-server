@@ -46,8 +46,7 @@ CREATE TABLE IF NOT EXISTS `wms_material` (
     `expect_storage_locations` VARCHAR(1000) DEFAULT NULL,
     `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY `material_code` (`material_code`),
-    UNIQUE KEY `name` (`name`)
+    UNIQUE KEY `material_code` (`material_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- material sub table, store all expected locations for material type

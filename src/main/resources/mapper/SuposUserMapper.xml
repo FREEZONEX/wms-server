@@ -47,6 +47,19 @@
         from supos_user
     </select>
 
+
+    <select id="login" resultMap="SuposUserMap" parameterType="java.lang.String">
+        select *
+        from supos_user
+        <where>
+            <if test="username != null">
+                username = #{username}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+
     <select id="count" resultType="java.lang.Long">
         select count(1)
         from supos_user

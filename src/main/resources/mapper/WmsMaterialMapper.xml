@@ -143,5 +143,6 @@
                 AND update_time = #{update_time}
             </if>
         </where>
+        ORDER BY update_time DESC
     </select>
 </mapper>

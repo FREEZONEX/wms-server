@@ -1,0 +1,518 @@
+id,material_code,name,material_type,unit,note,specification,max,min,quantity,status,expect_warehouse,expect_storage_locations,Remarks 
+1,115080010,103AT-S,General Material,box,Material Description,,100000,0,970,Reorder,Main Storage Area,69,Checked
+2,115100002,Fuse/{0218001.MXP}/{UTE 001},Glass fuse,box,Fuse/{0218001.MXP}/{UTE 001},BASIC REQUIREMENTS,100000,0,2000,Reorder,Main Storage Area,26B, Checked 
+3,118010132,DIN-SCHT 9.5,General Material,box,Mark seat/DIN-SCHT 9.5,,100000,0,6924,Reorder,Main Storage Area,13B,Checked
+5,118010139,KLM-A+ES/KLM 2-GB,General Material,box,Mark seat kit/KLM-A+ES/KLM 2-GB,,100000,0,468,Stock Available,Main Storage Area,13B,Checked
+7,118010501,MVSTBR 2.5/4-STF-5.08,General Material,box,Terminal plug,,100000,0,1554,Stock Available,Main Storage Area,62,Checked
+12,119020000,DB25(20m incanus F-F),DB25 Cable,box,DB25(20m incanus F-F)/FW/PS/GS/XP416,Slow Moving Material,100000,0,161,Reorder,Inventory Room 3,1,Checked
+15,119020022,DB37(20m black F-F)/(37C×28AWG),DB37Cable,box,DB37Cable(20m_black_F-F)/LE37-E7/G5-20,Slow Moving Material,100000,0,444,Stock Available,Inventory Room 3,1,Checked
+16,119020053,DB25(2m incanus F-F),DB25 Cable,box,DB25(2m incanus F-F)/FW/PS/GS/XP416,Slow Moving Material,100000,0,655,Stock Available,Inventory Room 3,1, Checked 
+17,119020055,DB25(10m incanus F-F),DB25 Cable,box,DB25(10m incanus F-F)/FW/PS/GS/XP416,Slow Moving Material,100000,0,522,Stock Available,Inventory Room 3,1, Checked 
+18,119020056,DB25(15m incanus F-F),DB25 Cable,box,DB25(15m incanus F-F)/FW/PS/GS/XP416,Slow Moving Material,100000,0,189,Reorder,Inventory Room 3,1, Checked 
+19,119020075,DB37(8m black F-F)/LE37011-008,DB37Cable,box,DB37Cable(8m_black_F-F)/LE37-E7/G5-08,,100000,0,467,Stock Available,Inventory Room 3,1,Checked
+20,119020076,DB37(12m black F-F)/LE37011-012,DB37Cable,box,DB37Cable(12m_black_F-F)/LE37-E7/G5-12,Slow Moving Material,100000,0,525,Stock Available,Inventory Room 3,1,Checked
+21,119020077,DB37(3m black F-F)/LE37011-003,DB37Cable,box,DB37Cable(3m_black_F-F)/LE37-E7/G5-03,Slow Moving Material,100000,0,987,Stock Available,Inventory Room 3,1,Checked
+22,119020078,DB37(6m black F-F)/LE37011-006,DB37Cable,box,DB37Cable(6m_black_F-F)/LE37-E7/G5-06,,100000,0,447,Stock Available,Inventory Room 3,1,Checked
+24,119020082,DB37(10m black F-F)/LE37011-010,DB37Cable,box,DB37Cable(10m_black_F-F)/LE37-E7/G5-10,,100000,0,207,Stock Available,Inventory Room 3,1,Checked
+25,119020083,DB37(15m black F-F)/LE37011-015,DB37Cable,box,DB37Cable(15m_black_F-F)/LE37-E7/G5-15,Slow Moving Material,100000,0,1573,Stock Available,Inventory Room 3,1,Checked
+30,119020156,HD15?(80cm_?_F-M)/HD15F/M_0.8M,General Material,box,HD15线(80cm_黑_F-M)/HD15F/M_0.8M,,100000,0,2265,Stock Available,Inventory Room 3,1,Checked
+31,119020157,HD15线(50cm_黑_F-M)/HD15F/M_0.5M,General Material,box,HD15线(50cm_黑_F-M)/HD15F/M_0.5M,,100000,0,1106,Stock Available,Inventory Room 3,1,Checked
+32,119051032,DB-9Cable(0.75m_incanus_F-F),DB-9Cable,box,DB-9Cable(0.75m_incanus_F-F),,100000,0,162,Reorder,Main Storage Area,21, Checked 
+47,119070019,Wire: RVV53 4C×1.0. Inner core,,box,"Wire: RVV53 4C×1.0. Inner core color: 2 red and 2 black; one end is black injection molded plug, one end is OPEN, cable length is 2.5m",,100000,0,0,Reorder,Main Storage Area,,
+48,119071121,XP211 2.5m,JX300,box,Cage power cord assembly for xp211 2.5m,,100000,0,125,,Inventory Room 3,1,Checked
+49,119071160,Rack distribution wire for ECS700 2.5m,ECS700,box,Rack distribution wire for ECS700 2.5m,,100000,0,189,Reorder,Inventory Room 3,2,Checked
+50,119071161,ECS700 cabinet with common wiring,ECS700,box,"700 cabinet com-wiring(AC:R-W-B,DC:B-B)",Non - Moving Materials,100000,0,1756,Stock Available,Inventory Room 3,3,Checked
+54,119071231,MB712 Base TO PW715,ECS700,box,MB712 Base wiring(2brown-2blue cores),,100000,0,1442,Stock Available,Inventory Room 3,4,Checked
+55,119071232,CN721/722 Rack TO PW715,ECS700,box,CN721/722 Rack distribution wire 1m(B-B),,100000,0,1319,Stock Available,Inventory Room 3,5,Checked
+56,119071236,SUP-5216 to PW715,ECS700,box,Switchboard wiring(2brown-2blue cores),,100000,0,1270,Stock Available,Inventory Room 3,6,Checked
+57,119071241,MB722 Base wiring(brown-blue) -PW715,ECS700,box,"MB722 Base wiring(brown-blue), S-dra-at",,100000,0,1713,Stock Available,Inventory Room 3,7,Checked
+61,119112161,3m(ST-LC),OFC - ST-LC,box,Multimode fider (3m ST-LC),,100000,0,8,,Main Storage Area,72,Checked
+65,119112300,1m_ST Pigtail,OFC - Pigtail,box,Multimode fiber tail fiber (1m ST),,100000,0,8,,Main Storage Area,72,Checked
+67,119180100,DB25Cable(3m_incanus_F-F),DB25 Cable,box,DB25Cable(3m_incanus_F-F)/FW/PS/GS/XP416,,100000,0,515,Stock Available,Inventory Room 3,1, Checked 
+68,119180102,DB25Cable(5m_incanus_F-F),DB25 Cable,box,DB25Cable(5m_incanus_F-F)/FW/PS/GS/XP416,,100000,0,335,Stock Available,Inventory Room 3,1, Checked 
+69,119180103,DB25Cable(7m_incanus_F-F),DB25 Cable,box,DB25Cable(7m_incanus_F-F)/FW/PS/GS/XP416,,100000,0,625,Stock Available,Inventory Room 3,1, Checked 
+73,122030000,PWXP300,JX300,box,Main power distribution unit,,100000,0,22,Reorder,Main Storage Area,18C,Checked
+74,122040601,Mounting guide rail(L:1360mm)/CN721,ECS700,box,Mounting guide rail(L:1360mm)/CN721,,100000,0,256,Stock Available,Main Storage Area,, No Stock 
+75,122040602,Mounting guide rail(L:720mm)/CN722,ECS700,box,Mounting guide rail(L:720mm)/CN722,,100000,0,70,Reorder,Main Storage Area,, No Stock 
+81,122050194,SUP-A-06,ECS700,box,SUPCON fiber optic closure/SUP-A-06,,100000,0,4,Reorder,Main Storage Area,38/39,Checked
+90,123061022,DIN-K2,General Material,box,DIN-K2,,100000,0,1710,Reorder,Main Storage Area,13B,Checked
+91,127030105,PW731,ECS700,box,SUPCON power supply/PW731,,100000,0,94,Stock Available,Main Storage Area,15B,Checked
+92,127030106,PW732,ECS700,box,SUPCON power supply/PW732,,100000,0,31,,Main Storage Area,,No Stock
+98,127030113,PW711,ECS700,box,power supply redundant module/PW711,,100000,0,508,Stock Available,Main Storage Area,35/15B,Checked
+104,162020000,SUP-2218,JX300,box,SUPCON interchanger/SUP-2218,,100000,0,4,Reorder,Main Storage Area,14C,Checked
+105,162020001,SUP-5216,ECS700,box,interchanger (guide rail)/SUP-5216,,100000,0,62,Reorder,Main Storage Area,14C,Checked
+106,162020002,SFP-02M,ECS700,box,multimode optical fiber modules/SFP-02M,,100000,0,4,Reorder,Main Storage Area,72,Checked
+108,162020007,PW733W24V/20A,ECS700,box,SUPCON power supply/PW733W,,100000,0,76,Reorder,Main Storage Area,15C,Checked
+109,162020008,PW732W24V/10A,ECS700,box,SUPCON power supply/PW732W,,100000,0,545,Stock Available,Main Storage Area,15C/35,Checked
+110,183010166,Matching Resistance Hole Gra-White XP,ECS700,box,Matching Resistance Hole Gra-White XP,,100000,0,446,,Main Storage Area,,No Stock
+112,190000012,Cover for PWXP300,JX300,box,Main distribution unit cover,,100000,0,32,Reorder,Inventory Room 1,1,Checked
+113,204010001,XP000,JX300,box,I/O Slot Cover Plate/XP000,,100000,0,272,Stock Available,Main Storage Area,51,Checked
+114,204010104,XP243X,JX300,box,Controller/XP243X,,100000,0,37,Reorder,Main Storage Area,52,Checked
+115,204010201,XP233,JX300,box,Data Transmission Module/XP233,,100000,0,259,Stock Available,Main Storage Area,53,Checked
+117,204010210,XP239-DP,JX300,box,PROFIBUS-DP master station interface,,100000,0,23,Reorder,Main Storage Area,53,Checked
+118,204010301,XP313,JX300,box,Current Input Module(6-channel)/XP313,,100000,0,11,Reorder,Main Storage Area,52,No Stock
+119,204010302,XP314,JX300,box,Thermocouple/Voltage Input Module/XP314,,100000,0,490,Stock Available,Main Storage Area,47/48,Checked
+120,204010304,XP316,JX300,box,RTD Input Module(4-channel)/XP316,,100000,0,291,Stock Available,Main Storage Area,46/47,Checked
+121,204010306,XP322,JX300,box, Current Output Module,,100000,0,10,Reorder,Main Storage Area,52,Checked
+122,204010322,XP351,JX300,box,Current Input Module(8-channel)/XP351,,100000,0,330,Stock Available,Main Storage Area,50,Checked
+123,204010323,XP351H,JX300,box,Current Input Module(8-channel)/XP351H,,100000,0,50,Stock Available,Main Storage Area,52,Checked
+124,204010324,XP372,JX300,box,Current Output Module(8-channel)/XP372,,100000,0,148,Stock Available,Main Storage Area,53,Checked
+125,204010325,XP372H,JX300,box,Current Output Module(8-channelT)/XP372H,,100000,0,20,Reorder,Main Storage Area,52,Checked
+126,204013001,XP363(B),JX300,box, Digital Signal Input Module,,100000,0,12,Reorder,Main Storage Area,52,Checked
+127,204013002,XP366,JX300,box,Digital signal input16/anti-corrosion,,100000,0,456,Stock Available,Main Storage Area,50,Checked
+128,204013003,XP367,JX300,box,Digital Output Module(16-channel)/XP367,,100000,0,283,Stock Available,Main Storage Area,47,Checked
+132,204015001,XP369(B),JX300,box,SOE Input Module(8-channel)/XP369(B),,100000,0,125,Stock Available,Main Storage Area,48,Checked
+133,204015002,XP422,JX300,box,SOE Master Module/XP422,,100000,0,33,Reorder,Main Storage Area,49,Checked
+134,204015004,XP258-1,JX300,box,24Vto5V Power Module(wide panel)/XP258-1,,100000,0,254,,Main Storage Area,49,Checked
+135,204015005,XP258-2,JX300,box,24V to 5V power/G3 anti-corrosion,,100000,0,68,Stock Available,Main Storage Area,49,Checked
+136,204018001,XP526,JX300,box,Terminal Board/XP526,,100000,0,44,Reorder,Main Storage Area,51,Checked
+138,204018012,XP529,JX300,box,DI/DO Change-over Module/XP529,,100000,0,802,Stock Available,Main Storage Area,51,Checked
+140,204018103,XP562-GPRPU(B),JX300,box,relay output terminal board,,100000,0,1,Reorder,Main Storage Area,22B,Checked
+141,204030201,XP520,JX300,box,I/O Module Terminal Board/XP520,,100000,0,215,Stock Available,Main Storage Area,51,Checked
+142,204030202,XP520R,JX300,box,I/O terminal block (redundant type)/0,,100000,0,379,Stock Available,Main Storage Area,51,Checked
+143,204030221,XP525,JX300,box,AI/AO Change-over Terminal Board/XP525,,100000,0,584,Stock Available,Main Storage Area,51,Checked
+144,204050004,XP433M(B),JX300,box,M-mode Repeater(SC_Width Box)/XP433M(B),,100000,0,8,Reorder,Main Storage Area,49,Checked
+145,204050006,XP433M(B),JX300,box,M-mode Repeater(SC_Narrow)/XP433M(B),,100000,0,45,Reorder,Main Storage Area,49,Checked
+146,204056001,XP248,JX300,box,Multi-Protocol Module/XP248,,100000,0,16,Reorder,Main Storage Area,49,Checked
+147,208000010,FW239-DP,,box,FW239-DP,,100000,0,0,Reorder,Main Storage Area,,
+148,208000025,FW248R,JX300,box,Interface Multi-Protocol Module/FW248R,,100000,0,8,Reorder,Main Storage Area,53,Checked
+151,208000960,FW221,JX300-FW,box,Power Supply Indication Module/FW221,Non - Moving Materials,100000,0,38,Reorder,Main Storage Area,22B,Checked
+152,208001067,TB353-RU,JX300,box,Terminal Board for RTD Input /TB353-RU,,100000,0,3,Reorder,Main Storage Area,22B,Checked
+153,208001075,TB372-RU,,box,Current output terminal board (8-way redundant type),,100000,0,0,Reorder,Main Storage Area,,
+154,208010033,TB366-DU,JX300,box,Digital Input Terminal Board/TB366-DU,,100000,0,186,Stock Available,Main Storage Area,52,Checked
+155,208010036,TB372-U,,box,TB372-U,,100000,0,0,Reorder,Main Storage Area,,
+156,208010060,TB239-DP,,box,TB239-DP,,100000,0,0,Reorder,Main Storage Area,,
+157,208013001,FW366(B),JX300-FW,box,Digital Input Module/FW366(B),Non - Moving Materials,100000,0,252,Stock Available,Main Storage Area,22B,Checked
+158,208013101,FW367(B),JX300-FW,box,Digital Output Module/FW367(B),Non - Moving Materials,100000,0,150,Stock Available,Main Storage Area,22B,Checked
+159,208014002,"Thermistor signal(8,isolation)/G3",,box,"Thermistor signal(8,isolation)/G3",,100000,0,6,Reorder,Main Storage Area,, No Stock 
+160,208014003,FW351(B),JX300-FW,box,Analog Input Module/FW351(B),Non - Moving Materials,100000,0,13,Reorder,Main Storage Area,22B,Checked
+161,208014101,FW372(B),JX300-FW,box,Current Output Module/FW372(B),Non - Moving Materials,100000,0,28,Reorder,Main Storage Area,22B,Checked
+163,208018004,TB366-GPRU,JX300,box,Relay Input Terminal Unit/TB366-GPRU,,100000,0,208,Stock Available,Main Storage Area,45,Checked
+164,208018005,TB351-IU,JX300,box,Terminal Board/TB351-IU,,100000,0,4,Reorder,Main Storage Area,22B,Checked
+165,208018006,TB351-IRU,,box,TB351-IRU,,100000,0,0,Reorder,Main Storage Area,,
+167,208018015,TB367-GPRPU,JX300,box,Relay Output Terminal Board/TB367-GPRPU,,100000,0,145,Stock Available,Main Storage Area,46,Checked
+168,208018020,TB248-RU,JX300,box, Terminal Board/TB248-RU,,100000,0,2,Reorder,Main Storage Area,11B,Checked
+169,210806012,HD5516,ECS700,box,HD5516 ISOLATORS,,100000,0,98,,Main Storage Area,9B,No Stock
+170,210806013,HD5542,Isolated Barrier,box,DCS-ACCESSORIES-HD5542,,100000,0,1166,Stock Available,Main Storage Area,9B,Checked
+171,210806015,HD5546,Isolated Barrier,box,DCS ACCESSORIES-HD5546,,100000,0,9,Reorder,Main Storage Area,,No Stock
+173,212053001,XP211,JX300,box,Modules Cage(20 Slots_4U)/XP211,,100000,0,102,,Main Storage Area,18A/18B,Checked
+174,212060017,SyCon software/Customized supply,Supcon Software,box,SyCon software/Customized supply,,100000,0,26,Stock Available,Main Storage Area,72,Checked
+180,213013001,SAMS-M00,Dongles,box,SAMS Device Management Software/SAMS-M00,,100000,0,2,Reorder,Main Storage Area,72,Checked
+186,213020098,VFWebSight,Supcon Software,box,Configuration Software:VFWebSight,,100000,0,4,,Main Storage Area,, No Stock 
+187,213140009,InPlant MP3000,,box,InPlant MP3000,,100000,0,1,,Main Storage Area,,
+189,233000005,FCU712-S11,ECS700,box,Controller/FCU712-S11,,100000,0,0,,Main Storage Area,4C,Pending
+190,233010121,AI711-S11,ECS700,box,Analog Input Module/AI711-S11,,100000,0,61,Stock Available,Main Storage Area,29,Checked
+191,233010123,AI722-S11,ECS700,box,Thermocouple Input Module/AI722-S11,,100000,0,193,Stock Available,Main Storage Area,29/30,Checked
+192,233010124,AI731-S11,ECS700,box,RTD Input Module/AI731-S11,,100000,0,220,Stock Available,Main Storage Area,5C,Checked
+193,233010125,AI713-S11,ECS700,box,Current Input Module/AI713-S11,,100000,0,161,,Main Storage Area,5A,Checked
+194,233010126,AI713-H11,ECS700,box,Current Input Module/AI713-H11,,100000,0,92,Stock Available,Main Storage Area,5C/28,Checked
+195,233010221,AO711-S11,ECS700,box,Current Output Module/AO711-S11,,100000,0,141,Stock Available,Main Storage Area,3C ,Checked
+196,233010223,AO713-S11,ECS700,box,Current Output Module/AO713-S11,,100000,0,93,Stock Available,Main Storage Area,4A,Checked
+197,233010224,AO713-H11,ECS700,box,Current Output Module/AO713-H11,,100000,0,92,Stock Available,Main Storage Area,5B,Checked
+198,233010321,DI711-S11,ECS700,box,Digital Input Module/DI711-S11,,100000,0,117,Stock Available,Main Storage Area,4B,Checked
+199,233010322,DI713-S11,ECS700,box,Digital Input Module/DI713-S11,,100000,0,293,Stock Available,Main Storage Area,4A,Checked
+200,233010323,DI715-S11,ECS700,box,Digital Input Module/DI715-S11,,100000,0,189,,Main Storage Area,5B,Checked
+201,233010421,DO712-S11,ECS700,box,Digital Output Module/DO712-S11,,100000,0,115,Stock Available,Main Storage Area,5C,Checked
+202,233010422,DO716-S11,ECS700,box,Digital Output Module/DO716-S11,,100000,0,150,Stock Available,Main Storage Area,4B,Checked
+203,233010521,PI711-S11,ECS700,box,Pulse Input Module/PI711-S11,,100000,0,41,Reorder,Main Storage Area,30,Checked
+204,233010812,COM741-S01,ECS700,box,Serial communication module,,100000,0,18,Reorder,Main Storage Area,30,Checked
+205,233010813,COM722-S01,ECS700,box,PROFIBUS Communication Module/COM722-S01,,100000,0,43,Reorder,Main Storage Area,30,Checked
+206,233010816,COM742-S01,ECS700,box,Ethernet Communication Module/COM742-S01,,100000,0,33,Reorder,Main Storage Area,30,Checked
+207,233010911,COM711-S01,ECS700,box,I/O Link Module/COM711-S01,,100000,0,26,Reorder,Main Storage Area,28,Checked
+208,233011001,FCU712-S01,ECS700,box,Controller/FCU712-S01,,100000,0,39,,Main Storage Area,4C, No Stock 
+209,233011002,FCU713-S01,ECS700,box,Controller/FCU713-S01,,100000,0,26,Reorder,Main Storage Area,4C,Pending
+211,233018201,TU711-S0000,JX300,box,IO Change-over Terminal Unit/TU711-S0000,,100000,0,95,Stock Available,Main Storage Area,11B,Checked
+212,233020008,MB724-S11,ECS700,box,PROFIBUS Interface Module Base/MB724-S11,,100000,0,46,Reorder,Main Storage Area,34,Checked
+213,233020009,MB727-S11,ECS700,box,Module Base/MB727-S11,,100000,0,17,Reorder,Main Storage Area,33,Checked
+214,233030105,MB712-S01,ECS700,box,Controller Base/MB712-S01,,100000,0,40,Reorder,Main Storage Area,1C,Checked
+215,233030116,MB704-S01,ECS700,box,Module Base/MB704-S01,,100000,0,21,Reorder,Main Storage Area,1C,Checked
+216,233030124,MB772-S01,PLC,box,Redundancy I/O Module Base/MB772-S01,,100000,0,60,Stock Available,Main Storage Area,8B,Checked
+217,233030125,MB776-S01,PLC,box,Terminal Change-over Base/MB776-S01,,100000,0,60,Stock Available,Main Storage Area,10A,Checked
+218,233030126,MB770-S01,PLC,box,Empty Slot Protection Base/MB770-S01,,100000,0,164,Stock Available,Main Storage Area,59/10B,Checked
+219,233030130,MB735-S11,ECS700,box,I/O Module Base(Dual Slot)/MB735-S11,,100000,0,160,Stock Available,Main Storage Area,1C,Checked
+220,233030132,MB745-S11,ECS700,box,Terminal Change-over Base/MB745-S11,,100000,0,482,Stock Available,Main Storage Area,1B/1A/2B/31,Checked
+221,233030133,MB746-S11,ECS700,box,Terminal Change-over Base/MB746-S11,,100000,0,150,Stock Available,Main Storage Area,36,Checked
+222,233030135,MB722-S11,ECS700,box,I/O Link Module Base/MB722-S11,,100000,0,16,Reorder,Main Storage Area,33,Checked
+224,233030202,TU721-R0000,ECS700,box,Relay Output Terminal Unit/TU721-R0000,,100000,0,76,Stock Available,Main Storage Area,59,Checked
+225,233030203,TU721-R0100,ECS700,box,Relay Output Terminal Unit/TU721-R0100,,100000,0,75,Stock Available,Main Storage Area,60,Checked
+226,233030220,TUA711-GS00,ECS700,box,IO Change-over Terminal Unit/TUA711-GS00,,100000,0,331,Reorder,Main Storage Area,3A/44,Checked
+227,233030221,TUA711-AIO16,ECS700,box,Change-over Terminal Unit/TUA711-AIO16,,100000,0,139,Reorder,Main Storage Area,3B/44,Checked
+228,233030222,TUA711-DIO32,ECS700,box,Change-over Terminal Unit/TUA711-DIO32,,100000,0,389,Reorder,Main Storage Area,3B/43,Checked
+229,233030224,TUA711-DIR32,ECS700,box,Relay Input Terminal Unit(/TUA711-DIR32,,100000,0,857,Stock Available,Main Storage Area,2B/40/41/42/43/48/49,Checked
+230,233030226,TUA711-DOR32,ECS700,box,Relay Output Terminal Unit/TUA711-DOR32,,100000,0,566,Stock Available,Main Storage Area,2C/45/46/47,Checked
+231,233030304,CN721-S11,ECS700,box,I/O Rack/CN721-S11,,100000,0,171,Stock Available,Inventory Room 1,6A,Checked
+232,233030305,CN722-S11,ECS700,box,I/O Rack/CN722-S11,,100000,0,102,Stock Available,Inventory Room 1,6A,Checked
+233,233040001,COM723-S11,ECS700,box,Profinet Interface Module/COM723-S11,,100000,0,0,Reorder,Main Storage Area,30,Checked
+234,233040002,COM725-S11,,box,COM725-S11,,100000,0,20,,Main Storage Area,,
+235,233050010,PW715,ECS700,box,24V DC Power Distribution Box/PW715,,100000,0,168,Stock Available,Main Storage Area,6B/6C/32,Checked
+238,235017002,CN032-S30,ECS700,box,AC Temperature Controller/CN032-S30,,100000,0,38,Reorder,Main Storage Area,50,Checked
+240,235017009,PW031-S11,ECS700,box,AC Switch/PW031-S11,,100000,0,43,Reorder,Main Storage Area,50,Checked
+241,235040000,PW032-S01,ECS700,box,AC switcher (110VAC)/Customized supply,,100000,0,113,Stock Available,Main Storage Area,50,Checked
+243,237011000,COM512-S01,PLC,box,Remote Connection Module/COM512-S01,,100000,0,17,Reorder,Main Storage Area,54,Checked
+244,237011004,GCU521-S01,PLC,box,Rack redundant controller,,100000,0,46,Reorder,Main Storage Area,54,Checked
+245,237016001,COM511-S01,PLC,box,Local Connection Module/COM511-S01,,100000,0,40,Reorder,Main Storage Area,54,Checked
+246,237016002,COM521-S01,PLC,box,Serial Communication Module/COM521-S01,,100000,0,31,Reorder,Main Storage Area,54,Checked
+247,237016003,COM522-S01,PLC,box,PROFIBUS Communication Module/COM522-S01,,100000,0,14,Reorder,Main Storage Area,54,Checked
+248,237016004,COM523-S01,PLC,box,Ethernet Communication Module/COM523-S01,,100000,0,13,Reorder,Main Storage Area,54,Checked
+249,237040000,DI751-S11,PLC,box,Digital Input Module/DI751-S11,,100000,0,46,Reorder,Main Storage Area,60,Checked
+250,237040005,AI751-S11,PLC,box,Analog Input Module/AI751-S11,,100000,0,77,Stock Available,Main Storage Area,8B,Checked
+251,237040006,DO751-S11,PLC,box,Digital Output Module/DO751-S11,,100000,0,46,Reorder,Main Storage Area,60,Checked
+252,237040007,AO751-S11,PLC,box,Current Output Module/AO751-S11,,100000,0,61,Stock Available,Main Storage Area,60,Checked
+253,237040008,AI762-S11,PLC,box,Thermocouple Input Module/AI762-S11,,100000,0,45,Reorder,Main Storage Area,9A,Checked
+254,237040009,AI771-S11,PLC,box,RTD Input Module/AI771-S11,,100000,0,42,Reorder,Main Storage Area,10A,Checked
+255,237040010,MB771-S11,PLC,box,I/O Module Base/MB771-S11,,100000,0,79,Stock Available,Main Storage Area,10B,Checked
+256,237040011,MB775-S11,PLC,box,Terminal Change-over Base/MB775-S11,,100000,0,58,Stock Available,Main Storage Area,10B,Checked
+257,237040012,MB773-S11,PLC,box,Digit Module Base(Dual Slot)/MB773-S11,,100000,0,60,Stock Available,Main Storage Area,10B,Checked
+258,237040013,AI753-S11,PLC,box,Current Input Module/AI753-S11,,100000,0,47,Reorder,Main Storage Area,60,Checked
+259,237040014,AO753-S11,PLC,box,Current Output Module/AO753-S11,,100000,0,73,Stock Available,Main Storage Area,9C,Checked
+260,237040015,DI755-S11,PLC,box,Digital Input Module/DI755-S11,,100000,0,63,Stock Available,Main Storage Area,57,Checked
+261,237040016,DO756-S11,PLC,box,Digital Output Module/DO756-S11,,100000,0,48,Reorder,Main Storage Area,10A,Checked
+262,237040024,PI751-S11,PLC,box,Pulse Input Module/PI751-S11,,100000,0,62,Stock Available,Main Storage Area,10A,Checked
+263,237050001,MB512-S01,PLC,box,Power & Controller Module Base/MB512-S01,,100000,0,51,Stock Available,Main Storage Area,10B,Checked
+264,237050002,MB521-S01,PLC,box,Module Base/MB521-S01,,100000,0,41,Reorder,Main Storage Area,10A,Checked
+265,237050003,MB522-S01,PLC,box,Module Base/MB522-S01,,100000,0,13,Reorder,Main Storage Area,10B,Checked
+266,237050004,MB523-S01,PLC,box,DP Communication Module Base/MB523-S01,,100000,0,18,Reorder,Main Storage Area,10B,Checked
+267,237051000,CN521-S01,PLC,box,Rack(12 Slots)/CN521-S01,,100000,0,59,Stock Available,Main Storage Area,13B,Checked
+268,237051001,CN522-S01,PLC,box,Rack(10 Slots)/CN522-S01,,100000,0,31,Reorder,Main Storage Area,30C,Checked
+269,237051002,CN523-S01,PLC,box,Rack(6 Slots)/CN523-S01,,100000,0,42,Reorder,Main Storage Area,13C,Checked
+270,243031001,GCU3001-S11,PLC,box,Integrated Controller/GCU3001-S11,,100000,0,190,Stock Available,Main Storage Area,9A,Checked
+272,243032000,DI3216-S01,PLC,box,Digital Input Module/DI3216-S01,,100000,0,33,Reorder,Main Storage Area,59,Checked
+273,243032001,DO3216-S01,PLC,box,Digital Output Module/DO3216-S01,,100000,0,27,Reorder,Main Storage Area,54,Checked
+274,243032003,AI3208-S01,PLC,box,Analog Input Module/AI3208-S01,,100000,0,20,Reorder,Main Storage Area,59,Checked
+275,243032005,AO3208-S01,PLC,box,Analog Output Module/AO3208-S01,,100000,0,15,Reorder,Main Storage Area,59,Checked
+276,243032009,AI3008-S11,PLC,box,Voltage and Current Module/AI3008-S11,,100000,0,19,Reorder,Main Storage Area,59,Checked
+277,243032010,AO3006-S11,PLC,box,Analog Output Module/AO3006-S11,,100000,0,54,Stock Available,Main Storage Area,57,Checked
+278,243032011,DIO3012-S11,PLC,box,Digital Input/Output Module/DIO3012-S11,,100000,0,161,Stock Available,Main Storage Area,8A,Checked
+279,243032012,DI3020-S11,PLC,box,Module(2with base)/DI3020-S11,,100000,0,201,Stock Available,Main Storage Area,56,Checked
+280,243032013,AI3004RTD-S11,PLC,box,Module (with base)/AI3004RTD-S11,,100000,0,81,Stock Available,Main Storage Area,56,Checked
+281,243034001,IM3202RJ-S01,PLC,box,IM Extended Module/IM3202RJ-S01,,100000,0,16,Reorder,Main Storage Area,56,Checked
+282,243034004,MXE3001-S11,PLC,box,Distributed Extension Module/MXE3001-S11,,100000,0,173,Stock Available,Main Storage Area,10C,Checked
+284,243034006,PW3004AC,PLC,box,New G3 Supporting Power(24V_4A)/PW3004AC,,100000,0,21,Reorder,Main Storage Area,56,Checked
+285,243160012,VM5020,,box,VM5020,,100000,0,0,,Main Storage Area,,
+286,243160013,VM5030,,box,VM5030,,100000,0,0,,Main Storage Area,,
+287,243160014,VM5040,,box,VM5040,,100000,0,0,,Main Storage Area,,
+288,243160015,MB5010,,box,MB5010,,100000,0,0,,Main Storage Area,,
+289,243160017,MB5030,,box,MB5030,,100000,0,0,,Main Storage Area,,
+290,243160019,MCN5034,,box,MCN5034,,100000,0,0,,Main Storage Area,,
+291,243213018,MCN5021,,box,MCN5021,,100000,0,0,,Main Storage Area,,
+292,243214000,MCN5031,,box,MCN5031,,100000,0,0,,Main Storage Area,,
+293,243251000,GCU3202-S01,PLC,box, Controller,,100000,0,16,Reorder,Main Storage Area,56,Checked
+294,243253001,CN3210-S01,PLC,box,Rack(10 Slot)/CN3210-S01,,100000,0,13,Reorder,Main Storage Area,13C,Checked
+295,243253003,CN3220-S01,PLC,box,Rack(20 Slot)/CN3220-S01,,100000,0,14,Reorder,Main Storage Area,13C,Checked
+319,310311004,HD5543,Isolated Barrier,box,HD5543 isolated barrier,,100000,0,295,Reorder,Main Storage Area,9B,Checked
+320,310311006,HD5546,Isolated Barrier,box,HD5546 isolated barrier,,100000,0,77,Reorder,Main Storage Area,9C,Checked
+321,310311008,HD5573,Isolated Barrier,box,HD5573 isolated barrier,,100000,0,331,Reorder,Main Storage Area,9C,Checked
+323,310311031,HD5516.OC,Isolated Barrier,box,HD5516.OC isolated barrier,,100000,0,220,Reorder,Main Storage Area,9C,Checked
+325,310313005,HD1042 ,Isolated Barrier,box,HD1042 isolator barrier,,100000,0,2490,Stock Available,Main Storage Area,14B,Checked
+327,310313008,HD1046 ,Isolated Barrier,box,HD1046 isolator barrier,,100000,0,298,Reorder,Main Storage Area,9C,Checked
+329,310313011,HD1072,Isolated Barrier,box,HD1072 isolator barrier,,100000,0,12,Reorder,Main Storage Area,8B,Checked
+330,320103010,EMF8901electromagnetic flowmeter,General Material,box,EMF8901electromagnetic flowmeter,,100000,0,0,,Main Storage Area,68,Checked
+335,320112008,P-320-20-L2,ECS700,box,P-320-20-L2 Surge protector Devices,,100000,0,46,Stock Available,Main Storage Area,11C,Checked
+359,212070005000031,SAMS-Server(5000);VFCES;VF013-S00,,box,SAMS-Server(5000);VFCES;VF013-S00,,100000,0,1,,Main Storage Area,,
+360,212070005000174,VFCon -S0C(10),,box,VFCon -S0C(10),,100000,0,0,,Main Storage Area,,
+361,212070005007682,VFOPS;VF014-S00;VxCollector-Service;VxCollector-DAC（1）,,box,VFOPS;VF014-S00;VxCollector-Service;VxCollector-DAC（1）,,100000,0,2,,Main Storage Area,,
+363,2080008Q1,PM-351I,JX300,box,Power Distribution Module/PM-351I,,100000,0,75,Stock Available,Main Storage Area,53,Checked
+364,2080008T4,FW243X,JX300-FW,box,Controller/FW243X,,100000,0,0,Stock Available,Main Storage Area,13B,Checked
+365,2080008U0,FW233,JX300-FW,box,Data Transmission Module/FW233,Non - Moving Materials,100000,0,58,Stock Available,Main Storage Area,22B,Checked
+366,2080008Y0,FW000,JX300-FW,box,I/O Slot Cover Plate/FW000,Non - Moving Materials,100000,0,57,Stock Available,Main Storage Area,22B,Checked
+369,208000BR6,TB367-GPRU,JX300,box,Relay Output Terminal Board/TB367-GPRU,,100000,0,309,Stock Available,Main Storage Area,46/13A, Checked 
+371,212030B40,FW252-03A,JX300-FW,box,Power(5V_75W)/FW252-03A,Non - Moving Materials,100000,0,48,Reorder,Main Storage Area,22B,Checked
+372,212030B50,FW252-04A,JX300-FW,box,Power(24V_150W)/FW252-04A,Non - Moving Materials,100000,0,17,Reorder,Main Storage Area,22B,Checked
+373,212050DB0,FW212,JX300,box,Modules Cage(20 Slots_4U)/FW212,,100000,0,22,Reorder,Inventory Room 2,1,Checked
+375,212060RK6,SSOE software (Chinese/English version),Supcon Software,box,SSOE software (Chinese/English version),,100000,0,28,Reorder,Main Storage Area,72,Checked
+388,40305003P,Air CB-60G 2P C10/2P-C/10A,MCB,box,Air CB-60G 2P C10/2P-C/10A,,100000,0,8,Reorder,Main Storage Area,37,Checked
+436,CH50000007,VF013-S00;VxSCADA-RUN-SVR(1000),Dongles,box,VF013-S00;VxSCADA-RUN-SVR(1000),,100000,0,0,Stock Available,Main Storage Area,72,Checked
+437,CH50000008,VFCES;VF013-S00,Dongles,box,VFCES;VF013-S00,,100000,0,3,,Main Storage Area,72,Checked
+438,CH50000009,VFCES;VF013-S00;VF015-S00;VF017-S00,Dongles,box,VFCES;VF013-S00;VF015-S00;VF017-S00,,100000,0,3,,Main Storage Area,,No Stock
+439,CH50000010,SYSTEM SOFTEWARE -VFEES,Dongles,box,SYSTEM SOFTEWARE -VFEES,,100000,0,7,Reorder,Main Storage Area,72,Checked
+441,CH50000012,SYSTEM SOFTWARE DONGGLES -VFOPS,Dongles,box,SYSTEM SOFTWARE DONGGLES -VFOPS,,100000,0,16,,Main Storage Area,,No Stock
+442,CH50000013,SYSTEM  DONGLE VFOPS;VF014-S00,Dongles,box,SYSTEM  DONGLE VFOPS;VF014-S00,,100000,0,11,Stock Available,Main Storage Area,72,Checked
+448,CH50000019,VF013-S00-Report Software,Dongles,box,VF013-S00-Report Software,,100000,0,6,Reorder,Main Storage Area,72,Checked
+452,CH50000023,VFCES-E00-VisualField Software,Dongles,box,VFCES-E00-VisualField Software,,100000,0,3,,Main Storage Area,,No Stock
+453,CH50000024,VFOPS-E00- VisualField Operator station,Dongles,box,VFOPS-E00- VisualField Operator station,,100000,0,15,Stock Available,Main Storage Area,72,Checked
+454,CH50000025,VFCES-E00+VF013-E00+VF017-S00;ES DONGLE,Dongles,box,VFCES-E00+VF013-E00+VF017-S00;ES DONGLE,,100000,0,7,Stock Available,Main Storage Area,72,Checked
+459,CH50000031,VFCES;VF013-S00;VF015-S00;VF017-S00,Dongles,box,VFCES;VF013-S00;VF015-S00;VF017-S00,,100000,0,0,,Main Storage Area,72,Checked
+462,CH50000034,Engineer Dongle: PRO135+PRO111,Dongles,box,Engineer Dongle: PRO135+PRO111,,100000,0,5,Reorder,Main Storage Area,72,Checked
+465,CH50000037,Operator dongles: PRO111,Dongles,box,Operator dongles: PRO111,,100000,0,12,Reorder,Main Storage Area,72,Checked
+466,CH50000038,Chief dongle： VFCES+VF013,Dongles,box,Chief dongle： VFCES+VF013,,100000,0,0,,Main Storage Area,72,Checked
+470,CH50000042,VFEES,Dongles,box,Extented dongle：VFEES,,100000,0,1,,Main Storage Area,,No Stock
+484,CH50000063,VFCES-E00 +VF013-E00+VF014-E00+VF017-E00,Dongles,box,VFCES-E00 +VF013-E00+VF014-E00+VF017-E00,,100000,0,0,,Main Storage Area,,No Stock
+486,CH50000065,GCSContXS0B+VxSCADEV(5000)+VXWEB SOC(10),Dongles,box,GCSContXS0B+VxSCADEV(5000)+VXWEB SOC(10),,100000,0,1,Stock Available,Main Storage Area,72,Checked
+489,CH50000068,VF013-S00-GCSContrix-S0B;i-SCADA DEV(500),Dongles,box,VF013-S00-GCSContrix-S0B;i-SCADA DEV(500),,100000,0,1,Stock Available,Main Storage Area,72,Pending
+492,CH50000073,VF014-S00,Dongles,box,VF014-S00 -system dongle,,100000,0,4,Reorder,Main Storage Area,72,Checked
+494,CH50000075,VF017-S00,Dongles,box,VF017-S00 -system dongle,,100000,0,3,Reorder,Main Storage Area,72,Checked
+546,IN100000132,1 SQMM LUGS,Lugs,box,1 SQMM LUGS,BASIC REQUIREMENTS,100000,0,7700,Stock Available,Main Storage Area,25C,Checked
+557,IN100000145,1.5 Sqmm Tubular lugs,Lugs,box,1.5 Sqmm Tubular lugs,BASIC REQUIREMENTS,100000,0,4800,Stock Available,Main Storage Area,25C, Checked 
+746,IN100000392,2C X 2.5 Sqmm Armoured,Armored & Unarmored,box,2C X 2.5 Sqmm Armoured,,100000,0,0,,Main Storage Area,,No Stock
+1327,IN100001058,"Design Manufs,Testing &Supply of panels",General Material,box,"Design Manufs,Testing &Supply of panels",,100000,0,0,,Main Storage Area,,No Stock
+1372,IN110000003,LAPTOP,Laptop,box,LAPTOP,,100000,0,1,Stock Available,Main Storage Area,,No Stock
+1375,IN120000003,A4 B/W LASERJET PRINTER,Printer,box,A4 B/W LASERJET PRINTER,,100000,0,0,Stock Available,Inventory Room 2,1,Checked
+1379,IN300000002,MS OFFICE,Software,box,MS OFFICE,,100000,0,9,Reorder,Main Storage Area,,Pending
+1398,IN800000012,HARD DISK DRIVE POUCH,,box,HARD DISK DRIVE POUCH,,100000,0,0,,Main Storage Area,,
+1399,IN800000013,COMPUTER GRAPHICS CARD,General Material,box,COMPUTER GRAPHICS CARD,,100000,0,2,Stock Available,Main Storage Area,70,Checked
+1401,IN800000015,WINDOWS OPERATING SYSTEM-PRODUCT KEY,Windows,box,WINDOWS OPERATING SYSTEM-PRODUCT KEY,,100000,0,26,Stock Available,Main Storage Area,,Checked
+1403,IN800000018,LVS-TV,TV,box,LVS-TV,,100000,0,1,Stock Available,Main Storage Area,,No Stock
+1419,IN800000035,HEX(ring type lugs(4-6 sqmm),General Material,box,Ring type lug-4-6SQMM- RING DIA -6MM,BASIC REQUIREMENTS,100000,0,1000,Stock Available,Main Storage Area,25C,Checked
+1424,IN800000042,CHAIR,CHAIR,box,CHAIR,,100000,0,17,Reorder,Main Storage Area,Ground Floor,Checked
+1425,IN800000043,END PLATE,General Material,box,END PLATE,,100000,0,0,,Main Storage Area,,No Stock
+1436,IN800000054,COPPER BUS BAR,General Material,box,COPPER BUS BAR,,100000,0,0,,Main Storage Area,,No Stock
+1443,IN800000061,POLYCAB(1cX1sqmm Grey 100mtr coil),POLYCAB,box,POLYCAB(1cX1sqmm Grey 100mtr coil),BASIC REQUIREMENTS,100000,0,5400,Stock Available,Main Storage Area,26B,Checked
+1444,IN800000062,POLYCAB(1cX1sqmm Blue 100 mtr coil),POLYCAB,box,POLYCAB(1cX1sqmm Blue 100 mtr coil),BASIC REQUIREMENTS,100000,0,3450,Stock Available,Main Storage Area,26B,Checked
+1445,IN800000063,POLYCAB(1c X 1sqmm white 100mtr coil),POLYCAB,box,POLYCAB(1c X 1sqmm white 100mtr coil),BASIC REQUIREMENTS,100000,0,1850,Stock Available,Main Storage Area,26B,Checked
+1446,IN800000064,POLYCAB(1c X 1sqmm RED 100mtr coil),POLYCAB,box,POLYCAB(1c X 1sqmm RED 100mtr coil),BASIC REQUIREMENTS,100000,0,3900,Stock Available,Main Storage Area,26B,Checked
+1447,IN800000065,POLYCAB(1c X 2.50sqmm Blue 100 mtr coil),POLYCAB,box,POLYCAB(1c X 2.50sqmm Blue 100 mtr coil),BASIC REQUIREMENTS,100000,0,2700,Stock Available,Main Storage Area,26B,Checked
+1448,IN800000066,POLYCAB(1c X 2.50sqmm RED 100 mtr coil),POLYCAB,box,POLYCAB(1c X 2.50sqmm RED 100 mtr coil),BASIC REQUIREMENTS,100000,0,2000,Reorder,Main Storage Area,26B,Checked
+1455,IN800000073,VAISHNO (Industrial Hooter-Vh001m),General Material,box,VAISHNO (Industrial Hooter-Vh001m),BASIC REQUIREMENTS,100000,0,8,,Main Storage Area,27B,Checked
+1461,IN800000079,POLYCAB(2C X 02.50SQMM),POLYCAB,box,POLYCAB(2C X 02.50SQMM),BASIC REQUIREMENTS,100000,0,1100,Stock Available,Main Storage Area,21F,Checked
+1464,IN800000082, 8 GB RAM,General Material,box, 8 GB RAM,BASIC REQUIREMENTS,100000,0,0,,Main Storage Area,68,Checked
+1473,IN800000092,CONSOLE OP072NA,CONSOLE,box,CONSOLE OP072NA,,100000,0,4,Stock Available,Main Storage Area,,Pending
+1479,IN800000098,LG LED-TV,TV,box,LG LED-TV,,100000,0,0,,Main Storage Area,,No Stock
+1484,IN800000103,A4-HP colour Printer,Printer,box,A4-HP colour Printer,,100000,0,0,Reorder,Inventory Room 2,1,Checked
+1506,IN800000133,Mouse,General Material,box,Mouse,,100000,0,0,Reorder,Main Storage Area,,No Stock
+1510,IN800000138,POLYCAB(1cX2.50sqmm Brown 100mtr coil),POLYCAB,box,POLYCAB(1cX2.50sqmm Brown 100mtr coil),BASIC REQUIREMENTS,100000,0,2200,Reorder,Main Storage Area,26B,Checked
+1511,IN800000139,POLYCAB(1cX2.50sqmm Black 100mtr coil),POLYCAB,box,POLYCAB(1cX2.50sqmm Black 100mtr coil),BASIC REQUIREMENTS,100000,0,2150,Stock Available,Main Storage Area,26B,Checked
+1512,IN800000140,POLYCAB(1cX1sqmm Black 100mtr coil),POLYCAB,box,POLYCAB(1cX1sqmm Black 100mtr coil),BASIC REQUIREMENTS,100000,0,5200,Stock Available,Main Storage Area,26B,Checked
+1529,IN800000157,Dual Video Card,General Material,box,Dual Video Card,BASIC REQUIREMENTS,100000,0,1,,Main Storage Area,70,Checked
+1547,IN800000177,TIE CLOSURE SUPAFLEX-200MM,Cable Ties,box,TIE CLOSURE SUPAFLEX-200MM,BASIC REQUIREMENTS,100000,0,0,Reorder,Main Storage Area,, No Stock 
+1548,IN800000178,TIE CLOSURE SUPAFLEX-100MM,Cable Ties,box,TIE CLOSURE SUPAFLEX-100MM,BASIC REQUIREMENTS,100000,0,0,Reorder,Main Storage Area,25C,Checked
+1549,IN800000179,FERRULE SLEEVES(SGI)-4MM,FERRUL TUBE,box,FERRULE SLEEVES(SGI)-4MM,BASIC REQUIREMENTS,100000,0,27,,Main Storage Area,24C,Checked
+1551,IN800000181,32A DP C CURVE 10KA MCB,MCB,box,32A DP C CURVE 10KA MCB,BASIC REQUIREMENTS,100000,0,139,Stock Available,Main Storage Area,27B,Checked
+1552,IN800000182,63A DP C CURVE 10KA MCB,MCB,box,63A DP C CURVE 10KA MCB,BASIC REQUIREMENTS,100000,0,64,Stock Available,Main Storage Area,27B,Checked
+1555,IN800000185,Tubular Lugs(4sqmm),Lugs,box,Tubular Lugs(4sqmm),BASIC REQUIREMENTS,100000,0,1880,Stock Available,Main Storage Area,25C, Checked 
+1556,IN800000186,10 Sqmm Tubular lugs,Lugs,box,10 Sqmm Tubular lugs,BASIC REQUIREMENTS,100000,0,1402,Stock Available,Main Storage Area,25C, Checked 
+1557,IN800000187,POLYCAB(1cX10sqmm RED 100mtr coil),POLYCAB,box,POLYCAB(1cX10sqmm RED 100mtr coil),BASIC REQUIREMENTS,100000,0,2260,Stock Available,Main Storage Area,21F,Checked
+1558,IN800000188,POLYCAB(1cX10sqmm Black 100mtr coil),POLYCAB,box,POLYCAB(1cX10sqmm Black 100mtr coil),BASIC REQUIREMENTS,100000,0,2660,Stock Available,Main Storage Area,21F,Checked
+1559,IN800000189,POLYCAB(1cX1sqmm Brown 100 mtr coil),POLYCAB,box,POLYCAB(1cX1sqmm Brown 100 mtr coil),BASIC REQUIREMENTS,100000,0,4350,Stock Available,Main Storage Area,26B,Checked
+1560,IN800000190,POLYCAB(1cX1sqmm Orange 100 mtr coil),POLYCAB,box,POLYCAB(1cX1sqmm Orange 100 mtr coil),BASIC REQUIREMENTS,100000,0,5300,Stock Available,Main Storage Area,26B,Checked
+1563,IN800000193,DELL MONITORS(Dell P2422H 24" Monitor),DELL MONITORS,box,DELL MONITORS(Dell P2422H 24" Monitor),,100000,0,3,Reorder,Main Storage Area,,
+1564,IN800000194,TB 4-HESI (5x20) EI,TB's,box,TB 4-HESI (5x20) EI,BASIC REQUIREMENTS,100000,0,5550,Stock Available,Main Storage Area,,No Stock
+1565,IN800000195,E- UK /TB,TB's,box,E- UK /TB,BASIC REQUIREMENTS,100000,0,2444,Stock Available,Main Storage Area,25C,Checked
+1567,IN800000197,"D-TB 2,5 EI",TB's,box,"D-TB 2,5 EI",BASIC REQUIREMENTS,100000,0,5450,Stock Available,Main Storage Area,27C,Checked
+1568,IN800000198,TB 4 EI,TB's,box,TB 4 EI,BASIC REQUIREMENTS,100000,0,0,Stock Available,Main Storage Area,27B,Checked
+1569,IN800000199,TB 4-HESILA 250 EI,TB's,box,TB 4-HESILA 250 EI,BASIC REQUIREMENTS,100000,0,1600,Stock Available,Main Storage Area,27B,Checked
+1570,IN800000200,ZB 6 LGS:FORTL.ZAHLEN 1-10,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 1-10,,100000,0,2390,Stock Available,Main Storage Area,24B,Checked
+1571,IN800000201,ZB 6 LGS:FORTL.ZAHLEN 11-20,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 11-20,,100000,0,8790,Stock Available,Main Storage Area,24B,Checked
+1572,IN800000202,ZB 6 LGS:FORTL.ZAHLEN 21-30,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 21-30,,100000,0,2300,Stock Available,Main Storage Area,,No Stock
+1573,IN800000203,ZB 6 LGS:FORTL.ZAHLEN 31-40,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 31-40,,100000,0,5490,Stock Available,Main Storage Area,24B,Checked
+1574,IN800000204,ZB 6 LGS:FORTL.ZAHLEN 41-50,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 41-50,,100000,0,2190,Stock Available,Main Storage Area,24B,Checked
+1575,IN800000205,ZB 6 LGS:FORTL.ZAHLEN 51-60,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 51-60,,100000,0,2090,Stock Available,Main Storage Area,24B,Checked
+1576,IN800000206,ZB 6 LGS:FORTL.ZAHLEN 61-70,General Material,box,ZB 6 LGS:FORTL.ZAHLEN 61-70,,100000,0,1990,Stock Available,Main Storage Area,,No Stock
+1577,IN800000207,B40X100 SALZER PVC DUCTS,General Material,box,B40X100 SALZER PVC DUCTS,,100000,0,0,,Main Storage Area,,No Stock
+1580,IN800000210,B60X100 SALZER PVC DUCTS,General Material,box,B60X100 SALZER PVC DUCTS,,100000,0,0,,Main Storage Area,,No Stock
+1585,IN800000215,10A DP C CURVE 10KA MCB,MCB,box,10A DP C CURVE 10KA MCB,BASIC REQUIREMENTS,100000,0,364,Stock Available,Main Storage Area,27B,Checked
+1586,IN800000216,Fuse TB(TB4 HESI 5*20 I)KUDF4 NV ( Grey),TB's,box,Fuse TB(TB4 HESI 5*20 I)KUDF4 NV ( Grey),BASIC REQUIREMENTS,100000,0,7100,Stock Available,Main Storage Area,26B,Checked
+1587,IN800000217,UNFUSE TB(TB2.5BI)KUTM 2.5 (Grey),TB's,box,UNFUSE TB(TB2.5BI)KUTM 2.5 (Grey),BASIC REQUIREMENTS,100000,0,10900,Stock Available,Main Storage Area,26B,Checked
+1592,IN800000223,P2-FPWI-24VDC+S2LD+S2LD-B1+SHORT LINK,Relay,box,P2-FPWI-24VDC+S2LD+S2LD-B1+SHORT LINK,,100000,0,518,Stock Available,Main Storage Area,,No Stock
+1603,IN800000234,KEYBOARD,,box,KEYBOARD,,100000,0,0,,Main Storage Area,,
+1606,IN800000237,Cable Tie(CT-100MM)KSS Make*2.5MM,Cable Ties,box,Cable Tie(CT-100MM)KSS Make*2.5MM,BASIC REQUIREMENTS,100000,0,18455,Stock Available,Main Storage Area,25C,Checked
+1607,IN800000238,Cable Tie(CT-200MM)X3.6MM KSS Make,Cable Ties,box,Cable Tie(CT-200MM)X3.6MM KSS Make,BASIC REQUIREMENTS,100000,0,2780,Reorder,Main Storage Area,,No Stock
+1609,IN800000240,Spiral Sleeve 6MM(SW-6)-50Mtrs,General Material,box,Spiral Sleeve 6MM(SW-6)-50Mtrs,,100000,0,32,Stock Available,Main Storage Area,24C,Checked
+1610,IN800000241,Spiral Sleeve 9MM*25Mtrs(SW-9),General Material,box,Spiral Sleeve 9MM*25Mtrs(SW-9),BASIC REQUIREMENTS,100000,0,39,Reorder,Main Storage Area,24C,Checked
+1624,IN800000255,ANTIVIRUS FOR PC,Software,box,ANTIVIRUS FOR PC,,100000,0,1,Reorder,Main Storage Area,,Pending
+1625,IN800000256,MC(1200MM(W)X2000MM(H)X800MM(D)),Auxiliary Cabinet,box,MC(1200MM(W)X2000MM(H)X800MM(D)),,100000,0,60,Stock Available,Main Storage Area,,Pending
+1626,IN800000257,SC(800MM(W)X2000MM(H)X800MM(D)),Systmes Cabinet,box,SC(800MM(W)X2000MM(H)X800MM(D)),,100000,0,17,Stock Available,Main Storage Area,,Pending
+1627,IN800000258,A3-Dot Metrix Printer,Printer,box,A3-Dot Metrix Printer,,100000,0,0,Reorder,Inventory Room 2,1,Checked
+1634,IN800000265,TB 4 MT EI,TB's,box,TB 4 MT EI,BASIC REQUIREMENTS,100000,0,3850,Stock Available,Main Storage Area,27C,Checked
+1636,IN800000267,D-TB 4/10 EI,TB's,box,D-TB 4/10 EI,BASIC REQUIREMENTS,100000,0,1900,Reorder,Main Storage Area,27C,Checked
+1642,IN800000273,ZB5 MARKER WITH PRINTING,General Material,box,ZB5 MARKER WITH PRINTING,,100000,0,0,,Main Storage Area,,No Stock
+1643,IN800000274,POLYCAB(1cX4sqmm Brown 100mtr coil),POLYCAB,box,POLYCAB(1cX4sqmm Brown 100mtr coil),BASIC REQUIREMENTS,100000,0,1180,Stock Available,Main Storage Area,26B,Checked
+1644,IN800000275,POLYCAB(1cX4sqmm Blue100mtr coil),POLYCAB,box,POLYCAB(1cX4sqmm Blue100mtr coil),BASIC REQUIREMENTS,100000,0,4080,Stock Available,Main Storage Area,26B,Checked
+1645,IN800000276,POLYCAB(1c X 2.50sqmm Y/G 100 mtr coil),POLYCAB,box,POLYCAB(1c X 2.50sqmm Y/G 100 mtr coil),BASIC REQUIREMENTS,100000,0,2200,Stock Available,Main Storage Area,26B,Checked
+1646,IN800000277,2.50 Sqmm Tubular lugs,Lugs,box,2.50 Sqmm Tubular lugs,BASIC REQUIREMENTS,100000,0,0,Stock Available,Main Storage Area,25C,Checked
+1662,IN800000294, ARMOURED OFC CABLE (6 CORE),Armored & Unarmored,box, ARMOURED OFC CABLE (6 CORE),,100000,0,4797,,Main Storage Area,,No Stock
+1663,IN800000295,Dell PowerEdge T40 Server,Dell CPU,box,Dell PowerEdge T40 Server,,100000,0,1,,Main Storage Area,,No Stock
+1665,IN800000297,"1cx16Sqmm,XLPE,GI Armoured&FRLS Sheathed",Armored & Unarmored,box,"1cx16Sqmm,XLPE,GI Armoured&FRLS Sheathed",,100000,0,2022,Reorder,Main Storage Area,Ground Floor,Checked
+1668,IN800000300,"DP MCB COMB BUS-BAR, SHORT LINK(DP)",MCB,box,"DP MCB COMB BUS-BAR, SHORT LINK(DP)",,100000,0,3,Reorder,Main Storage Area,,No Stock
+1670,IN800000302,POLYCAB(1c X 4sqmm Y/G 100 mtr coil),POLYCAB,box,POLYCAB(1c X 4sqmm Y/G 100 mtr coil),BASIC REQUIREMENTS,100000,0,4290,Stock Available,Main Storage Area,26C / 21F,Checked
+1671,IN800000304,A4-HP Colour Inkjet Printer,Printer,box,A4-HP Colour Inkjet Printer,,100000,0,3,Reorder,Inventory Room 2,1,Checked
+1678,IN800000311,OP075,CONSOLE,box,OP075-CONTROL DESK WITH DUAL MDF TOP,,100000,0,15,Stock Available,Main Storage Area,Ground Floor,Checked
+1679,IN800000312,POLYCAB(1cX2.50sqmm Green 100mtr coil),POLYCAB,box,POLYCAB(1cX2.50sqmm Green 100mtr coil),BASIC REQUIREMENTS,100000,0,2100,Stock Available,Main Storage Area,26C ,Checked
+1681,IN800000314,KN5 PRINTED MARKER,General Material,box,KN5 PRINTED MARKER,,100000,0,500,Stock Available,Main Storage Area,,No Stock
+1682,IN800000315,6A DP C CURVE 10KA MCB,MCB,box,6A DP C CURVE 10KA MCB,BASIC REQUIREMENTS,100000,0,29,Reorder,Main Storage Area,27B,Checked
+1684,IN800000317,2.5sqmmE6 Crimping Copper  RING Typ lug),Lugs,box,2.5sqmmE6 Crimping Copper  RING Typ lug),BASIC REQUIREMENTS,100000,0,1300,Reorder,Main Storage Area,25C,Checked
+1692,IN800000326,SOCKET PDU,General Material,box,SOCKET PDU,,100000,0,34,Stock Available,Main Storage Area,,Checked
+1699,IN800000333,HDMI CABLE(15Mtr),General Material,box,HDMI CABLE(15Mtr),,100000,0,0,Reorder,Main Storage Area,,Checked
+1714,IN800000349,Spiral Sleeve 6MM*50Mtrs(SW-6-SGI),General Material,box,Spiral Sleeve 6MM*50Mtrs(SW-6-SGI),BASIC REQUIREMENTS,100000,0,26,Stock Available,Main Storage Area,24C,Checked
+1720,IN800000356,Din35X15X2MTRSXSLTXSMV(2Mtrs),General Material,box,Din35X15X2MTRSXSLTXSMV(2Mtrs),,100000,0,0,,Main Storage Area,,No Stock
+1722,IN800000358,HP A4 COLOUR LASER JET PRINTER,Printer,box,HP A4 COLOUR LASER JET PRINTER,,100000,0,2,Stock Available,Inventory Room 2,1,Checked
+1723,IN800000359,CANON A3+A4 MFP (IRC)PRINTER,General Material,box,CANON A3+A4 MFP (IRC)PRINTER,,100000,0,0,,Main Storage Area,,No Stock
+1736,IN800000372,KN5.5 PRINTED MARKER,General Material,box,KN5.5 PRINTED MARKER,,100000,0,700,Reorder,Main Storage Area,,No Stock
+1740,IN800000376,Side Panels,General Material,box,Side Panels,,100000,0,26,Stock Available,Main Storage Area,Ground Floor,Checked
+1741,IN800000377,"2cx16Sqmm,XLPE,PVC Armoured Sheathed",Armored & Unarmored,box,"2cx16Sqmm,XLPE,PVC Armoured Sheathed",,100000,0,647,Stock Available,Main Storage Area,Ground Floor,Checked
+1744,IN800000381,6.0 Sqmm Tublar Single End Sleeves Lugs,Lugs,box,6.0 Sqmm Tublar Single End Sleeves Lugs,BASIC REQUIREMENTS,100000,0,1250,Reorder,Main Storage Area,25C, Checked 
+1764,IN800000402,TB 4-HESILA 24(5X20)EI,TB's,box,TB 4-HESILA 24(5X20)EI,BASIC REQUIREMENTS,100000,0,3750,Stock Available,Main Storage Area,27C,Checked
+1766,IN800000404,PROFIBUS Armored Cable,Armored & Unarmored,box,PROFIBUS Armored Cable,,100000,0,250,,Main Storage Area,,No Stock
+1780,IN800000418,Convertors  (DP TO HDMI),General Material,box,Convertors  (DP TO HDMI),,100000,0,0,,Main Storage Area,,No Stock
+1781,IN800000419,PG9 POLYMIDE CABLE GLAND,POLYCAB,box,PG9 POLYMIDE CABLE GLAND,BASIC REQUIREMENTS,100000,0,1255,Stock Available,Main Storage Area,25C,Checked
+1784,IN800000422,POLYCAB(1c X 16sqmm Y/G 100 mtr coil),POLYCAB,box,POLYCAB(1c X 16sqmm Y/G 100 mtr coil),BASIC REQUIREMENTS,100000,0,1650,Stock Available,Main Storage Area,21F,Checked
+1788,IN800000429,1 Sqmm Tubular Twin End Sleeves lugs,Lugs,box,1 Sqmm Tubular Twin End Sleeves lugs,BASIC REQUIREMENTS,100000,0,21075,Stock Available,Main Storage Area,25C, Checked 
+1795,IN800000436,PG11 POLYMIDE CABLE GLAND,POLYCAB,box,PG11 POLYMIDE CABLE GLAND,BASIC REQUIREMENTS,100000,0,300,Stock Available,Main Storage Area,25C,Checked
+1797,IN800000438,POLYCAB(1c X0.75 sqmm Blue 100 mtr coil),POLYCAB,box,POLYCAB(1c X0.75 sqmm Blue 100 mtr coil),BASIC REQUIREMENTS,100000,0,3600,Stock Available,Main Storage Area,27B,Checked
+1799,IN800000440,POLYCAB(1c X 0.75sqmm white 100mtr coil),POLYCAB,box,POLYCAB(1c X 0.75sqmm white 100mtr coil),BASIC REQUIREMENTS,100000,0,4300,Stock Available,Main Storage Area,27B,Checked
+1800,IN800000441,POLYCAB(1c X 0.75sqmm Grey 100mtr coil),POLYCAB,box,POLYCAB(1c X 0.75sqmm Grey 100mtr coil),BASIC REQUIREMENTS,100000,0,1400,Stock Available,Main Storage Area,27B,Checked
+1802,IN800000443,POLYCAB(1c X0.75sqmmYellow 100mtr coil),POLYCAB,box,POLYCAB(1c X0.75sqmmYellow 100mtr coil),BASIC REQUIREMENTS,100000,0,2200,Stock Available,Main Storage Area,27B,Checked
+1804,IN800000445,POLYCAB(1c X0.75sqmm Brown 100mtr coil),POLYCAB,box,POLYCAB(1c X0.75sqmm Brown 100mtr coil),BASIC REQUIREMENTS,100000,0,4100,Stock Available,Main Storage Area,27B,Checked
+1805,IN800000446,POLYCAB(1c X0.75sqmm Black 100mtr coil),POLYCAB,box,POLYCAB(1c X0.75sqmm Black 100mtr coil),BASIC REQUIREMENTS,100000,0,4600,Stock Available,Main Storage Area,27B,Checked
+1806,IN800000447,0.75Sqmm Tublar Single End Sleeves Lugs,Lugs,box,0.75Sqmm Tublar Single End Sleeves Lugs,BASIC REQUIREMENTS,100000,0,17800,Stock Available,Main Storage Area,25C,Checked
+1817,IN800000459,FUSE TB WITH LED (KUDF4 AD 230V),TB's,box,FUSE TB WITH LED (KUDF4 AD 230V),BASIC REQUIREMENTS,100000,0,5690,Stock Available,Main Storage Area,26B,Checked
+1818,IN800000460,FUSE TB WITH LED (KUDF4 AD 24V),TB's,box,FUSE TB WITH LED (KUDF4 AD 24V),BASIC REQUIREMENTS,100000,0,5480,Stock Available,Main Storage Area,26B,Checked
+1820,IN800000462,2A DP C CURVE 10KA MCB,MCB,box,2A DP C CURVE 10KA MCB,BASIC REQUIREMENTS,100000,0,179,Stock Available,Main Storage Area,27B,Checked
+1824,IN800000468,POLYCAB(1cX2.50sqmmYELLOW 100 mtr coil),POLYCAB,box,POLYCAB(1cX2.50sqmmYELLOW 100 mtr coil),BASIC REQUIREMENTS,100000,0,2000,Stock Available,Main Storage Area,26B,Checked
+1826,IN800000470,HDMI TO VGA CONVERTER,General Material,box,HDMI TO VGA CONVERTER,,100000,0,3,Stock Available,Main Storage Area,70,Checked
+1833,IN800000477,Modbus Cable (Armoured Cable ),Armored & Unarmored,box,Modbus Cable (Armoured Cable ),,100000,0,2400,Reorder,Main Storage Area,Ground Floor,Checked
+1835,IN800000479, Markers 2.5sqmm Printed KN5  (1 to 10),General Material,box, Markers 2.5sqmm Printed KN5.5 (1 to 10),,100000,0,3957,Stock Available,Main Storage Area,27B,Checked
+1836,IN800000480,Markers 2.5sqmm Printed KN5  (11 to 20),General Material,box,Markers 2.5sqmm Printed KN5.5 (11 to 20),,100000,0,4979,Stock Available,Main Storage Area,27B,Checked
+1837,IN800000481,Markers 2.5sqmm Printed KN5  (21 to 30),General Material,box,Markers 2.5sqmmPrinted KN5.5  (21 to 30),,100000,0,5372,Stock Available,Main Storage Area,27B,Checked
+1838,IN800000482,Markers 2.5sqmm Printed KN5  (31 to 40),General Material,box,Markers2.5sqmm Printed KN5.5  (31 to 40),,100000,0,5735,Stock Available,Main Storage Area,27B,Checked
+1839,IN800000483,Markers 2.5sqmm Printed KN5  (41 to 50),General Material,box,Markers 2.5sqmmPrinted KN5.5  (41 to 50),,100000,0,5982,Stock Available,Main Storage Area,27B,Checked
+1840,IN800000484,Markers 2.5sqmm Printed KN5  (51 to 60),General Material,box,Markers 2.5sqmmPrinted KN5.5  (51 to 60),,100000,0,5182,Stock Available,Main Storage Area,27B,Checked
+1841,IN800000485,Markers 2.5sqmm Printed KN5 (61 to 70),General Material,box,Markers2.5sqmm Printed KN5.5 (61 to 70),,100000,0,4082,Stock Available,Main Storage Area,27B,Checked
+1849,IN800000493,OP075 MINI ,CONSOLE,box,OP075 MINI CONTROL DESK WITH MDF TOP,,100000,0,1,Stock Available,Main Storage Area,Ground Floor,Checked
+1853,IN800000497,RJ45 Connector with boots,General Material,box,RJ45 Connector with boots,,100000,0,0,,Main Storage Area,,No Stock
+1865,IN800000513,DELL DESKTOP (5000MT ),DELL DESKTOP,box,DELL DESKTOP (5000MT ),,100000,0,6,Reorder,Main Storage Area,,
+1868,IN800000516,SLOW BLOW FUSE (100 MA),Glass fuse,box,SLOW BLOW FUSE (100 MA),BASIC REQUIREMENTS,100000,0,10485,Stock Available,Main Storage Area,26B, Checked 
+1869,IN800000517,SLOW BLOW FUSE (500 MA),Glass fuse,box,SLOW BLOW FUSE (500 MA),BASIC REQUIREMENTS,100000,0,10087,Stock Available,Main Storage Area,26B,Checked
+1870,IN800000518,SLOW BLOW FUSE (1A),Glass fuse,box,SLOW BLOW FUSE (1A),BASIC REQUIREMENTS,100000,0,9225,Reorder,Main Storage Area,26B,Checked
+1871,IN800000519,SLOW BLOW FUSE (2A),Glass fuse,box,SLOW BLOW FUSE (2A),BASIC REQUIREMENTS,100000,0,9552,Stock Available,Main Storage Area,26B,Checked
+1872,IN800000520,Conduit (pvc flexible Pipe)-2" Inch,General Material,box,Conduit (pvc flexible Pipe)-2" Inch,,100000,0,55,Stock Available,Main Storage Area,Ground Floor,Pending
+1873,IN800000521,CAT5-E 15Mtrs Cable (Blue),Network cable,box,CAT5-E 15Mtrs Cable (Blue),,100000,0,45,Stock Available,Main Storage Area,20C, Checked 
+1880,IN800000528,communication cable CAT5-E (Grey),Network cable,box,communication cable CAT5-E (Grey),,100000,0,0,,Main Storage Area,,No Stock
+1882,IN800000530,LG LED-TV (55" INCH),TV,box,LG LED-TV (55" INCH),,100000,0,0,,Main Storage Area,,No Stock
+1886,IN800000534,CONSOLE (Channel tray 5Amps PDU Fan),CONSOLE,box,CONSOLE (Channel tray 5Amps PDU Fan),,100000,0,0,Reorder,Main Storage Area,,Pending
+1888,IN800000537,Spiral Wrapping Sleeve 3/8"(9MM) 25Mtrs,General Material,box,Spiral Wrapping Sleeve 3/8"(9MM) 25Mtrs,,100000,0,5,Stock Available,Main Storage Area,24C,Checked
+1890,IN800000543,MARKING FERRULES 7 MM (Roll ),FERRUL TUBE,box,MARKING FERRULES 7 MM (Roll ),BASIC REQUIREMENTS,100000,0,18,,Main Storage Area,24C,Checked
+1891,IN800000545,6A SP MCB,MCB,box,6A SP MCB,BASIC REQUIREMENTS,100000,0,65,,Main Storage Area,27B,Checked
+1892,IN800000546,20A SP MCB,MCB,box,20A SP MCB,BASIC REQUIREMENTS,100000,0,30,,Main Storage Area,27B,Checked
+1896,IN800000551,50mm (25Kg)CU bonded electrode compound,General Material,box,50mm (25Kg)CU bonded electrode compound,,100000,0,0,Reorder,Main Storage Area,,No Stock
+1897,IN800000552,Backfill compound(25 kg),General Material,box,Backfill compound(25 kg),,100000,0,8,Reorder,Main Storage Area,,No Stock
+1898,IN800000553,100 Mbps MULTIMODE SFP MODULE (Syrotech),General Material,box,100 Mbps MULTIMODE SFP MODULE (Syrotech),,100000,0,107,Reorder,Main Storage Area,,Checked
+1899,IN800000554,ST MULTIMODE 50/125um buffer Pigtails,OFC - ST-Pigtail,box,ST MULTIMODE 50/125um buffer Pigtails,,100000,0,159,,Main Storage Area,,No Stock
+1900,IN800000555,ST-LC  MULTIMODE  DUPLEX PATCH CORD,OFC - ST-LC,box,ST-LC  MULTIMODE  DUPLEX PATCH CORD,,100000,0,0,,Main Storage Area,,No Stock
+1901,IN800000556,CAT5-E 15Mtrs Cable (GREY),Network cable,box,CAT5-E 15Mtrs Cable (GREY),,100000,0,37,Reorder,Main Storage Area,20C, Checked 
+1907,IN800000562,BOOT LUGS 4.00MM2/10MM,Lugs,box,BOOT LUGS 4.00MM2/10MM-GREY,BASIC REQUIREMENTS,100000,0,675,Stock Available,Main Storage Area,25C,Checked
+1908,IN800000563,BOOT LUGS 10.0MM2/12MM,Lugs,box,BOOT LUGS 10.0MM2/12MM,BASIC REQUIREMENTS,100000,0,500,Stock Available,Main Storage Area,25C,Checked
+1909,IN800000564,BOOT LUGS 2.50MM2/8MM,Lugs,box,BOOT LUGS 2.50MM2/8MM-blue,BASIC REQUIREMENTS,100000,0,2000,Stock Available,Main Storage Area,25C,Checked
+1912,IN800000567,Cable Tie(CT-150*3.6)KSS Make*3.6MM,Cable Ties,box,Cable Tie(CT-150*3.6)KSS Make*3.6MM,BASIC REQUIREMENTS,100000,0,7766,Stock Available,Main Storage Area,25C,Checked
+1920,IN800000577,10 Sqmm TB (KUT 10),TB's,box,10 Sqmm TB (KUT 10),BASIC REQUIREMENTS,100000,0,982,Reorder,Main Storage Area,27B,Checked
+1924,IN800000581,SPLCabinet(800MM(W)X2000MM(H)X800MM(D)),Special Systmes Cabinet,box,SPLCabinet(800MM(W)X2000MM(H)X800MM(D)),,100000,0,10,Stock Available,Main Storage Area,,Checked
+1925,IN800000587,CAT6 3Mtrs Cable (BLUE),Network cable,box,CAT6 3Mtrs Cable (BLUE),,100000,0,34,Stock Available,Main Storage Area,20C, Checked 
+1926,IN800000588,CAT6 3Mtrs Cable (GREY),Network cable,box,CAT6 3Mtrs Cable (GREY),,100000,0,34,Stock Available,Main Storage Area,20C, Checked 
+1927,IN800000589,CAT6 10Mtrs Cable (BLUE),Network cable,box,CAT6 10Mtrs Cable (BLUE),,100000,0,95,Stock Available,Main Storage Area,20C, Checked 
+1928,IN800000590,CAT6 10Mtrs Cable (GREY),Network cable,box,CAT6 10Mtrs Cable (GREY),,100000,0,114,Stock Available,Main Storage Area,20C, Checked 
+1929,IN800000591,CAT6 1Mtrs Cable (GREY),Network cable,box,CAT6 1Mtrs Cable (GREY),,100000,0,88,Stock Available,Main Storage Area,20C, Checked 
+1930,IN800000592,CAT6 1Mtrs Cable (BLUE),Network cable,box,CAT6 1Mtrs Cable (BLUE),,100000,0,88,Stock Available,Main Storage Area,20C, Checked 
+1931,IN800000593,CAT6 30Mtrs Cable (BLUE),Network cable,box,CAT6 30Mtrs Cable (BLUE),,100000,0,43,Stock Available,Main Storage Area,20C, Checked 
+1932,IN800000594,CAT6 30Mtrs Cable (GREY),Network cable,box,CAT6 30Mtrs Cable (GREY),,100000,0,44,Stock Available,Main Storage Area,20C, Checked 
+1933,IN800000595,CAT6 20Mtrs Cable (GREY),Network cable,box,CAT6 20Mtrs Cable (GREY),,100000,0,52,Stock Available,Main Storage Area,20C, Checked 
+1934,IN800000596,CAT6 20Mtrs Cable (BLUE),Network cable,box,CAT6 20Mtrs Cable (BLUE),,100000,0,50,Stock Available,Main Storage Area,20C, Checked 
+1935,IN800000597,CAT6 2Mtrs Cable (GREY),Network cable,box,CAT6 2Mtrs Cable (GREY),,100000,0,30,Stock Available,Main Storage Area,20C, Checked 
+1936,IN800000598,CAT6 2Mtrs Cable (blue),Network cable,box,CAT6 2Mtrs Cable (blue),,100000,0,46,Stock Available,Main Storage Area,20C, Checked 
+1937,IN800000599,CAT6 5Mtrs Cable (blue),Network cable,box,CAT6 5Mtrs Cable (blue),,100000,0,30,,Main Storage Area,20C, Checked 
+1938,IN800000600,CAT6 5Mtrs Cable (Grey),Network cable,box,CAT6 5Mtrs Cable (Grey),,100000,0,38,,Main Storage Area,20C, Checked 
+1939,IN800000601,SSD SATA  HARD DISK drive,General Material,box,SSD SATA  HARD DISK drive,,100000,0,0,,Main Storage Area,,No Stock
+1942,IN800000605,HDMI TO HDMI 4K 20 MTR,General Material,box,HDMI TO HDMI 4K 20 MTR,,100000,0,0,Reorder,Main Storage Area,71,Checked
+1951,IN800000615,CAT6 6Mtrs Cable (Grey),Network cable,box,CAT6 6Mtrs Cable (Grey),,100000,0,43,Stock Available,Main Storage Area,20C, Checked 
+1952,IN800000616,CAT6 6Mtrs Cable (blue),Network cable,box,CAT6 6Mtrs Cable (blue),,100000,0,42,Stock Available,Main Storage Area,20C, Checked 
+1959,IN800000623, SELF DRILLING SCREW 10*20,electrician accessories,box, SELF DRILLING SCREW 10*20,,100000,0,0,,Main Storage Area,,No Stock
+1970,IN800000634,CAT6 20Mtrs Cable (GREEN),Network cable,box,CAT6 20Mtrs Cable (GREEN),,100000,0,34,,Main Storage Area,,No Stock
+1972,IN800000636,POLYCAB(1c X0.75sqmm RED 100mtr coil),POLYCAB,box,POLYCAB(1c X0.75sqmm RED 100mtr coil),BASIC REQUIREMENTS,100000,0,3000,Stock Available,Main Storage Area,27C,Checked
+1973,IN800000637,POLYCAB(1cX2.50sqmm ORANGE 100mtr coil),POLYCAB,box,POLYCAB(1cX2.50sqmm ORANGE 100mtr coil),BASIC REQUIREMENTS,100000,0,1900,Stock Available,Main Storage Area,26B,Checked
+1974,IN800000638,POLYCAB(1cX2.50sqmm WHITE 100mtr coil),POLYCAB,box,POLYCAB(1cX2.50sqmm WHITE 100mtr coil),BASIC REQUIREMENTS,100000,0,1900,Stock Available,Main Storage Area,26B,Checked
+1975,IN800000640,SC-STMM50/125umOM2LSZH3mmDXPATCH CORD,OFC - SC-ST,box,SC-STMM50/125umOM2LSZH3mmDXPATCH CORD,,100000,0,165,Stock Available,Main Storage Area,72,Checked
+1979,IN800000645, FERRULES TUBE 2.50MM (1Roll = 100 MTRS),FERRUL TUBE,box, FERRULES TUBE 2.50MM (1Roll = 100 MTRS),BASIC REQUIREMENTS,100000,0,30,Stock Available,Main Storage Area,24C,Checked
+1980,IN800000646, FERRULES TUBE 4.2MM (1Roll = 100 MTRS),FERRUL TUBE,box, FERRULES TUBE 4.2MM (1Roll = 100 MTRS),BASIC REQUIREMENTS,100000,0,11,,Main Storage Area,24C,Checked
+1983,IN800000649,POLYCAB(1cX1sqmm Yellow 100mtr coil),POLYCAB,box,POLYCAB(1cX1sqmm Yellow 100mtr coil),BASIC REQUIREMENTS,100000,0,1200,Stock Available,Main Storage Area,,No Stock
+1989,IN800000655,(SF)HP A3 COLOUR LASERJET PRINTER,General Material,box,(SF)HP A3 COLOUR LASERJET PRINTER,,100000,0,1,Reorder,Main Storage Area,,No Stock
+1990,IN800000656,CAT6 2.5 Mtrs Cable (BLUE),Network cable,box,CAT6 2.5 Mtrs Cable (BLUE),,100000,0,50,Reorder,Main Storage Area,20B,Checked
+1991,IN800000657,CAT6 2.5 Mtrs Cable (GREY),Network cable,box,CAT6 2.5 Mtrs Cable (GREY),,100000,0,64,Reorder,Main Storage Area,20B,Checked
+1992,IN800000658,POLYCAB(1cX4sqmm Red 100mtr coil),POLYCAB,box,POLYCAB(1cX4sqmm Red 100mtr coil),BASIC REQUIREMENTS,100000,0,1380,Stock Available,Main Storage Area,26B,Checked
+1993,IN800000659,POLYCAB(1cX4sqmm black 100mtr coil),POLYCAB,box,POLYCAB(1cX4sqmm black 100mtr coil),BASIC REQUIREMENTS,100000,0,3280,Stock Available,Main Storage Area,26B,Checked
+1995,IN800000661,TerminalStripMarkerCarrierKLM-A(1004348),General Material,box,TerminalStripMarkerCarrierKLM-A(1004348),,100000,0,2290,Stock Available,Main Storage Area,27C,Checked
+1998,IN800000664,CAT6 1.5 Mtrs Cable (BLUE),Network cable,box,CAT6 1.5 Mtrs Cable (BLUE),,100000,0,41,Stock Available,Main Storage Area,20C, Checked 
+1999,IN800000665,CAT6 1.5 Mtrs Cable (GREY),Network cable,box,CAT6 1.5 Mtrs Cable (GREY),,100000,0,43,Stock Available,Main Storage Area,20C, Checked 
+2004,IN800000670,SLOW BLOW FUSE (200 MA),Glass fuse,box,SLOW BLOW FUSE (200 MA),BASIC REQUIREMENTS,100000,0,11000,Stock Available,Main Storage Area,26B,Checked
+2005,IN800000671,SCGLASSDOOR(800MM(W)X2000MM(H)X800MM(D)),Systmes Cabinet Glass Door,box,SCGLASSDOOR(800MM(W)X2000MM(H)X800MM(D)),,100000,0,0,,Main Storage Area,,No Stock
+2006,IN800000672,POLYCAB(1c X 1.5sqmm Red 100mtr coil),POLYCAB,box,POLYCAB(1c X 1.5sqmm Red 100mtr coil),BASIC REQUIREMENTS,100000,0,50,Stock Available,Main Storage Area,,No Stock
+2007,IN800000673,POLYCAB(1c X 1.5sqmm Black 100mtr coil),POLYCAB,box,POLYCAB(1c X 1.5sqmm Black 100mtr coil),BASIC REQUIREMENTS,100000,0,50,Stock Available,Main Storage Area,,No Stock
+2008,IN800000674,POLYCAB(1c X 16sqmm Red 100 mtr coil),POLYCAB,box,POLYCAB(1c X 16sqmm Red 100 mtr coil),BASIC REQUIREMENTS,100000,0,500,Stock Available,Main Storage Area,21F,Checked
+2009,IN800000675,POLYCAB(1c X 16sqmm black 100 mtr coil),POLYCAB,box,POLYCAB(1c X 16sqmm black 100 mtr coil),BASIC REQUIREMENTS,100000,0,700,Stock Available,Main Storage Area,21F,Checked
+2011,IN800000678,POLYCAB(1cX4sqmm white 100mtr coil),POLYCAB,box,POLYCAB(1cX4sqmm white 100mtr coil),BASIC REQUIREMENTS,100000,0,3400,Reorder,Main Storage Area,26B,Checked
+2012,IN800000679,DELL DESKTOP (5000MT ) WITH SSD DRIVES,General Material,box,DELL DESKTOP (5000MT ) WITH SSD DRIVES,,100000,0,0,,Main Storage Area,,No Stock
+2013,IN800000680,MF A4-HP Colour Inkjet Printer,General Material,box,MF A4-HP Colour Inkjet Printer,,100000,0,0,,Main Storage Area,,No Stock
+2019,IN800000686,POLYCAB(1c X 0.75sqm Orange 100mtr coil),POLYCAB,box,POLYCAB(1c X 0.75sqm Orange 100mtr coil),BASIC REQUIREMENTS,100000,0,3100,Stock Available,Main Storage Area,27B,Checked
+2020,IN800000687,LED INDICATING LAMP BAREL 220VAC RED,General Material,box,LED INDICATING LAMP BAREL 220VAC RED,,100000,0,7,Stock Available,Main Storage Area,74, Checked 
+2022,IN800000689,"TB 4 sqmm , NON FUSE TB-TC 4",TB's,box,"TB 4 sqmm , NON FUSE TB-TC 4",BASIC REQUIREMENTS,100000,0,6960,Stock Available,Main Storage Area,27B,Checked
+2023,IN800000690,Shorting Link for TC 4 (10 Way)SLPU6-10W,General Material,box,Shorting Link for TC 4 (10 Way)SLPU6-10W,,100000,0,200,Stock Available,Main Storage Area,,No Stock
+2024,IN800000691,Digital VAFMeter VAF391(Volt Amp Meter),General Material,box,Digital VAFMeter VAF391(Volt Amp Meter),,100000,0,2,Stock Available,Main Storage Area,,No Stock
+2025,IN800000692,RCT Series 100/5 AVA Current Transformer,General Material,box,RCT Series 100/5 AVA Current Transformer,,100000,0,0,,Main Storage Area,,No Stock
+2030,IN800000697,POLYCAB(1cX6sqmm Black 100mtr coil),POLYCAB,box,POLYCAB(1cX6sqmm Black 100mtr coil),BASIC REQUIREMENTS,100000,0,500,Stock Available,Main Storage Area,,No Stock
+2034,IN800000701,SOPHOS FIREWALL,FIREWALL,box,SOPHOS FIREWALL,,100000,0,0,Reorder,Main Storage Area,,No Stock
+2035,IN800000702,FIREWALL SUBCRIPTION (3 YEARS),FIREWALL,box,FIREWALL SUBCRIPTION (3 YEARS),,100000,0,0,Reorder,Main Storage Area,,No Stock
+2040,IN800000707,CAT6 12Mtrs Cable (Grey),Network cable,box,CAT6 12Mtrs Cable (Grey),,100000,0,70,Stock Available,Main Storage Area,20B,Checked
+2041,IN800000708,CAT6 12Mtrs Cable (BLUE),Network cable,box,CAT6 12Mtrs Cable (BLUE),,100000,0,77,Stock Available,Main Storage Area,20B,Checked
+2042,IN800000709,CAT6 80Mtrs Cable (BLUE),Network cable,box,CAT6 80Mtrs Cable (BLUE),,100000,0,16,Stock Available,Main Storage Area,20B,Checked
+2043,IN800000710,CAT6 80Mtrs Cable (GREY),Network cable,box,CAT6 80Mtrs Cable (GREY),,100000,0,18,Stock Available,Main Storage Area,20B,Checked
+2044,IN800000711,FERRULES TUBE 4.5MM (1Roll = 100 MTRS),FERRUL TUBE,box,FERRULES TUBE 4.5MM (1Roll = 100 MTRS),BASIC REQUIREMENTS,100000,0,14,Stock Available,Main Storage Area,24C,Checked
+2045,IN800000712,FERRULES TUBE 3.5MM (1Roll = 100 MTRS),FERRUL TUBE,box,FERRULES TUBE 3.5MM (1Roll = 100 MTRS),BASIC REQUIREMENTS,100000,0,0,Stock Available,Main Storage Area,24C,Checked
+2046,IN800000714,TIE CLOSURE SUPAFLEX-300MM,Cable Ties,box,TIE CLOSURE SUPAFLEX-300MM,BASIC REQUIREMENTS,100000,0,2887,Stock Available,Main Storage Area,25C,Checked
+2047,IN800000715,TIE CLOSURE SUPAFLEX-450MM,Cable Ties,box,TIE CLOSURE SUPAFLEX-450MM,,100000,0,100,Stock Available,Main Storage Area,,No Stock
+2048,IN800000716,Cable Tie(CT-0.75MM)-100Nos 1Packet,Cable Ties,box,Cable Tie(CT-0.75MM)-100Nos 1Packet,BASIC REQUIREMENTS,100000,0,9891,Stock Available,Main Storage Area,25C,Checked
+2051,IN800000719,LIQUID PAIN SPRAY (RAL 7035),General Material,box,LIQUID PAIN SPRAY (RAL 7035),,100000,0,0,,Main Storage Area,,No Stock
+2052,IN800000720,CAT6 25Mtrs Cable (GREY),Network cable,box,CAT6 25Mtrs Cable (GREY),,100000,0,12,Stock Available,Main Storage Area,20C, Checked 
+2053,IN800000721,CAT6 25Mtrs Cable (BLUE),Network cable,box,CAT6 25Mtrs Cable (BLUE),,100000,0,11,Stock Available,Main Storage Area,20C, Checked 
+2056,IN800000724,GPS EQUIPMENT WITH SLAVE CLOCK,GPS,box,GPS EQUIPMENT WITH SLAVE CLOCK,,100000,0,0,Reorder,Main Storage Area,,No Stock
+2058,IN800000726,WEB BASED MONITORING SYSTEM,General Material,box,WEB BASED MONITORING SYSTEM,,100000,0,0,,Main Storage Area,,No Stock
+2065,IN800000734,CAT6 40Mtrs Cable (BLUE),Network cable,box,CAT6 40Mtrs Cable (BLUE),,100000,0,16,Stock Available,Main Storage Area,20B,Checked
+2066,IN800000735,CAT6 50Mtrs Cable (BLUE),Network cable,box,CAT6 50Mtrs Cable (BLUE),,100000,0,20,Stock Available,Main Storage Area,20C,Checked
+2067,IN800000738,CAT6 100 Mtrs Cable (BLUE),Network cable,box,CAT6 100 Mtrs Cable (BLUE),,100000,0,5,Stock Available,Main Storage Area,20B,Checked
+2068,IN800000739,DELL OPTIPLEX(7000MT )WITH 2TB SATA HDD,Dell CPU,box,DELL OPTIPLEX(7000MT )WITH 2TB SATA HDD,,100000,0,0,,Main Storage Area,,
+2071,IN800000742,DELL DESKTOP (5000MT )WITH 16 GB RAM,DELL DESKTOP,box,DELL DESKTOP (5000MT )WITH 16 GB RAM,,100000,0,0,Reorder,Main Storage Area,,No Stock
+2073,IN800000744,CONSOLE OP072-PCX-P-A for printer,CONSOLE,box,CONSOLE OP072-PCX-P-A for printer,,100000,0,1,Reorder,Main Storage Area,1St Floor,Checked
+2074,IN800000745,CONSOLEOP072-PCX-P-L1-A single stand,CONSOLE,box,CONSOLEOP072-PCX-P-L1-A single stand,,100000,0,0,Reorder,Main Storage Area,1St Floor,Checked
+2075,IN800000746,CONSOLEOP072-PCX-P-L2-A Dual stand,CONSOLE,box,CONSOLEOP072-PCX-P-L2-A Dual stand,,100000,0,2,Reorder,Main Storage Area,Ground Floor / 1St Floor,Checked
+2077,IN800000748,PANEL PSframewithaccess-1200WX2000HX800D,PANEL PS frame with accesso,box,PANEL PSframewithaccess-1200WX2000HX800D,,100000,0,0,Reorder,Main Storage Area,,No Stock
+2080,IN800000751,"POWER SUPPLY 5A, 5VDC, CP SNT 25W 5V 5A",General Material,box,"POWER SUPPLY 5A, 5VDC, CP SNT 25W 5V 5A",,100000,0,0,,Main Storage Area,,No Stock
+2089,IN800000760,DELL DESKTOP(5000MT)16 GBRAM+1TB SDD,DELL DESKTOP,box,DELL DESKTOP(5000MT)16 GBRAM+1TB SDD,,100000,0,0,Reorder,Main Storage Area,,
+2091,IN800000762,HP A4 PRINTER LASER MFP 136W,Printer,box,HP A4 PRINTER LASER MFP 136W,,100000,0,0,,Main Storage Area,,No Stock
+2095,IN800000766,SPLCabinet(1200MM(W)X2000MM(H)X800MM(D),SPL Cabinet Panle,box,SPLCabinet(1200MM(W)X2000MM(H)X800MM(D),,100000,0,3,Stock Available,Main Storage Area,,Checked
+2099,IN800000770,Dell Precision T3660 Tower Workstation,Dell CPU,box,Dell Precision T3660 Tower Workstation,,100000,0,1,,Main Storage Area,,No Stock
+2109,IN800000780,MOUNTING PLATE( 480WX120DX 220H),General Material,box,MOUNTING PLATE( 480WX120DX 220H),,100000,0,0,,Main Storage Area,,No Stock
+2110,IN800000781,TB KUT35 grey,TB's,box,TB KUT35 grey,BASIC REQUIREMENTS,100000,0,1004,Reorder,Main Storage Area,27B,Checked
+2111,IN800000782,4AMP DP C CURVE 10KA MCB,MCB,box,4AMP DP C CURVE 10KA MCB,BASIC REQUIREMENTS,100000,0,0,Stock Available,Main Storage Area,27B,Checked
+2112,IN800000783,Insulator M6x30,General Material,box,Insulator M6x30,,100000,0,0,,Main Storage Area,,No Stock
+2113,IN800000784,Insulated Lugs 2.5 sq mm E5,Lugs,box,Insulated Lugs 2.5 sq mm E5,BASIC REQUIREMENTS,100000,0,0,Reorder,Main Storage Area,25C, Checked 
+2114,IN800000785,Screws M4x10mm,General Material,box,Screws M4x10mm,,100000,0,0,,Main Storage Area,,No Stock
+2115,IN800000786,Bolt M6x10 mm,General Material,box,Bolt M6x10 mm,,100000,0,0,,Main Storage Area,,No Stock
+2116,IN800000787,MUSHROOM PUSH BUTTON (2XVAPR RED),General Material,box,MUSHROOM PUSH BUTTON (2XVAPR RED),,100000,0,0,,Main Storage Area,70,Checked
+2117,IN800000788,NC CONTACT ELEMENT- V2,General Material,box,NC CONTACT ELEMENT- V2,,100000,0,1,Stock Available,Main Storage Area,,Pending
+2118,IN800000789,PROTECTIVE WITH COVER PUSH BUTTON,General Material,box,PROTECTIVE WITH COVER PUSH BUTTON,,100000,0,1,Reorder,Main Storage Area,,Pending
+2119,IN800000790,CONSOLE OP072 (WITH acceso and stand ),CONSOLE,box,CONSOLE OP072 (WITH acceso and stand ),,100000,0,0,,Main Storage Area,1st Floor,Checked
+2120,IN800000791,MONITORS(LG 32" LED Monitor),LG Tv & Monitor,box,MONITORS(LG 32" LED Monitor),,100000,0,0,,Main Storage Area,,No Stock
+2121,IN800000792,MOUSE PAD,General Material,box,MOUSE PAD,,100000,0,0,,Main Storage Area,,No Stock
+2125,IN800000796,"RCT -T-D-30-75/5A VA-5,CL-5 CT",General Material,box,"RCT -T-D-30-75/5A VA-5,CL-5 CT",,100000,0,4,Reorder,Main Storage Area,,Checked
+2126,IN800000797,DELL DESKTOP(7000MT)16 GBRAM+1TB SDD,DELL DESKTOP,box,DELL DESKTOP(7000MT)16 GBRAM+1TB SDD,,100000,0,0,,Main Storage Area,,No Stock
+2127,IN800000798,DURACELL BATTERIES (9V),General Material,box,DURACELL BATTERIES (9V),,100000,0,0,,Main Storage Area,,No Stock
+2128,IN800000799,POLYCAB(2cX2.50sqmm Black 100mtr coil) ,POLYCAB,box,POLYCAB(2cX2.50sqmm Black 100mtr coil) ,BASIC REQUIREMENTS,100000,0,0,Reorder,Main Storage Area,21F,Checked
+2129,IN800000800, POLYCAB(1c X 6sqmm Y/G 100 mtr coil) ,POLYCAB,box, POLYCAB(1c X 6sqmm Y/G 100 mtr coil) ,BASIC REQUIREMENTS,100000,0,1800,Reorder,Main Storage Area,26B,Checked
+2130,IN800000801,3MM GLAND PLATE FOR 800MM PANELS,General Material,box,3MM GLAND PLATE FOR 800MM PANELS,,100000,0,1,Reorder,Main Storage Area,,Checked
+2131,IN800000802,3MM GLAND PLATE FOR 1200MM PANELS,General Material,box,3MM GLAND PLATE FOR 1200MM PANELS,,100000,0,13,Reorder,Main Storage Area,,Checked
+2133,IN800000804, METALLIC CLOSED CONSOLE-102023,CONSOLE,box, METALLIC CLOSED CONSOLE-102023,,100000,0,0,,Main Storage Area,1st Floor,Checked
+2134,IN800000805, PRINTER TABLE-METALLIC,CONSOLE,box, PRINTER TABLE-METALLIC,,100000,0,0,Reorder,Main Storage Area,Ground Floor,Checked
+2135,IN800000806,DELL DESKTOP(7000MT)16 GBRAM,DELL DESKTOP,box,DELL DESKTOP(7000MT)16 GBRAM,,100000,0,0,,Main Storage Area,,No Stock
+2136,IN800000807,SMPS dell 3050MT SMPS (00400217),Dell CPU,box,SMPS dell 3050MT SMPS (00400217),,100000,0,0,,Main Storage Area,,No Stock
+2140,IN800000811,"RELAY SIMCODE 3UF7011-1AU00-0,230V AC",Relay,box,"RELAY SIMCODE 3UF7011-1AU00-0,230V AC",,100000,0,0,,Main Storage Area,,No Stock
+2141,IN800000812,CURRENTMODULE 2.5-25AMPS 3UF7101-1AA00-0,General Material,box,CURRENTMODULE 2.5-25AMPS 3UF7101-1AA00-0,,100000,0,1,Stock Available,Main Storage Area,,Pending
+2142,IN800000813,MANAGBLE SWITCH 2 Layer (d-link),General Material,box,MANAGBLE SWITCH 2 Layer (d-link),,100000,0,0,,Main Storage Area,74,Checked
+2144,IN800000815,Dell Precision 5820 Tower XCTO Base,DELL DESKTOP,box,Dell Precision 5820 Tower XCTO Base,,100000,0,0,,Main Storage Area,,
+2145,IN800000816,Cage nut with screw  and nylon washer,,box,Cage nut with screw  and nylon washer,,100000,0,0,,Main Storage Area,,
+2146,IN800000817,BUS BAR (25x3x180 Tinned),,box,BUS BAR (25x3x180 Tinned),,100000,0,7,Stock Available,Main Storage Area,,
+2148,IN800000819,CCTP4 -10 GREY ( END PLATE),,box,CCTP4 -10 GREY ( END PLATE),,100000,0,1260,Stock Available,Main Storage Area,,
+2149,IN800000820,DP MCB SHORTING LINK (SEUPL),MCB Link,box,DP MCB SHORTING LINK (SEUPL),,100000,0,82,,Main Storage Area,,
+2150,IN800000821,CCLA10-10way (SHORTLINK),,box,CCLA10-10way (SHORTLINK),,100000,0,0,,Main Storage Area,,
+2152,IN800000823,TP LINKTG-3468 GIGABIT ADAPTER,,box,TP LINKTG-3468 GIGABIT ADAPTER,,100000,0,0,,Main Storage Area,,
+2153,IN800000824,USB EXTENSION CABLE 1MTR,,box,USB EXTENSION CABLE 1MTR,,100000,0,0,,Main Storage Area,,
+2154,IN800000825,LED INDICATING LAMP BAREL 220VAC GREEN,,box,LED INDICATING LAMP BAREL 220VAC GREEN,,100000,0,18,Stock Available,Main Storage Area,,
+2155,IN800000826,communication cable CAT5-E (Blue),,box,communication cable CAT5-E (Blue),,100000,0,0,,Main Storage Area,,
+2156,IN800000827,DELL  i7(5000MT )2tb hard disk &16 GBRAM,DELL DESKTOP,box,DELL  i7(5000MT )2tb hard disk &16 GBRAM,,100000,0,0,Reorder,Main Storage Area,,
+2159,IN800000830,TIE CLOSURE SUPAFLEX-400MM,Cable Ties,box,TIE CLOSURE SUPAFLEX-400MM,BASIC REQUIREMENTS,100000,0,1000,Stock Available,Main Storage Area,25C,Checked
+2160,TC070301B0010051,HD0180-A07-B00-C05-D10+HD0182-A90-B01-C00+HD0181-A80-B01,,box,HD0180-A07-B00-C05-D10+HD0182-A90-B01-C00+HD0181-A80-B01,,100000,0,0,,Main Storage Area,,

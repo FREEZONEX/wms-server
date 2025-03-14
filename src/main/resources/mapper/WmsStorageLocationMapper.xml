@@ -79,7 +79,7 @@
                 AND create_time = #{create_time}
             </if>
         </where>
-        ORDER BY name ASC
+        ORDER BY create_time DESC, id ASC
     </select>
 
     <!-- For 3D Model -->

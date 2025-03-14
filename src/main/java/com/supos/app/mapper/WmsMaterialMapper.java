@@ -16,7 +16,6 @@ public interface WmsMaterialMapper extends BaseMapper<WmsMaterial> {
     int deleteWmsMaterialById(WmsMaterial wmsMaterial);
 
     List<WmsMaterial> selectAll(WmsMaterial wmsMaterial);
-
 }
 
 

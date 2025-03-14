@@ -9,7 +9,7 @@ def generate_insert_statements():
     # for main storage area
     for i in range(1, 81):
         location_names.append(f"{i}")
-        for j in "ABC":
+        for j in "ABCDEF":
             location_names.append(f"{i}{j}")
     
     location_names.append("Ground Floor")

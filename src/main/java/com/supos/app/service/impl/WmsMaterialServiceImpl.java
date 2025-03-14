@@ -150,6 +150,37 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
         return wmsMaterialList;
     }
 
+    public List<WmsMaterial> selectAllForOutbound(WmsMaterial wmsMaterial) {
+        List<WmsMaterial> wmsMaterialList = wmsMaterialMapper.selectAll(wmsMaterial);
+        List<String> excludeLocationIdsList = new ArrayList<>();
+
+        for(WmsMaterial material: wmsMaterialList) {
+            // 1. calculate suggested storage location id
+            List<WmsMaterialExpectedLocation> availableLocations = wmsMaterialExpectedLocationMapper.selectAvailableLocationsForOutbound(material.getId(), String.join(",", excludeLocationIdsList));
+            if(!availableLocations.isEmpty()) {
+                Long location_id = availableLocations.get(0).getLocation_id();
+                material.setSuggested_storage_location_id(location_id);
+                WmsStorageLocation wmsStorageLocation = new WmsStorageLocation();
+                wmsStorageLocation.setId(location_id);
+                List<WmsStorageLocation> locationList = wmsStorageLocationServiceImpl.selectAll(wmsStorageLocation);
+                if (locationList != null && !locationList.isEmpty()) {
+                    material.setSuggested_storage_location_name(locationList.get(0).getName());
+                    excludeLocationIdsList.add(String.valueOf(locationList.get(0).getId()));
+                }
+            }
+
+            // 2. fill exist stocks for this material
+            if(Boolean.TRUE.equals(wmsMaterial.getShow_stock())) {
+                WmsMaterialStorageLocation wmsMaterialStorageLocation = new WmsMaterialStorageLocation();
+                wmsMaterialStorageLocation.setMaterial_id(wmsMaterial.getId());
+                List<WmsMaterialStorageLocation> wmsMaterialStorageLocations = wmsMaterialStorageLocationMapper.selectAll(wmsMaterialStorageLocation);
+                material.setWmsMaterialStorageLocations(wmsMaterialStorageLocations);
+            }
+        }
+
+        return wmsMaterialList;
+    }
+
     public Long importMaterialCSV(MultipartFile file) {
         Long count = 0L;
 
@@ -158,36 +189,24 @@ public class WmsMaterialServiceImpl extends ServiceImpl<WmsMaterialMapper, WmsMa
                 .setHeader()
                 .setSkipHeaderRecord(true) // Skip the first record as it is the header
                 .build())) {
-/*
-    private Long id;
-    private String material_code;
-    private String name;
-    private String material_type;
-    private String unit;
-    private String note;
-    private String specification;
-    private Long max;
-    private Long min;
-    private Long quantity;
-    private String status;
-    private Long expect_wh_id;
-    private String expect_storage_locations;
- */
+
             for (CSVRecord record : csvParser) {
                 WmsMaterial wmsMaterial = new WmsMaterial();
                 Long material_id = Long.parseLong(record.get("id"));
                 wmsMaterial.setId(material_id);
-                wmsMaterial.setMaterial_code(record.get("material_code"));
-                wmsMaterial.setName(record.get("name"));
-                wmsMaterial.setMaterial_type(record.get("material_type"));
-                wmsMaterial.setUnit(record.get("unit"));
-                wmsMaterial.setNote(record.get("note"));
-                wmsMaterial.setSpecification(record.get("specification"));
+                wmsMaterial.setMaterial_code(record.get("material_code").trim());
+                wmsMaterial.setName(record.get("name").trim());
+                wmsMaterial.setMaterial_type(record.get("material_type").trim());
+                wmsMaterial.setUnit(record.get("unit").trim());
+                wmsMaterial.setNote(record.get("note").trim());
+                wmsMaterial.setSpecification(record.get("specification").trim());
                 wmsMaterial.setMax(Long.parseLong(record.get("max")));
                 wmsMaterial.setMin(Long.parseLong(record.get("min")));
                 wmsMaterial.setQuantity(Long.parseLong(record.get("quantity")));
-                wmsMaterial.setStatus(record.get("status"));
-                
+                wmsMaterial.setStatus(record.get("status").trim());
+                if (material_id == 1455) {
+                    System.err.println(material_id);
+                }
                 // add material to db first
                 wmsMaterialMapper.insertSelective(wmsMaterial);
                 count++;
